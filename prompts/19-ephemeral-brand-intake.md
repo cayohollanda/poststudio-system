@@ -30,8 +30,9 @@ The user pastes (or attaches) some subset of the following. Anything missing →
 | Logo files | uploaded SVG/PNG (mark + variants + lockup) | required for visual delivery |
 | Compliance / constraints | text (regulations, words-to-avoid, claims rules) | recommended |
 | Existing positioning / offer | paste from internal docs | optional |
-| Color palette / fonts | hex codes + font names | optional (otherwise inferred from site) |
-| Primary visual mode | one of `system/visual-framework.md` modes 1-9 | optional |
+| Color palette / fonts | hex codes + font names | optional (otherwise extracted from logo + reference material) |
+| ~~Primary visual mode~~ | ~~choice~~ | **NOT a user input. Locked to Mode 9 `decoded-editorial` in Mode 1.** |
+| Brand reference posts (optional) | screenshots/PNGs of the brand's existing posts | **Used ONLY for color/typography extraction. NEVER copied as layout.** |
 
 ---
 
@@ -59,7 +60,7 @@ The user has supplied (or is supplying) brand context per-session for an EPHEMER
    - 11_examples.md — 2-3 example posts in the brand's voice (synthesize from voice samples; clearly mark as exemplars not real posts)
    - 12_rejected-examples.md — explicit anti-patterns the brand would reject (LinkedIn-bro, generic SaaS speak, etc.) inferred from the brand's voice or stated by the user
 3. Surface ALL gaps explicitly under "Missing Inputs / Proof Needed". Do not invent.
-4. Confirm to the user which visual mode you chose (or recommend one of the 9 modes from `system/visual-framework.md`).
+4. **Visual mode is LOCKED to Mode 9 `decoded-editorial`. You do NOT choose. You do NOT recommend alternatives.** PostStudio System Mode 1 has ONE canonical layout — the brandsdecoded template — and the brand customizes only the 13 placeholder values defined in `system/visual-framework.md` Mode 9. Any reference posts the user attached are color/font cues ONLY — never copy their layout, grid, header chrome, or composition. The brand pack's `06_visual-style.md` section MUST set `primary_visual_mode: decoded-editorial` and fill all 13 placeholders.
 5. State which logo asset files the user supplied (read the binary attachments) and which mark variant goes on which background. Confirm you will base64-embed them when rendering — never redraw via SVG primitives.
 6. End with a 1-paragraph summary of what's now active for this session and what's missing.
 
@@ -69,17 +70,38 @@ Return Markdown with 12 H2 sections (one per brand pack file). Use placeholder `
 
 DO NOT save these files to disk. DO NOT commit anything. The brand pack lives in this conversation only.
 
+In section `06 — Visual Style`, you MUST output the 13 Mode 9 placeholder slots filled with concrete values (or marked `[MISSING_INPUT]` if you genuinely cannot extract them):
+
+```
+primary_visual_mode: decoded-editorial   # LOCKED. Never another mode in Mode 1.
+
+BRAND_ACCENT:              #XXXXXX  # extracted from logo / brand guideline
+BRAND_DARK_BG:             #XXXXXX  # default #0B0B0A if not declared
+BRAND_LIGHT_BG:            #XXXXXX  # default #FAF8F3 if not declared
+BRAND_INK_ON_DARK:         #XXXXXX  # default #F2EFE8
+BRAND_INK_ON_LIGHT:        #XXXXXX  # default = BRAND_DARK_BG
+HEADLINE_FONT:             "..."    # from brand guideline OR Manrope default
+BODY_FONT:                 "..."    # from brand guideline OR same as HEADLINE_FONT
+BRAND_MARK_FILE:           filename # the actual file the user attached this session
+@BRAND_HANDLE:             @...     # social handle
+BRAND_HEADER_LABEL_LEFT:   "..."    # default: "POWERED BY POSTSTUDIO"
+BRAND_HEADER_LABEL_RIGHT:  "..."    # default: "@poststudio.ai · [MONTH YEAR] ®"
+CTA_HEADLINE_LINE_1:       "..."    # e.g. "FEITO NO" or "BUILT WITH"
+CTA_HEADLINE_LINE_2:       "..."    # e.g. "WEAURA." or "YOURBRAND."
+CTA_FOOTER_TEXT:           "..."    # e.g. "Envio automático via DM"
+```
+
 After the 12 sections, include:
-- ## Summary — 4 bullets: brand slug, primary visual mode chosen, logo assets confirmed, gaps to fill before shipping anything
+- ## Summary — 4 bullets: brand slug, **visual mode = `decoded-editorial` (LOCKED)**, logo assets confirmed, gaps to fill before shipping anything
 - ## Missing Inputs / Proof Needed — bulleted list
 
 # Hard rules
 
 - Do NOT invent customer names, awards, certifications, numbers, quotes, or testimonials. If the user didn't supply them, mark `[PROOF_NEEDED]`.
-- Do NOT pick a visual mode arbitrarily. If the brand looks editorial, recommend Mode 2 or Mode 9. If cinematic, Mode 1. If technical, Mode 6 or 9. State your reasoning.
+- **Visual mode is LOCKED to Mode 9 `decoded-editorial`. You do NOT pick, recommend, or offer alternatives. You do NOT infer a different mode by looking at brand reference posts.** Any post-of-reference the user attaches is a color/typography cue source ONLY — never a template to copy.
+- Do NOT extract layout, grid, header chrome, or slide composition from the brand's own existing posts. The brandsdecoded template (Mode 9) defines the layout. Period.
 - Do NOT claim assets exist that the user didn't attach. If no logo file was supplied, mark `[ASSET_NOT_FOUND]` for that mark variant and ask the user to attach it.
 - Do NOT mix two brands in one intake. One brand per session.
-- Do NOT recommend `decoded-editorial` (Mode 9) unless the user is planning carousels of 10+ slides AND has supplied enough visual cues to fill the placeholder list (see `system/visual-framework.md` Mode 9 placeholder table).
 
 # Then
 
@@ -126,15 +148,24 @@ Compliance: SOC 2 Type II, ISO 27001, GDPR. Avoid claims about specific outcomes
 
 [Attached: mark-primary.svg, mark-dark.svg, lockup-on-light.svg, lockup-on-dark.svg]
 
-Primary visual mode (preference): decoded-editorial — we want long-form (10-14 slide) tactical carousels.
-
-Color palette (preference): VOLT #CCFF00, DARK #0B0B0A, CREAM #F2EFE8, LIGHT #FAF8F3.
-Typography: Manrope SemiBold (headline) / Manrope Regular (body).
-Header label left: POWERED BY POSTSTUDIO
-Header label right: @poststudio.ai · MAY 2026 ®
+# Mode 9 placeholders (Mode 9 is LOCKED — you fill the values, not the mode)
+BRAND_ACCENT: #CCFF00
+BRAND_DARK_BG: #0B0B0A
+BRAND_LIGHT_BG: #FAF8F3
+BRAND_INK_ON_DARK: #F2EFE8
+BRAND_INK_ON_LIGHT: #0B0B0A
+HEADLINE_FONT: "Manrope" (SemiBold/Bold)
+BODY_FONT: "Manrope" (Regular)
+BRAND_MARK_FILE: mark-primary.svg (attached)
+@BRAND_HANDLE: @weaura.tech
+BRAND_HEADER_LABEL_LEFT: POWERED BY POSTSTUDIO
+BRAND_HEADER_LABEL_RIGHT: @poststudio.ai · MAY 2026 ®
+CTA_HEADLINE_LINE_1: FEITO NO
+CTA_HEADLINE_LINE_2: WEAURA.
+CTA_FOOTER_TEXT: Envio automático via DM
 ```
 
-Claude returns the 12-section brand pack with confirmation of the visual mode + asset slot mapping.
+Claude returns the 12-section brand pack with the 13 Mode 9 placeholders filled and asset slot mapping confirmed. The output's `06 — Visual Style` section will declare `primary_visual_mode: decoded-editorial` (LOCKED, no alternative).
 
 ---
 

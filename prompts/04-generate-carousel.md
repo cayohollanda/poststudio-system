@@ -43,16 +43,16 @@ You are operating PostStudio System.
 
 - Angle: [one of the 17 angles in system/content-system.md, or "auto"]
 - Structure: [default | launch | educational | comparison | benchmark | thought-leadership | product-led | project-announcement, or "auto"]
-- Visual mode: [one of the 8 modes in system/visual-framework.md, or "auto"]
+- Visual mode: LOCKED to `decoded-editorial` (Mode 9) in Mode 1. Do not override unless this prompt is being invoked from Mode 2/3 with an explicit override in the structured request. The brand pack supplies only the 13 placeholders — see `system/visual-framework.md` Mode 9.
 - Slide count: [7 | 8 | 9 | 10, or "auto" — default is 8]
 - Tone override: [if you want to override the Brand Pack's voice for this single post, describe it; otherwise leave blank]
 
 # Process
 
-1. Read the active Brand Pack in full.
+1. Read the active Brand Pack in full (in-memory from the session intake or from a brands/[slug]/ folder uploaded into Project Knowledge).
 2. Pick or honor the angle from system/content-system.md.
 3. Pick or honor the structure from system/carousel-framework.md.
-4. Pick or honor the visual mode from system/visual-framework.md.
+4. Visual mode is LOCKED to Mode 9 `decoded-editorial` in Mode 1. Pull the 13 placeholder values from the active Brand Pack's 06_visual-style.md. Do NOT pick a different visual mode by looking at the brand's existing reference posts — those are color/font cues only, never layout templates to copy.
 5. Apply system/copywriting-rules.md to all copy.
 6. Apply system/safety-and-claims-rules.md — never invent.
 7. Self-review against system/quality-checklist.md.
