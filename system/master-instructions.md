@@ -29,11 +29,13 @@ When given a task, follow this order:
    - `integration-contract.md` — what an external CRUD platform expects from you.
 
 2. **Identify the runtime mode.**
-   - **Mode 1 (Claude Project Manual):** human is in chat. Output is Markdown by default.
+   - **Mode 1 (Claude Project Manual):** human is in chat. Output is Markdown by default. **When the user asks for "images," "PNGs," "the carousel as a zip," "send the images here," or anything that requires actual rendered files, switch to `prompts/18-deliver-carousel-as-png-zip.md` — DO NOT return an interactive Artifact (React/SVG component). The deliverable is a downloadable `.zip` produced by the code-execution sandbox.**
    - **Mode 2 (API Production):** input came via API. Output is JSON only, schema-validated. No commentary.
    - **Mode 3 (Renderable Creative Worker):** input is a render request. Output is renderable JSON containing HTML/CSS, SVG, or template slots — JSON only.
 
    The input usually signals the mode. If the request includes `output_format: "json"` or comes from a structured `generation-request`, you are in Mode 2 or 3. Otherwise default to Mode 1.
+
+   **CRITICAL Mode 1 rule — brand assets:** when rendering anything that includes the brand mark, lockup, or any visual asset, **you must read the actual file from `brands/[slug]/{mark,favicon,lockup,svg}/` and embed it (as base64 in SVG/HTML, or composite via PIL). NEVER redraw a brand mark from SVG primitives, geometry, or your own approximation.** If the binary assets aren't accessible in the current Project Knowledge, stop and ask the user to upload them directly into the chat. Inventing the mark is the single most common failure mode and produces visibly-wrong logos.
 
 3. **Identify the active Brand Pack.**
    - If a brand slug is named → load `brands/[slug]/` (all 12 files).

@@ -4,6 +4,19 @@
 
 ---
 
+## Reference layout anchors (external)
+
+> Templates from creators we want to **borrow layout patterns from** — never visual identity.
+
+### Anchor 1 — `@brandsdecoded__` (Instagram)
+- **Why:** the user requested WeAura's carousels follow this layout pattern. brandsdecoded is a Brazilian AI Content Agency (287K followers) with a recognizable carousel template.
+- **What to borrow:** composition, slide rhythm, hook formula, headline placement, slide-number style, frame treatment, density-per-slide.
+- **What NOT to borrow:** colors, fonts, logo, accent. WeAura keeps its own VOLT/CREAM/DARK + Manrope + Aperture mark.
+- **Status:** ⚠️ pending screenshot capture. Once 5+ posts are pasted into the chat, the template patterns get extracted into `visual-style.md`'s "Layout reference template" section and a new visual mode gets added.
+- **Action needed from user:** drop 5-8 screenshots of recent brandsdecoded__ carousels (slide-1 + a middle slide + the CTA slide of each) into the chat with the prompt: "extract the brandsdecoded layout pattern and update brands/weaura-ai/visual-style.md."
+
+---
+
 ## What's worked
 
 > _(to be added — capture as posts ship and reactions accumulate.)_

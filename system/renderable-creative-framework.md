@@ -28,6 +28,9 @@ A single carousel uses one sub-mode for all slides. Don't mix.
    - assets explicitly provided in the Brand Pack `visual-style.md` and listed in the request's `available_assets[]`,
    - or inline base64 if the worker policy allows it.
 5. **No copyrighted logos or fake brand marks** Claude does not invent.
+   - **Asset embedding rule (NON-NEGOTIABLE):** when the brand mark, lockup, favicon, or any pre-existing visual asset must appear in a slide, Claude reads the **actual file** from `brands/[slug]/{mark,favicon,lockup,svg}/` and embeds it (as base64 in `<image href="data:...">`, as `<img src="data:...">`, or as a referenced asset_id resolved by the worker). Claude **NEVER** redraws the mark via SVG primitives (`<circle>`, `<path>`, etc.), geometric approximations, or its own interpretation.
+   - If the asset file isn't accessible to Claude in the current runtime (e.g. Project Knowledge text-only mode), Claude stops and surfaces `[ASSET_NOT_FOUND]` plus a request to the user to upload the binary file. Claude does not "best-effort redraw."
+   - This rule applies in all three modes (Manual, API, Renderable Worker).
 6. **Deterministic layout.** Given the same input, the output should render identically.
 7. **Editable text in source** — the headline must be a real text node, not rasterized.
 8. **No untrusted URLs** in any `href`, `src`, `url()`, or `xlink:href`.

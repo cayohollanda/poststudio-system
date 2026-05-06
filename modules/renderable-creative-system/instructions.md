@@ -48,16 +48,27 @@ The `payload` field shape depends on `render_mode`:
 
 1. Read the brief and the Brand Pack.
 2. Verify the `render_mode` is supported and the inputs are sufficient (font names, asset IDs, available templates).
-3. Generate the carousel content first — strategic angle, slide-by-slide copy, visual concepts. Use `modules/carousel-machine/instructions.md` as your content engine.
-4. Convert each slide's content + visual concept into the renderable form for the chosen sub-mode:
-   - HTML/CSS: write a self-contained slide following `html-css-rules.md`.
-   - SVG: write a valid `<svg>` following `svg-rules.md`.
+3. **Resolve every brand asset that will appear in the slides.** Read the actual file bytes from `brands/[slug]/{mark,favicon,lockup,svg}/`. If a required asset cannot be read, stop and surface `[ASSET_NOT_FOUND]` — do **NOT** redraw the mark from SVG primitives or invent geometry. This is the most common failure mode and is non-negotiable.
+4. Generate the carousel content first — strategic angle, slide-by-slide copy, visual concepts. Use `modules/carousel-machine/instructions.md` as your content engine.
+5. Convert each slide's content + visual concept into the renderable form for the chosen sub-mode:
+   - HTML/CSS: write a self-contained slide following `html-css-rules.md`. Brand marks via `<img src="data:image/svg+xml;base64,...">` (real asset, base64-encoded), never as inline SVG primitives.
+   - SVG: write a valid `<svg>` following `svg-rules.md`. Brand marks via `<image xlink:href="data:image/svg+xml;base64,...">`, never as `<circle>`/`<path>` redraws.
    - Template: pick a `template_id` from the request's available list and fill slots per `template-json-rules.md`.
-5. Add slide metadata (role, headline, support_text, accent_color, slide_number).
-6. Carry through caption, CTA, first comment, alternative hooks (these are not renderable; they go in their own JSON fields).
-7. Run renderability self-checks (`render-quality-checklist.md`).
-8. Set `renderability_validated: true` only if all checks pass.
-9. If any check fails: attempt repair (see `repair-rules.md`). If repair impossible, set `renderability_validated: false`, populate `warnings[]`, and return.
+6. Add slide metadata (role, headline, support_text, accent_color, slide_number).
+7. Carry through caption, CTA, first comment, alternative hooks (these are not renderable; they go in their own JSON fields).
+8. Run renderability self-checks (`render-quality-checklist.md`).
+9. Set `renderability_validated: true` only if all checks pass.
+10. If any check fails: attempt repair (see `repair-rules.md`). If repair impossible, set `renderability_validated: false`, populate `warnings[]`, and return.
+
+### Mode 1 (Claude.ai Project) variant — when the user asks for PNGs/zip directly
+
+If the runtime is Mode 1 and the user asks for the carousel as images/PNG/zip, do **not** return an interactive Artifact. Switch to `prompts/18-deliver-carousel-as-png-zip.md`:
+
+- Render via the Python sandbox (`cairosvg` for SVG→PNG; `Pillow` for direct composition).
+- Embed the real brand asset files (read as bytes, base64-encode).
+- Package as `[brand-slug]-[topic-slug]-[YYYY-MM-DD].zip` with `slide-01.png` … `slide-NN.png`.
+- Attach the zip as a downloadable file in the response.
+- Echo a 5-line summary (brand · topic · slide count · canvas · output filename).
 10. Validate against `schemas/renderable-carousel.schema.json`.
 11. Return JSON only. No commentary.
 

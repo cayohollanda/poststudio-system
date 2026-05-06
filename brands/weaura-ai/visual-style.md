@@ -6,6 +6,50 @@
 
 ---
 
+## ⚠️ NEVER redraw the Aperture mark
+
+The Aperture mark is a precise, brand-defining geometry. **Claude must never redraw it via SVG primitives** (`<circle>`, `<polygon>`, `<path>`, etc.) or approximate its geometry. Always embed the actual file as base64.
+
+Required assets and their canonical paths:
+
+| When | Use this asset | Base64-embed in renderable code as |
+|---|---|---|
+| Dark background slide | `brands/weaura-ai/svg/mark-primary.svg` (cream + volt dot) | `data:image/svg+xml;base64,...` |
+| Dark slide with full lockup | `brands/weaura-ai/svg/lockup-transparent-cream.svg` | same |
+| Light background slide | `brands/weaura-ai/svg/mark-dark.svg` (dark + volt dot) | same |
+| Light slide with full lockup | `brands/weaura-ai/svg/lockup-transparent-dark.svg` | same |
+| Slide with VOLT background | `brands/weaura-ai/svg/mark-dark-on-volt.svg` (black dot, no volt in mark) | same |
+
+If the binary SVG files cannot be read in the current runtime (some Project Knowledge configurations only expose markdown text), **stop and ask the user to upload the SVGs into the chat**. Do **not** fall back to redrawing the aperture from primitives — the result will be visibly wrong every time and erode brand consistency.
+
+The most common failure mode in past sessions: Claude generated an SVG with `<circle>` primitives approximating the Aperture and shipped that as the mark. The audience notices. The brand pays. **Read the file or stop.**
+
+---
+
+## Layout reference template — `brandsdecoded__` style
+
+> ⚠️ Pending screenshot capture. The user has indicated WeAura's carousels should follow the layout pattern of `@brandsdecoded__` on Instagram (Brazilian AI Content Agency, 287K followers, "Decodificando o futuro do marketing com AI"). Until 5+ post screenshots are pasted into the brand-pack-update flow, this section captures only the ask, not the executed template.
+
+**What to capture from screenshots when available:**
+- Slide background pattern (solid dark / cream / split / framed?).
+- Headline placement (top / center / bottom; alignment).
+- Headline weight + case (heavy / medium / light; UPPERCASE / sentence / Title).
+- Slide-number indicator style (top / corner / footer / hidden).
+- Frame / border treatment (full-bleed / inset card with rounded corners / hard frame).
+- Use of accent on the slide number, headline highlight word, or a single graphic.
+- Hook formula on slide 1 (length, number prefix, italic emphasis).
+- Slide-2 transition style (does the layout shift, or is each slide visually identical with only text changing?).
+- Brand mark placement (every slide / first+last only / hidden).
+- Photography vs object-still-life vs pure typography.
+- Density of text per slide (one big sentence vs short paragraphs).
+
+**Adapt rule (do not clone):**
+We adopt **layout pattern** (composition, density, slide rhythm) from brandsdecoded — we do **not** adopt their visual identity (colors, fonts, logo). WeAura keeps its own VOLT/CREAM/DARK palette, Manrope typography, and Aperture mark. Cloning brandsdecoded's exact identity would be brand confusion and a trademark concern.
+
+When the screenshots arrive, this section gets replaced with the extracted template + a new visual mode entry (e.g. `agency-decoded` or `editorial-frame`) added to the modes table above.
+
+---
+
 ## Visual mode
 
 - **Primary mode:** `editorial-minimal` (cream-on-dark or cream-on-light backgrounds, restrained typography in the bottom-third).
