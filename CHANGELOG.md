@@ -6,6 +6,39 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ---
 
+## [2.1.0] — 2026-05-06
+
+### Brand-agnostic refactor — framework defines structure; brand instances are runtime data
+
+This release enforces the philosophical principle that PostStudio System is brand-agnostic. The framework repo no longer contains real brand instances — only the `_template/` scaffold and the fictional `examples/example-brand-pack/` (Lumen). Brand context is now supplied per session via runtime intake (website + handle + voice samples + uploaded logos) or via a private `brands/[slug]/` folder uploaded directly into Project Knowledge.
+
+### Added
+
+- **`prompts/19-ephemeral-brand-intake.md`** — the canonical default brand-loading path. Consolidates per-session inputs (pasted website, handle, voice samples, attached logo files) into a 12-section in-memory brand pack. No commit, no save.
+- **`system/visual-framework.md` Mode 9 — Decoded Editorial.** Promoted from a brand-specific spec into a system-level template with 13 placeholder slots. Any brand can adopt it by setting `primary_visual_mode: decoded-editorial` in `visual-style.md` and supplying placeholder values (accent, dark/light backgrounds, ink colors, fonts, mark file, handle, header labels, CTA pattern).
+- **`examples/example-brand-pack/README.md`** — explicit note that Lumen is fictional and exists only as a structural reference.
+- **`.gitignore`** — `brands/*` is now blocked with exceptions for `_template/` and `_template/**`. Prevents accidental commits of real brand instances.
+
+### Changed
+
+- **`system/master-instructions.md`** — boot-sequence step 3 inverted. Default brand loading is now ephemeral / session-supplied, not "load `brands/[slug]/` from the framework repo." Real brand instances do not live in this repo.
+- **`prompts/00-start-here.md`, `04-generate-carousel.md`, `13-generate-renderable-carousel.md`** — brand-context inputs reflect ephemeral-first flow. Prompts 18 and 19 added to the routing table.
+- **`prompts/18-deliver-carousel-as-png-zip.md`** — removed all literal references to a specific brand. Now uses generic `[BRAND]`/`[BRAND_SLUG]` placeholders and points to the brand pack's declared visual mode (typically Mode 9 `decoded-editorial`).
+- **`README.md`, `docs/getting-started.md`, `docs/how-to-use-with-claude-projects.md`, `docs/workflow.md`** — onboarding flows now describe the two canonical paths: (A) ephemeral session intake via prompt 19, (B) private brand pack uploaded into Project Knowledge. Stale "8 files" references corrected to 12.
+- **`prompts/02-generate-brand-pack.md`** — output now returns all 12 brand pack files (was 8). Save-to-disk instructions clarified: save outside this framework repo, upload privately into Project Knowledge.
+
+### Removed
+
+- Any brand instance previously committed to `brands/`. The framework's `brands/` folder now contains only `_template/`.
+
+### Migration notes from v2.0.0
+
+- If you had a private brand instance committed in your fork, move it outside the repo (e.g. to `~/Documents/Brands/[slug]/` or your own private repo). The new `.gitignore` will block re-commits.
+- For new brand onboarding, prefer `prompts/19-ephemeral-brand-intake.md` over `prompts/02-generate-brand-pack.md` unless you want a full interview pass.
+- Existing carousel outputs and renderable schemas are unchanged — this release does not touch generation contracts.
+
+---
+
 ## [2.0.0] — 2026-05-06
 
 ### Major release — Full Content Operating System with three runtime modes

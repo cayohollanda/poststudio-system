@@ -15,11 +15,11 @@ Generate a renderable carousel using:
 - modules/renderable-creative-system/<sub-mode>-rules.md (html-css | svg | template)
 - system/api-output-rules.md
 - system/safety-and-claims-rules.md
-- The active Brand Pack at brands/[BRAND_SLUG]/, especially visual-style.md
+- The active Brand Pack for this session, especially visual-style.md (supplied via prompts/19-ephemeral-brand-intake.md OR via a brands/[BRAND_SLUG]/ folder the user uploaded as Project Knowledge — never loaded from the framework repo)
 
 # Inputs
 
-- Brand: brands/[BRAND_SLUG]/
+- Brand: [BRAND_SLUG] — session-supplied brand pack (12 sections in-memory) or user-uploaded brands/[BRAND_SLUG]/ folder
 - Topic: [one-sentence topic]
 - Audience: [role + situation]
 - Platform: [linkedin / instagram / tiktok / x]

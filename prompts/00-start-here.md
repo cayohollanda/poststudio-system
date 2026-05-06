@@ -29,7 +29,7 @@ Read these files in order before any task:
 Then, depending on what the user wants:
 
 - Brand diagnosis → modules/brand-diagnosis-agent/instructions.md + prompts/01-run-brand-diagnosis.md
-- Brand pack → modules/brand-pack-builder/instructions.md + prompts/02-generate-brand-pack.md
+- Brand pack (full interview) → modules/brand-pack-builder/instructions.md + prompts/02-generate-brand-pack.md
 - Content strategy → modules/content-strategy-os/instructions.md + prompts/03-generate-content-strategy.md
 - Carousel → modules/carousel-machine/instructions.md + prompts/04-generate-carousel.md
 - Image prompts → modules/visual-prompt-system/instructions.md + prompts/05-generate-image-prompts.md
@@ -45,11 +45,16 @@ Then, depending on what the user wants:
 - SVG slide → prompts/15-generate-svg-slide.md
 - Repair renderable → prompts/16-repair-renderable-output.md
 - Render job export → prompts/17-export-render-job.md
+- PNG zip delivery (Mode 1, Claude Project) → prompts/18-deliver-carousel-as-png-zip.md
+- Ephemeral brand intake (fast, runtime brand context) → prompts/19-ephemeral-brand-intake.md
 
-When the user names a brand:
+Brand context is supplied per session, not loaded from this repo:
 
-- Load brands/[brand-slug]/ — all 12 files.
-- Treat the Brand Pack as a hard constraint (voice, words-to-avoid, claims-allowed, claims-forbidden).
+- Default: the user supplies brand context per-session (pasted website content, Instagram handle + bio + sample captions, voice samples, attached logo files, compliance constraints). Run prompts/19-ephemeral-brand-intake.md to consolidate into a 12-section in-memory brand pack.
+- If the user has uploaded a brands/[slug]/ folder directly into Project Knowledge AND says "use brands/[slug]/", load all 12 files from there.
+- examples/example-brand-pack/ (Lumen) is a fictional reference only. Never ship from it as if it were a real brand.
+- This repo's brands/ folder contains only _template/. Real brand instances do NOT live in this framework repo.
+- Treat the active Brand Pack as a hard constraint (voice, words-to-avoid, claims-allowed, claims-forbidden).
 - Never mix two brands in one output.
 
 Default behaviors:

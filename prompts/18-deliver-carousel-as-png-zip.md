@@ -33,9 +33,9 @@ This prompt prevents that failure mode.
 
 1. **Do not return an Artifact.** No `<artifact>`, no React component, no interactive HTML preview. The deliverable is a `.zip` file.
 2. **Use the analysis / code-execution tool** (Python sandbox) to render and package.
-3. **Never redraw brand marks/logos via SVG primitives.** Always read the actual asset file from `brands/[slug]/{mark,favicon,lockup,svg}/` (uploaded as Project Knowledge) and embed it as base64 in the SVG/HTML, OR composite it via PIL.
+3. **Never redraw brand marks/logos via SVG primitives.** Always read the actual asset file the user supplied this session — either uploaded as a chat attachment OR present in a `brands/[slug]/{mark,favicon,lockup,svg}/` folder the user uploaded as Project Knowledge — and embed it as base64 in the SVG/HTML, OR composite it via PIL.
 4. **Render at the brand's canvas dimensions** (default 1080×1350) at full fidelity.
-5. **Use the brand's actual fonts** (Manrope for `weaura-ai`). Download from Google Fonts inside the sandbox if needed; embed via `@font-face` data URI.
+5. **Use the brand's actual fonts** as declared in the active Brand Pack's `visual-style.md`. Download from Google Fonts inside the sandbox if needed; embed via `@font-face` data URI.
 6. **Apply all brand-style rules** from `brands/[slug]/visual-style.md`: palette (exact hex), typography, accent rule (one accent per slide), logo placement, margins.
 7. **Output a `.zip` file** with naming: `[brand-slug]-[topic-slug]-[YYYY-MM-DD].zip` containing `slide-01.png` through `slide-NN.png`.
 8. **Attach the zip as a downloadable file in the response.** Don't paste the file path; attach it.
@@ -167,54 +167,58 @@ This is a starting skeleton. Adapt to the brand's specific layout per `visual-st
 
 ## Layout rules to honor (from the brand pack)
 
-For `weaura-ai` specifically — the **default mode is `decoded-editorial`** (long-form 10-14 slide template adapted from `@brandsdecoded__`). See full spec in [`brands/weaura-ai/visual-style.md`](../brands/weaura-ai/visual-style.md). Quick-reference summary:
+The brand's `visual-style.md` declares which **visual mode** to use. If the brand pack declares `primary_visual_mode: decoded-editorial`, follow the spec in `system/visual-framework.md` Mode 9 (`decoded-editorial`) and use the placeholders the brand pack supplies. Otherwise, follow whichever Mode (1-8) the brand pack declares.
 
-### Canvas + universal chrome
+### Quick reference — `decoded-editorial` mode (Mode 9, system-level spec with placeholders)
+
+Use this as a checklist; pull actual values from the active Brand Pack's `visual-style.md`.
+
+#### Canvas + universal chrome
 - Canvas: 1080×1350.
 - Outer margins: 64px top, 64px bottom, 80px left, 80px right.
-- **Header bar (every slide):** 4px VOLT line on top edge + 11px Manrope Regular UPPERCASE labels: "POWERED BY POSTSTUDIO" left + "@poststudio.ai · MAY 2026 ®" right (CREAM 50/60% on dark, DARK 45/55% on light).
-- **Footer:** 2px VOLT progress bar (proportional fill) + 11px slide number "N/M" bottom-right.
-- Backgrounds alternate per the carousel plan: DARK `#0B0B0A` and LIGHT `#FAF8F3` / CREAM `#F2EFE8`.
+- **Header bar (every slide):** 4px `[BRAND_ACCENT]` line on top edge + 11px `[BODY_FONT]` Regular UPPERCASE labels: `[BRAND_HEADER_LABEL_LEFT]` left (e.g. "POWERED BY POSTSTUDIO") + `[BRAND_HEADER_LABEL_RIGHT]` right (e.g. "@poststudio.ai · [MONTH YEAR] ®") — opacity 50/60% on dark, 45/55% on light.
+- **Footer:** 2px `[BRAND_ACCENT]` progress bar (proportional fill) + 11px slide number "N/M" bottom-right.
+- Backgrounds alternate: `[BRAND_DARK_BG]` (e.g. `#0B0B0A`) and `[BRAND_LIGHT_BG]` (e.g. `#FAF8F3` / `#F2EFE8`).
 
-### Per slide-type composition
+#### Per slide-type composition
 
 **Hero (slide 1):**
-- Full-bleed object photography (no faces — see `constraints.md` for compositions).
+- Full-bleed object photography (no faces — see brand `constraints.md`).
 - Dark gradient overlay on bottom 60%.
-- Profile chip pill (~600px from top, 80px from left): dark rounded pill with Aperture mark + "@weaura_ai" + tiny VOLT verified dot.
-- Headline (lower 40%): 76-92px Manrope SemiBold/Bold, CREAM, with one word/phrase in VOLT.
-- Tease arrow below headline: "→ E COMO ..." in 14px Manrope Regular UPPERCASE CREAM 65%.
+- Profile chip pill (~600px from top, 80px from left): dark rounded pill with `[BRAND_MARK_FILE]` + `[@BRAND_HANDLE]` + tiny `[BRAND_ACCENT]` verified dot.
+- Headline (lower 40%): 76-92px `[HEADLINE_FONT]` SemiBold/Bold, `[BRAND_INK_ON_DARK]`, with one word/phrase in `[BRAND_ACCENT]`.
+- Tease arrow below headline: 14px `[BODY_FONT]` Regular UPPERCASE at 65% opacity.
 
 **Body Light (Type B):**
-- Solid CREAM/LIGHT background.
+- Solid `[BRAND_LIGHT_BG]` background.
 - Empty top 30-40% (intentional negative space).
-- Section eyebrow (~480px from top): "O PROBLEMA" / "TÉCNICA N" / "COMANDO N" / "O RESUMO" — 11px Manrope Regular UPPERCASE letter-spaced 0.08em, DARK 50%.
-- Headline (~60% from top): 80-110px Manrope SemiBold/Bold, sentence-case OR ALL CAPS, DARK with one word in VOLT.
-- Body text below: 22-26px Manrope Regular DARK 65%, with selective bold inline (Manrope SemiBold DARK 100%) and at most one phrase in VOLT.
+- Section eyebrow (~480px from top): 11px `[BODY_FONT]` Regular UPPERCASE letter-spaced 0.08em, `[BRAND_INK_ON_LIGHT]` 50% (e.g. "O PROBLEMA" / "TECHNIQUE N" / "THE SUMMARY").
+- Headline (~60% from top): 80-110px `[HEADLINE_FONT]` SemiBold/Bold, sentence-case OR ALL CAPS, `[BRAND_INK_ON_LIGHT]` with one word in `[BRAND_ACCENT]`.
+- Body text below: 22-26px `[BODY_FONT]` Regular `[BRAND_INK_ON_LIGHT]` 65%, with selective bold inline (`[BODY_FONT]` SemiBold 100%) and at most one phrase in `[BRAND_ACCENT]`.
 - 2-4 short paragraphs, 80-200 words.
 - Optional embedded mockup card (radius 16px, soft shadow, 70% width centered).
 
 **Body Dark (Type C):**
 - Same as Type B but inverted colors.
-- Background DARK `#0B0B0A`.
-- Section eyebrow CREAM 40%, headline CREAM (with VOLT word), body CREAM 75%.
-- **Optional ghost number watermark:** 480-580px Manrope Bold CREAM 4% (very subtle), anchored bottom-right of content area, BEHIND the text.
+- Background `[BRAND_DARK_BG]`.
+- Section eyebrow `[BRAND_INK_ON_DARK]` 40%, headline `[BRAND_INK_ON_DARK]` (with `[BRAND_ACCENT]` word), body `[BRAND_INK_ON_DARK]` 75%.
+- **Optional ghost number watermark:** 480-580px `[HEADLINE_FONT]` Bold `[BRAND_INK_ON_DARK]` 4% (very subtle), anchored bottom-right of content area, BEHIND the text.
 
 **CTA (final slide):**
-- LIGHT/CREAM background.
-- Two-line headline: "FEITO NO" (DARK) / "WEAURA." (VOLT) pattern, 80-110px Manrope Bold ALL CAPS.
-- Body explanation: 22-26px Manrope Regular DARK 65%.
-- VOLT pill action bar (full content-width, 64px tall, radius 12px, DARK text on VOLT bg).
-- CTA card: white card + soft shadow, "Comenta a palavra abaixo:" label + HUGE TRIGGER WORD (76-92px Manrope Bold) + subtitle.
-- Footer attribution: tiny Aperture icon + "@weaura_ai · Envio automático via DM" in 14px DARK 50%.
+- `[BRAND_LIGHT_BG]` background.
+- Two-line headline: `[CTA_HEADLINE_LINE_1]` (`[BRAND_INK_ON_LIGHT]`) / `[CTA_HEADLINE_LINE_2]` (`[BRAND_ACCENT]`) pattern, 80-110px `[HEADLINE_FONT]` Bold ALL CAPS.
+- Body explanation: 22-26px `[BODY_FONT]` Regular `[BRAND_INK_ON_LIGHT]` 65%.
+- `[BRAND_ACCENT]` pill action bar (full content-width, 64px tall, radius 12px, `[BRAND_INK_ON_LIGHT]` text on `[BRAND_ACCENT]` bg).
+- CTA card: white card + soft shadow, label + HUGE TRIGGER WORD (76-92px `[HEADLINE_FONT]` Bold) + subtitle.
+- Footer attribution: tiny `[BRAND_MARK_FILE]` + `[@BRAND_HANDLE] · [CTA_FOOTER_TEXT]` in 14px `[BRAND_INK_ON_LIGHT]` 50%.
 
-### Brand mark + asset rules
+#### Brand mark + asset rules
 
-- Aperture mark: `mark-primary` on dark backgrounds, `mark-dark` on light backgrounds, `mark-dark-on-volt` on VOLT pill bars. Always read the actual SVG file from `brands/weaura-ai/svg/` and base64-embed it.
-- Lockup (Aperture + "WeAura AI" wordmark): Hero (slide 1) profile chip + final CTA footer. Mark-only on intermediate slides if a mark is shown at all.
-- **Never redraw the Aperture via SVG primitives.** This rule is now in 4 places in the system; honor it.
+- Mark variants: read from the brand pack's declared mark assets (e.g. `mark-primary` on dark backgrounds, `mark-dark` on light backgrounds, `mark-dark-on-accent` on accent pill bars). **Always read the actual SVG file the user supplied this session** and base64-embed it.
+- Lockup (mark + wordmark): Hero (slide 1) profile chip + final CTA footer. Mark-only on intermediate slides if a mark is shown at all.
+- **Never redraw the brand mark via SVG primitives.** This rule is non-negotiable across the system.
 
-### Slide rhythm
+#### Slide rhythm
 
 | Slide # | Type | Background |
 |---|---|---|
@@ -222,16 +226,16 @@ For `weaura-ai` specifically — the **default mode is `decoded-editorial`** (lo
 | 2 | Body | LIGHT or DARK (the "what they say" beat) |
 | 3 | Body Dark | the problem named with ALL CAPS |
 | 4 — N-2 | Alternating Body Light / Body Dark | one technique per slide |
-| N-1 | Body Light | summary list ("AS N TÁTICAS." pattern) |
+| N-1 | Body Light | summary list ("THE N TACTICS." pattern) |
 | N | CTA | LIGHT |
 
 **Never two adjacent dark slides; never two adjacent light slides without a reason.** Rhythm matters.
 
 ### When `editorial-minimal` is the right choice instead
 
-If the carousel is short (≤8 slides) and the rhythm of `decoded-editorial` doesn't have room to breathe, use `editorial-minimal` (bottom-third headline, minimal body text). The user / brief should specify explicitly. Default to `decoded-editorial` for any carousel ≥10 slides.
+If the carousel is short (≤8 slides) and the rhythm of `decoded-editorial` doesn't have room to breathe, use `editorial-minimal` (Mode 2: bottom-third headline, minimal body text). The user / brief should specify explicitly. Default to `decoded-editorial` for any carousel ≥10 slides when the brand pack adopts that mode.
 
-Refer to `brands/weaura-ai/visual-style.md` for the canonical, full spec, and the asset pack at `brands/weaura-ai/svg/` for the brand-mark variants.
+Refer to the active Brand Pack's `visual-style.md` for the canonical, full spec, and the brand-mark assets the user supplied this session.
 
 ---
 
@@ -242,13 +246,13 @@ After running the sandbox code:
 ```
 ✅ Carousel rendered as PNGs.
 
-- Brand: weaura-ai
+- Brand: [BRAND_SLUG]
 - Topic: <one-line topic>
 - Slide count: 8
 - Canvas: 1080×1350
-- File: weaura-ai-<topic-slug>-2026-05-06.zip
+- File: [BRAND_SLUG]-<topic-slug>-YYYY-MM-DD.zip
 
-[attached: weaura-ai-<topic-slug>-2026-05-06.zip]
+[attached: [BRAND_SLUG]-<topic-slug>-YYYY-MM-DD.zip]
 
 If anything in the rendering looks off (font fallback, asset not found, overflow),
 tell me which slide and I'll re-render that one.
@@ -260,11 +264,11 @@ If asset access failed:
 ⚠️ I couldn't access the binary brand assets in this session.
 
 Please drop these files directly into the chat and I'll re-render:
-- brands/weaura-ai/svg/mark-primary.svg
-- brands/weaura-ai/svg/mark-dark.svg
-- brands/weaura-ai/svg/lockup-transparent-cream.svg
+- [BRAND]'s primary mark file (e.g. mark-primary.svg)
+- [BRAND]'s dark-background mark variant (e.g. mark-dark.svg)
+- [BRAND]'s lockup file (e.g. lockup-transparent-light.svg)
 
-(I refuse to redraw the aperture mark from primitives — it would be wrong.)
+(I refuse to redraw the brand mark from primitives — it would be wrong.)
 ```
 
 ---
@@ -274,7 +278,7 @@ Please drop these files directly into the chat and I'll re-render:
 - ❌ Return an interactive Artifact (React/SVG/HTML preview).
 - ❌ Redraw the brand mark / logo / aperture via SVG primitives.
 - ❌ Invent the brand's assets if they aren't accessible — ask the user to upload them.
-- ❌ Use generic fonts when the Brand Pack specifies a real one — download or attach Manrope.
+- ❌ Use generic fonts when the Brand Pack specifies a real one — download from Google Fonts in the sandbox or ask the user to attach the `.ttf` files.
 - ❌ Use multiple accent colors per slide.
 - ❌ Skip the zip step — even one PNG should ship as `slide-01.png` inside a zip for consistency.
 - ❌ Output the file path as text — actually attach the file.

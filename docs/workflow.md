@@ -59,14 +59,14 @@ Claude will surface gaps. Answer them. Now your brief is ready.
 
 Confirm the Brand Pack:
 
-- Exists at `brands/[slug]/` with all 8 files.
+- Is active in this session — either supplied via `prompts/19-ephemeral-brand-intake.md` (runtime intake) OR uploaded as a private `brands/[slug]/` folder into your Claude Project Knowledge (12 files).
 - Was updated in the last 90 days (Brand Packs decay).
 - Includes recent proof (claims, customers, results) in `proof-assets.md`.
 - Includes recent words-to-avoid (vocabulary you've discovered the audience hates) in `voice.md`.
 
 If any are stale, refresh them before generating.
 
-If the brand has no Brand Pack, run `prompts/generate-brand-pack.md`. Don't skip this. A weak Brand Pack is the #1 cause of weak output.
+If the brand has no Brand Pack at all, run `prompts/19-ephemeral-brand-intake.md` (fast path) or `prompts/02-generate-brand-pack.md` (interview path). Don't skip this. A weak Brand Pack is the #1 cause of weak output. **Do not commit real brand packs into this framework repo** — they live in your private storage and are uploaded into Project Knowledge per session.
 
 ---
 

@@ -6,6 +6,8 @@ PostStudio System is not an app. It's a layered repository of system instruction
 
 You don't `npm install` it. You **upload it to a Claude Project**, or wire it into an external CRUD platform that calls Claude API and a separate rendering worker.
 
+> **Brand-agnostic by design.** The framework defines structure and rules. **Brand instances are runtime data** — you supply them per session (website + handle + voice samples + uploaded logo files), or by uploading a private `brands/[slug]/` folder into your Claude Project. Real brand instances do **not** live in this repo. The only `brands/` content tracked here is `brands/_template/` (the scaffold) and `examples/example-brand-pack/` (a fictional reference, "Lumen"). To onboard a brand fast, run [`prompts/19-ephemeral-brand-intake.md`](prompts/19-ephemeral-brand-intake.md).
+
 ---
 
 ## Three runtime modes
@@ -78,9 +80,9 @@ poststudio-system/
 ├── docs/                          # How-to guides for humans
 ├── system/                        # Universal rules — the OS kernel
 ├── modules/                       # 11 functional modules (diagnosis, pack-builder, …)
-├── prompts/                       # 18 ready-to-use prompts (00-17)
+├── prompts/                       # 20 ready-to-use prompts (00-19)
 ├── schemas/                       # 17 JSON schemas for automation
-├── brands/                        # One folder per brand
+├── brands/                        # Only `_template/` is tracked. Real brand instances are runtime-supplied.
 ├── outputs/                       # Per-brand output archive (templates included)
 ├── integration/                   # API production layer (CRUD platform contract, schemas, playbooks)
 ├── rendering/                     # Renderable Creative Worker layer (HTML/CSS/SVG → PNG)
@@ -130,8 +132,12 @@ For the full directory tree, see [`docs/module-overview.md`](docs/module-overvie
 1. Upload the repo to a new Claude Project as Project Knowledge.
 2. Paste the custom instructions from [`docs/how-to-use-with-claude-projects.md`](docs/how-to-use-with-claude-projects.md).
 3. Run [`prompts/00-start-here.md`](prompts/00-start-here.md) to orient Claude.
-4. Run [`prompts/02-generate-brand-pack.md`](prompts/02-generate-brand-pack.md) to bootstrap a brand.
+4. Supply brand context for the session — either:
+   - **Fast intake (recommended for new sessions):** run [`prompts/19-ephemeral-brand-intake.md`](prompts/19-ephemeral-brand-intake.md) and paste website + Instagram handle + voice samples + attach logo files; OR
+   - **Full interview:** run [`prompts/02-generate-brand-pack.md`](prompts/02-generate-brand-pack.md); OR
+   - **Pre-existing pack:** upload your private `brands/[slug]/` folder directly into the Project (do NOT commit it to this repo).
 5. Run [`prompts/04-generate-carousel.md`](prompts/04-generate-carousel.md) to ship your first post.
+6. Run [`prompts/18-deliver-carousel-as-png-zip.md`](prompts/18-deliver-carousel-as-png-zip.md) when you want a downloadable PNG zip.
 
 ### Mode 2 — API Production Mode
 
@@ -181,13 +187,27 @@ Plus the **Integration Layer** (`integration/`) and **Rendering Layer** (`render
 
 ---
 
-## How to add a new brand
+## How to onboard a new brand
 
-1. Copy `brands/_template/` to `brands/your-brand-slug/`.
-2. Run [`prompts/02-generate-brand-pack.md`](prompts/02-generate-brand-pack.md) to interview-fill the 12 files (or paste existing context).
-3. Run [`prompts/01-run-brand-diagnosis.md`](prompts/01-run-brand-diagnosis.md) for a gap analysis.
-4. Run [`prompts/03-generate-content-strategy.md`](prompts/03-generate-content-strategy.md) for pillars + 30-day plan.
-5. Outputs land under `outputs/your-brand-slug/`.
+PostStudio is brand-agnostic. Brands are **never** committed to this repo. Two onboarding paths:
+
+### Path A — Ephemeral session intake (canonical default)
+
+1. Open a chat in your Claude Project.
+2. Run [`prompts/19-ephemeral-brand-intake.md`](prompts/19-ephemeral-brand-intake.md).
+3. Paste: website homepage + about content, Instagram handle + bio + 3-5 sample captions, voice samples, compliance constraints.
+4. Attach: logo SVG/PNG files (mark + lockup variants).
+5. Claude builds the 12-section brand pack **in memory for the session**. No commit, no file save.
+6. Optionally save the resulting markdown locally outside this repo (e.g. `~/Documents/Brands/your-brand/`) for next session.
+
+### Path B — Pre-existing private brand pack
+
+1. Locally maintain `brands/[your-brand-slug]/` as a private folder (e.g. inside `~/Documents/Brands/`, in your own private repo, or as Notion/Drive content).
+2. Upload that folder directly into your Claude Project as Project Knowledge.
+3. Tell Claude "use brands/[your-brand-slug]/" — it will load all 12 files from your Project Knowledge.
+4. Run [`prompts/01-run-brand-diagnosis.md`](prompts/01-run-brand-diagnosis.md), [`prompts/03-generate-content-strategy.md`](prompts/03-generate-content-strategy.md), etc.
+
+Outputs land under `outputs/[your-brand-slug]/` locally — also kept out of this framework repo via `.gitignore`.
 
 ---
 

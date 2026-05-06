@@ -29,6 +29,8 @@ A Claude Project is the closest thing to "running" PostStudio System that exists
 
 Upload the entire `poststudio-system/` folder. Claude Projects support folders or zip uploads.
 
+> **Important:** the framework repo does **not** contain real brand instances — only `brands/_template/`. To work with a real brand, upload your **private** `brands/[your-brand-slug]/` folder (12 files + asset folders) **separately** into the same Project. Keep that folder out of any public repo.
+
 If your tool only allows individual files, prioritize uploading these in order:
 
 1. `system/master-instructions.md` (mandatory)
@@ -38,13 +40,14 @@ If your tool only allows individual files, prioritize uploading these in order:
 5. `system/copywriting-rules.md`
 6. `system/safety-and-claims-rules.md`
 7. `system/quality-checklist.md`
-8. `prompts/generate-carousel.md`
-9. `prompts/critique-carousel.md`
-10. `brands/[your-brand-slug]/` (all 8 files)
-11. `examples/example-carousel-output.md` (so Claude can see the output format)
-12. `docs/output-contract.md`
+8. `prompts/04-generate-carousel.md`
+9. `prompts/08-critique-output.md`
+10. `prompts/19-ephemeral-brand-intake.md` (for runtime brand intake)
+11. Your private `brands/[your-brand-slug]/` folder (all 12 files + asset folders) — uploaded separately, kept out of this repo
+12. `prompts/18-deliver-carousel-as-png-zip.md` (for PNG zip delivery)
+13. `docs/output-contract.md`
 
-If you have remaining capacity, add `prompts/generate-image-prompts.md`, `prompts/improve-hook.md`, `prompts/export-carousel-json.md`, and `schemas/carousel-output.schema.json`.
+If you have remaining capacity, add `prompts/05-generate-image-prompts.md`, `prompts/improve-hook.md`, `prompts/10-export-json.md`, and `schemas/carousel-output.schema.json`.
 
 ### 3. Paste custom instructions
 
@@ -56,9 +59,12 @@ You are operating PostStudio System.
 Boot sequence (every conversation):
 1. Read system/master-instructions.md as your top-level system prompt.
 2. Read system/content-system.md, system/carousel-framework.md, system/visual-framework.md, system/copywriting-rules.md, system/safety-and-claims-rules.md, and system/quality-checklist.md.
-3. When the user names a brand, treat brands/[brand-slug]/ as the active Brand Pack and read all 8 files.
-4. If the user references a prompt by filename (e.g. "use generate-carousel"), load that prompt and follow its instructions.
-5. Default to prompts/generate-carousel.md when the user asks for a carousel without specifying a prompt.
+3. PostStudio is brand-agnostic. Brand context is runtime data, not loaded from the framework repo.
+   - If the user has supplied brand context per-session (website + handle + voice samples + attached logos), run prompts/19-ephemeral-brand-intake.md to consolidate it into the 12-section brand pack in-memory.
+   - If the user uploaded a brands/[slug]/ folder directly into Project Knowledge AND explicitly says "use brands/[slug]/", load all 12 files from that uploaded folder.
+   - Otherwise ask which path the user wants.
+4. If the user references a prompt by filename (e.g. "use 04-generate-carousel"), load that prompt and follow its instructions.
+5. Default to prompts/04-generate-carousel.md when the user asks for a carousel without specifying a prompt.
 
 Output rules:
 - Always end output with the Quality Checklist and Missing Inputs / Proof Needed sections.
