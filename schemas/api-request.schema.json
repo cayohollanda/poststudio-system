@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/api-request.schema.json",
+  "title": "API Request",
+  "description": "Top-level API request envelope. Alias for integration/schemas/generation-request.schema.json. Some implementations may extend this for non-generation operations (e.g. quality-gate, render).",
+  "$ref": "../integration/schemas/generation-request.schema.json"
+}

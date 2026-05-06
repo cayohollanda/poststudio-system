@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/quality-review.schema.json",
+  "title": "Quality Review",
+  "description": "Schema for quality review output from modules/quality-gate.",
+  "type": "object",
+  "required": ["version", "prompt_version", "verdict", "iteration", "scores"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "prompt_version": { "type": "string" },
+    "request_id": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "review_target": {
+      "type": "object",
+      "properties": {
+        "module": { "type": "string" },
+        "brand": { "type": "string" },
+        "iteration": { "type": "integer" },
+        "subject_request_id": { "type": "string" }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["Ship-ready", "Ship with flags", "Borderline", "Rewrite required"]
+    },
+    "iteration": { "type": "integer", "minimum": 1, "maximum": 3 },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "content_pass": { "type": "integer" },
+        "content_total": { "type": "integer", "const": 30 },
+        "render_pass": { "type": "integer" },
+        "render_total": { "type": "integer", "const": 10 },
+        "combined_pass": { "type": "integer" },
+        "combined_total": { "type": "integer" }
+      }
+    },
+    "critical_items": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["pass", "fail", "risk"]
+      }
+    },
+    "quality_items": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["pass", "fail", "risk"]
+      }
+    },
+    "renderability_items": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["pass", "fail", "risk"]
+      }
+    },
+    "highest_leverage_fix": { "type": "string" },
+    "weakest_slide": {
+      "type": "object",
+      "properties": {
+        "slide_number": { "type": "integer" },
+        "current_headline": { "type": "string" },
+        "why_weak": { "type": "string" },
+        "rewrites": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "properties": {
+              "angle": { "type": "string" },
+              "headline": { "type": "string" },
+              "support": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "safety_violations": { "type": "array", "items": { "type": "string" } },
+    "slides_to_combine_or_kill": { "type": "array", "items": { "type": "string" } },
+    "platform_fit": { "type": "string" },
+    "missing_inputs": { "type": "array", "items": { "type": "string" } },
+    "repair_recommendations": { "type": "array", "items": { "type": "string" } }
+  }
+}

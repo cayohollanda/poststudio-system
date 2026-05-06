@@ -1,0 +1,331 @@
+# Visual Framework — 8 Visual Modes
+
+> Carousels live and die on slide 1. Slide 1 is 90% visual. The visual framework is therefore the highest-leverage part of this system.
+
+This file defines:
+
+1. **Universal visual rules** — what every PostStudio carousel does.
+2. **Eight visual modes** — pick one per carousel. Don't mix.
+3. **Composition guidelines** — what goes where on the canvas.
+4. **Typography rules** — when to use what, and why.
+5. **Image prompt grammar** — how to write prompts that don't produce AI slop.
+
+---
+
+## Universal visual rules
+
+These apply across every mode. Break them only with intent.
+
+1. **Strong central subject.** One thing the eye lands on. Not a collage.
+2. **Bottom-third headline composition.** Headline lives in the bottom third of the canvas, not stacked on top of the subject's face.
+3. **High contrast.** Light subject on dark background, or dark subject on light background. Mid-tone backgrounds kill the scroll-stop.
+4. **Cinematic depth.** Foreground / midground / background. Depth-of-field. Atmospheric haze. Things receding into shadow.
+5. **One accent color.** From the Brand Pack. Used for the headline, a small graphic element, or a glow on the subject. Never two accents.
+6. **Brand signature, small.** A 12-16px brand mark in a corner. Not a banner. Not a logo splash.
+7. **Slide numbering.** Optional. If used, small, top-right, in the accent color or muted gray.
+8. **Consistent margins.** Same padding from edges across every slide. Inconsistent margins read as amateur.
+9. **Minimal support text.** Body text is for the caption, not the slide. If a slide needs more than ~25 words on it, you're using slides like blog paragraphs.
+10. **Visual metaphor over decoration.** A glass dome over a city says something. A gradient blob says nothing. Always reach for metaphor first.
+
+---
+
+## The 8 visual modes
+
+You pick one mode per carousel. Carry it through all slides for consistency.
+
+| # | Mode | Best for |
+|---|---|---|
+| 1 | Cinematic Dark | Founder takes, contrarian, premium positioning |
+| 2 | Editorial Minimal | Educational, thought leadership, B2B |
+| 3 | Futuristic Interface | AI / SaaS launches, technical breakdowns |
+| 4 | Surreal Product Metaphor | Product-led posts, before/after, storytelling |
+| 5 | Premium Founder/Operator | Founder narratives, build-in-public |
+| 6 | Technical Blueprint | Architecture posts, technical breakdowns |
+| 7 | Exploded Diagram | "How X works under the hood," teardowns |
+| 8 | Meme-but-Premium | Cultural moment, contrarian, viral attempts |
+
+---
+
+### Mode 1 — Cinematic Dark
+
+**When to use:** when you want the post to feel important. Contrarian takes, founder essays, manifesto-style content.
+
+**Composition:**
+- Deep black or near-black background (not pure #000; a desaturated dark navy or oxblood reads richer).
+- A single luminous subject in the center or slight offset.
+- Volumetric light, dust particles, atmospheric haze.
+- Hard rim lighting on the subject.
+- Headline in the bottom third, large, in white or the accent.
+
+**Image prompt style:**
+> "A [SUBJECT] in a vast dark space, lit by a single warm rim light from the upper left, cinematic 35mm photograph, deep blacks, volumetric haze, shallow depth of field, hyperreal texture, dust motes catching the light, mood of [TONE], no text, no logos, leave the bottom third empty for typography."
+
+**Typography:**
+- Large, condensed serif or geometric sans-serif.
+- White or the accent color.
+- Tight letter-spacing.
+
+**Risks to avoid:**
+- Black-and-orange "cyberpunk dashboard" look — it's been done to death.
+- Pure black background with floating text — reads as a Notion note, not cinema.
+- Too much text in the dark space — the mode demands restraint.
+
+---
+
+### Mode 2 — Editorial Minimal
+
+**When to use:** when you want the post to feel like the cover of a thoughtful magazine. Educational content, thought leadership, B2B.
+
+**Composition:**
+- Off-white or soft cream background (not #FFFFFF; aim for #F4F1EC range).
+- Subject is a single object, person, or graphic shape, oversized, slightly cropped.
+- Generous negative space.
+- Minimal shadows, soft natural lighting.
+- Headline in the bottom third, set in a serif typeface.
+
+**Image prompt style:**
+> "A [SUBJECT] on a soft cream background, oversized and slightly cropped, soft natural daylight from the left, editorial magazine cover style, minimal styling, generous negative space, photographed on a medium-format camera, no text, no logos, composition leaves room at the bottom."
+
+**Typography:**
+- Editorial serif (Tiempos, GT Sectra, Canela energy).
+- Black or deep ink color, never gray.
+- Small caption-style label can sit in the top corner.
+
+**Risks to avoid:**
+- Pure-white plus thin sans-serif — reads as a generic SaaS landing page.
+- Stock-photo composition (subject dead-center, perfect lighting). Aim for *editorial*, not *catalog*.
+
+---
+
+### Mode 3 — Futuristic Interface
+
+**When to use:** AI launches, SaaS feature reveals, technical "how it works" posts.
+
+**Composition:**
+- Dark or charcoal base (#0E0F12 to #15171C range).
+- Subject is a UI surface, terminal, holographic display, or glowing interface mockup.
+- Subtle grid lines or data visualization in the background.
+- Glowing accents (in the brand accent color) at edges or buttons.
+- Bloom and chromatic aberration kept subtle (not RGB explosion).
+
+**Image prompt style:**
+> "A floating glass interface displaying [THING], soft edge glow in [ACCENT_COLOR], deep charcoal background with a subtle grid floor, volumetric light from above, depth of field falling off behind the interface, ultra-detailed, cinematic 3D render, no real brand logos, no readable text on the interface — keep UI elements abstract and shape-driven."
+
+**Typography:**
+- Geometric sans (Inter, Söhne, Neue Haas Grotesk energy).
+- Headline white, accent for emphasis on one word per slide.
+- Monospace allowed for one tag-like label.
+
+**Risks to avoke:**
+- "Iron Man HUD" cliché — too many circles and numbers.
+- Fake screenshots that look like real apps — they read as low-effort and risk competitor confusion.
+
+---
+
+### Mode 4 — Surreal Product Metaphor
+
+**When to use:** when the product itself is the hero, but you want to *say something* with the product, not just photograph it.
+
+**Composition:**
+- A scene that turns the product into a metaphor: a [PRODUCT] floating inside a glass dome, growing out of soil, suspended in liquid, breaking through a wall.
+- Hyperreal texture and lighting.
+- Single dramatic light source.
+- Background simple (gradient, soft sky, dark void) so the metaphor pops.
+
+**Image prompt style:**
+> "[PRODUCT visualization], rendered as a hyperreal 3D scene: [METAPHOR — e.g. floating inside a glass dome over a miniature city / suspended in slow-motion splashes of water / growing out of cracked concrete]. Single dramatic key light from upper right, soft fill from below, cinematic depth of field, museum-quality material textures, photographed as still life, no text, no real brand marks."
+
+**Typography:**
+- Match Mode 1 (Cinematic Dark) or Mode 2 (Editorial Minimal) depending on overall mood.
+- Headline lives in the bottom third or floats in negative space, never on top of the metaphor.
+
+**Risks to avoid:**
+- Random surrealism. "A floating pyramid of donuts" is not a metaphor; it's noise. The metaphor must connect to the carousel's argument.
+- Over-rendered everything. Restrain the texture detail to keep the subject clear.
+
+---
+
+### Mode 5 — Premium Founder/Operator
+
+**When to use:** founder narratives, build-in-public, "I've been thinking about" posts.
+
+**Composition:**
+- A character (the founder, an operator, an archetype). Not always a face.
+- Often a back-of-the-head or three-quarter view, looking at a city, a screen, a horizon.
+- Cinematic, color-graded like a film still (think *Severance*, *Foundation*, *House of Cards*).
+- Low-key lighting. Strong shadows. Single key light.
+
+**Image prompt style:**
+> "A [PERSON_DESCRIPTION] seen from behind, looking at [THING_THEY_ARE_LOOKING_AT], shot on 35mm film, color-graded like a moody prestige drama, single window light, deep shadows, atmospheric haze, painterly composition, the figure occupies the left third leaving the right two-thirds for typography, no readable text, no logos."
+
+**Typography:**
+- Editorial serif or condensed display sans.
+- Headline anchored to the negative space (right two-thirds, bottom third).
+- White, off-white, or accent.
+
+**Risks to avoid:**
+- Real-person likeness for someone who isn't actually the post author. If the founder isn't in the photo, don't fake one.
+- "AI hands" giveaway. Keep hands out of frame or partially obscured.
+
+---
+
+### Mode 6 — Technical Blueprint
+
+**When to use:** architecture posts, technical deep-dives, system explanations.
+
+**Composition:**
+- Dark navy or paper-blue background (think old engineering blueprints).
+- Hand-drawn or thin-stroke vector diagram of the system.
+- White or accent linework.
+- Annotations are minimal: short labels, arrows, and one or two highlighted nodes.
+- Subtle paper texture or grid background for warmth.
+
+**Image prompt style:**
+> "A [SYSTEM_NAME] architecture diagram in the style of a vintage engineering blueprint: thin white line drawings on a deep navy background, slight paper grain, subtle grid, hand-drawn imperfection, two or three nodes highlighted in [ACCENT_COLOR], minimal labels, top-down or isometric view, no real product names, no readable text inside boxes."
+
+**Typography:**
+- Monospace or technical sans (IBM Plex Mono, JetBrains Mono).
+- Small caps for labels.
+- Headline above or below the diagram, not inside it.
+
+**Risks to avoid:**
+- Generic "boxes-and-arrows" with no visual hierarchy. Highlight the 1-2 nodes that matter.
+- Too many labels. The carousel will explain; the diagram should *suggest*.
+
+---
+
+### Mode 7 — Exploded Diagram
+
+**When to use:** teardowns, "how it works under the hood," product anatomy.
+
+**Composition:**
+- A central subject literally exploded into its parts in 3D space.
+- Each part separated, with subtle motion-blur lines suggesting outward force.
+- Dramatic single-source lighting.
+- Studio-style background (gradient or soft seamless backdrop).
+
+**Image prompt style:**
+> "A hyperreal 3D exploded diagram of [SUBJECT], components separated and floating outward in space, museum-quality render, single key light from upper left, soft shadows, studio gradient backdrop, motion lines suggesting expansion, ultra-detailed materials, no text, no real brand logos, leave the bottom third empty for typography."
+
+**Typography:**
+- Geometric sans, headline at the bottom.
+- Optional: tiny annotation labels with leader lines pointing to one or two parts.
+
+**Risks to avoid:**
+- Cluttered explosions where the parts are unrecognizable. The whole point is *clarity through separation*.
+- Cartoon style. The mode demands hyperreal materials.
+
+---
+
+### Mode 8 — Meme-but-Premium
+
+**When to use:** cultural moments, contrarian takes, posts where the audience expects play, but you want to keep brand.
+
+**Composition:**
+- Borrow meme structure (e.g., the two-button choice, the panicked archer, the "this is fine" room) but render it as if it belonged in *Wired* or *The New York Times Magazine*.
+- Hyperreal photography or 3D render replaces the cartoon original.
+- Subtle absurdity, not slapstick.
+
+**Image prompt style:**
+> "A photoreal cinematic still inspired by [MEME_STRUCTURE]: [DESCRIBE_SCENE], shot on a medium-format camera, magazine editorial lighting, slight surreal undertone, no text overlays, no real brand logos, leave space at the bottom for headline."
+
+**Typography:**
+- Editorial serif or chunky display sans.
+- The headline should *play* against the visual (deadpan beats over-explanation).
+
+**Risks to avoid:**
+- Using a worn-out meme template. If it's been seen 10,000 times, the upgrade to "premium" doesn't save it.
+- Letting the joke override the message. The meme should *carry* the argument, not replace it.
+
+---
+
+## How to choose a mode
+
+A 3-question filter:
+
+1. **What is the carousel's emotional center?**
+   - Inspiring → Mode 1, 5
+   - Rigorous → Mode 2, 6, 7
+   - Energetic → Mode 3, 4
+   - Playful → Mode 8
+
+2. **Who is the audience?**
+   - Investors, executives, strategists → Mode 1, 2, 5
+   - Engineers, technical operators → Mode 3, 6, 7
+   - Founders, builders → Mode 1, 4, 5
+   - Mixed / cultural → Mode 8
+
+3. **What is the platform?**
+   - LinkedIn → Mode 1, 2, 5, 6 perform best
+   - Instagram → Mode 1, 4, 7 perform best
+   - X — minimal carousel platform; lean Mode 2 or 6 if used
+   - TikTok carousels → Mode 4, 8 perform best
+
+If unsure, default to **Mode 2 (Editorial Minimal)**. It almost never looks bad.
+
+---
+
+## Image prompt grammar
+
+A prompt has 8 ingredients. Use this order:
+
+```
+[SUBJECT] + [ENVIRONMENT] + [MOOD] + [LIGHTING] + [COMPOSITION] +
+[CAMERA / FRAMING] + [TEXTURE / STYLE] + [NEGATIVE / AVOID]
+```
+
+Example:
+> "A weathered glass dome (subject) sealing a miniature city (environment), end-of-day amber atmosphere with rolling fog (mood), single warm rim light from the upper right, ambient cool fill from below (lighting), bottom-third left empty for typography (composition), shot on a 50mm lens at f/1.8 (camera), hyperreal 3D render with museum-quality material detail (texture/style), no text, no logos, no people, no flat illustration look (avoid)."
+
+### Negative prompts to use almost always
+
+```
+no text, no logos, no watermark, no real brand names, no flat 2D
+illustration, no AI-typical hands, no oversaturated gradient blobs,
+no stock-photo composition, no awkward face anatomy, no inconsistent
+perspective, no random typography overlays
+```
+
+### Reserve space for typography
+
+The image prompt should explicitly say: *leave the [bottom third / right side / top left] empty for headline placement*. Image generators respect this if you say it.
+
+### Prefer "no text" over "with text"
+
+Most image models put garbage text on slides. Generate the visual without text, then layer typography in Figma / Canva / Paper.design.
+
+The only exception: meme structures (Mode 8) where the visual concept *requires* a single readable word, and you accept that you'll likely retry several times.
+
+---
+
+## Layout instructions per slide
+
+The image is half the slide. Layout is the other half. Standard layout instruction template:
+
+```
+- Image: [mode], rendered with [composition direction]
+- Headline: [bottom-third / top-left / center], [serif / sans], [color]
+- Accent: [accent color] used on [one element]
+- Slide number: [top-right small / hidden]
+- Brand mark: [bottom-left small / hidden]
+- Margins: [16px / 32px / 48px from edges]
+```
+
+Consistency across slides is the deliverable. Pick once, repeat.
+
+---
+
+## Common visual failure modes
+
+A debugging list. If the carousel looks "AI-y," check these:
+
+1. **Centered text on top of subject's face.** Move it to bottom-third.
+2. **Two accent colors.** Pick one, drop the other.
+3. **Gradient blob backgrounds.** Replace with a real environment or a single dramatic color.
+4. **Stock-photo composition.** Reframe to off-center, cropped, editorial.
+5. **Inconsistent slide margins.** Pick one padding, apply to all.
+6. **Tiny logo cropping a corner.** Either commit to a brand mark or drop it.
+7. **Over-rendered everything.** Strip texture detail until the subject reads in 0.5 seconds.
+8. **AI-typical hands or eyes.** Hide hands. Avoid frontal eye contact unless deliberate.
+9. **Clichéd metaphors (lightbulb = idea, gears = system).** Reach further.
+10. **Headline that fights the image.** Either move the headline or swap the image; don't compromise.

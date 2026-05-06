@@ -1,0 +1,180 @@
+# Changelog
+
+All notable changes to PostStudio System will be documented in this file.
+
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
+
+## [2.0.0] — 2026-05-06
+
+### Major release — Full Content Operating System with three runtime modes
+
+The repository is now a complete **Content Operating System** that operates in three runtime modes: Claude Project Manual Mode, API Production Mode, and Renderable Creative Worker Mode.
+
+### Added
+
+#### Three runtime modes
+- **Mode 1 — Claude Project Manual:** humans chat with Claude in a Claude Project; Markdown output.
+- **Mode 2 — API Production:** an external CRUD platform calls Claude API; JSON output, schema-validated.
+- **Mode 3 — Renderable Creative Worker:** Claude → renderable HTML/CSS/SVG/template JSON → worker → final PNG/JPG slides.
+
+#### `system/` (the OS kernel) — expanded
+- `operating-system.md` — the master 12-stage lifecycle with per-mode behavior.
+- `renderable-creative-framework.md` — universal rules for HTML/CSS/SVG/template-driven output.
+- `reels-framework.md` — short-video script structures (15s / 30s / 45s / 60s / 90s).
+- `campaign-framework.md` — 15 campaign types + 5-act arc + 7 / 14 / 30-day templates.
+- `diagnosis-framework.md` — 12-category brand audit method.
+- `output-rules.md` — Markdown output discipline.
+- `api-output-rules.md` — JSON output discipline (Modes 2/3).
+- `integration-contract.md` — the 3-role contract (CRUD / Claude / Worker).
+
+#### `modules/` — 11 functional modules
+- `brand-diagnosis-agent/` — 12-category audit.
+- `brand-pack-builder/` — interview + context-mode pack creation.
+- `content-strategy-os/` — pillars + series + 30/90-day plans.
+- `carousel-machine/` — workhorse carousel generation (existed; expanded).
+- `visual-prompt-system/` — 12 visual modes + image-prompt templates.
+- `renderable-creative-system/` — HTML/CSS/SVG/template-driven output.
+- `copy-vault/` — reusable hooks, headlines, CTAs, captions, arguments, objections, transitions, proof copy, launch copy, contrarian copy.
+- `reels-script-machine/` — short-video scripts.
+- `campaign-builder/` — 15 campaign types.
+- `quality-gate/` — adversarial reviewer with 30-point + 10-point rubrics.
+- `agency-delivery-kit/` — onboarding, discovery, handoff, reporting, scope, revisions, feedback.
+
+#### `prompts/` — renumbered to 18 prompts (00-17)
+- `00-start-here.md` — orientation.
+- `01-run-brand-diagnosis.md` (new).
+- `02-generate-brand-pack.md` (renamed).
+- `03-generate-content-strategy.md` (new).
+- `04-generate-carousel.md` (renamed).
+- `05-generate-image-prompts.md` (renamed).
+- `06-generate-reels-script.md` (new).
+- `07-generate-campaign.md` (new).
+- `08-critique-output.md` (renamed and generalized).
+- `09-improve-output.md` (new — generalized improve loop).
+- `10-export-json.md` (renamed and generalized).
+- `11-create-client-delivery.md` (new).
+- `12-create-monthly-content-plan.md` (new).
+- `13-generate-renderable-carousel.md` (new — renderable output).
+- `14-generate-html-css-slide.md` (new).
+- `15-generate-svg-slide.md` (new).
+- `16-repair-renderable-output.md` (new).
+- `17-export-render-job.md` (new).
+
+The previous `improve-hook.md` and `generate-visual-style.md` are kept alongside the numbered sequence for hook-specific iteration and visual-style bootstrap.
+
+#### `schemas/` — expanded
+- `brand-diagnosis.schema.json` (new).
+- `content-strategy.schema.json` (new).
+- `reels-script.schema.json` (new).
+- `campaign.schema.json` (new).
+- `quality-review.schema.json` (new).
+- `monthly-content-plan.schema.json` (new).
+- `renderable-carousel.schema.json` (new).
+- `renderable-slide.schema.json` (new).
+- `render-job.schema.json` (new).
+- `render-result.schema.json` (new).
+- `api-request.schema.json` and `api-response.schema.json` (new — aliases for the integration generation schemas).
+- `generation-request.schema.json` and `generation-response.schema.json` (new — top-level mirrors).
+
+#### `integration/` — new layer
+- `production-architecture.md`, `claude-api-mode.md`, `context-loading-strategy.md`, `prompt-assembly-strategy.md`, `async-job-lifecycle.md`, `external-crud-platform-contract.md`, `partner-creative-api.md`, `webhook-contract.md`, `failure-and-retry-strategy.md`, `multi-tenant-boundaries.md`, `storage-model.md`, `observability-and-logging.md`, `security-and-secrets.md`.
+- `integration/schemas/` with 6 JSON schemas: `generation-request`, `generation-response`, `creative-render-request`, `creative-render-response`, `job-status`, `webhook-event`.
+- `integration/examples/` with 5 canonical request/response examples.
+- `integration/playbooks/` with 5 runbooks: `generate-carousel-end-to-end`, `run-quality-gate-before-render`, `handle-missing-proof`, `retry-low-quality-output`, `onboard-new-brand-production`.
+
+#### `rendering/` — new layer
+- `architecture.md`, `renderable-output-contract.md`, `html-css-generation-rules.md`, `svg-generation-rules.md`, `safety-and-sanitization.md`, `playwright-renderer.md`, `sharp-optimization.md`, `template-vs-freeform-rendering.md`, `font-and-asset-handling.md`, `slide-dimensions.md`, `failure-and-retry-strategy.md`, `quality-assurance.md`.
+- `rendering/schemas/` mirroring the renderable JSON schemas.
+- `rendering/prompts/` mirroring the renderable Claude prompts.
+- `rendering/examples/` with `renderable-carousel.json`, `html-css-slide.html`, `svg-slide.svg`, `render-job.json`, `render-result.json`.
+- `rendering/playbooks/` with 5 runbooks: `end-to-end-rendering-workflow`, `mvp-html-to-png-workflow`, `svg-to-png-workflow`, `template-driven-rendering-workflow`, `debug-render-failures`.
+
+#### `brands/_template/` — expanded to 12 files
+- Added `positioning.md`, `content-pillars.md`, `competitors.md`, `rejected-examples.md`.
+
+#### `outputs/_template/` — new
+- 10 scaffold templates for downstream tooling: `carousel.md`, `diagnosis.md`, `brand-pack.md`, `content-strategy.md`, `reels-script.md`, `campaign.md`, `quality-review.md`, `monthly-content-plan.md`, `renderable-carousel.json`, `render-job.json`.
+
+#### `docs/` — expanded
+- `operating-model.md` — the philosophical layer behind the lifecycle.
+- `module-overview.md` — map of the 11 modules + integration + rendering layers.
+- `claims-and-proof.md` — the philosophical layer for safety rules.
+- `api-production-mode.md` — Mode 2 guide.
+- `renderable-output-mode.md` — Mode 3 guide.
+- `agency-delivery-workflow.md` — high-level walk-through of the agency kit.
+- `glossary.md` — terms used across the repo.
+
+#### `examples/` — expanded
+- `example-brand-pack/` (Lumen) extended to 12 files.
+- `example-brand-diagnosis.md` (new).
+- `example-content-strategy.md` (new).
+- `example-reels-script.md` (new).
+- `example-campaign.md` (new).
+- `example-quality-review.md` (new).
+- `example-monthly-content-plan.md` (new).
+- Pointer files for renderable carousel / render job / render result examples.
+
+#### `playbooks/` — new top-level folder
+- `single-carousel-workflow.md`.
+- `monthly-content-engine-workflow.md`.
+- `brand-onboarding-workflow.md`.
+- `launch-campaign-workflow.md`.
+- `client-delivery-workflow.md`.
+- `internal-brand-workflow.md`.
+- `api-production-workflow.md`.
+- `renderable-carousel-production-workflow.md`.
+
+### Changed
+
+- `system/master-instructions.md` — rewritten to orient Claude across all three modes, route to all 11 modules, and reference the 18 prompts.
+- `README.md` — rewritten to describe the full Content OS, the three modes, the 11 modules, and the integration / rendering layers.
+- `system/quality-checklist.md` — extended with renderability checks for Mode 3.
+- `examples/example-brand-pack/` updated to 12 files (added the 4 new sections).
+
+### Migration notes from v1.x
+
+- Existing carousel outputs from v1.x continue to validate against `schemas/carousel-output.schema.json` (no breaking changes to that schema).
+- Brand Packs from v1.x now require 4 additional files (`positioning.md`, `content-pillars.md`, `competitors.md`, `rejected-examples.md`); the Brand Pack Builder generates them.
+- Prompts renumbered: previous `generate-carousel.md` is now `04-generate-carousel.md`. Update references in custom Claude Project instructions.
+- Mode 2 / Mode 3 are net-new; v1.x users can keep operating in Mode 1.
+
+### Design notes
+
+- 100% brand-agnostic. Lumen example brand is fictional. Any resemblance to real companies is coincidental.
+- Three runtime modes use the same repo files. Schemas, prompts, and Brand Packs travel between modes unchanged.
+- Quality Gate runs as a separate Claude API call in Modes 2/3. Never the same context as generation.
+- Rendering worker is stateless. Asset and font registries are managed by the worker, not by Claude.
+
+---
+
+## [1.0.0] — 2026-05-05
+
+### Added — Initial public release
+
+- Universal `system/` rules for hooks, slides, visual modes, copy, safety, quality.
+- 7 prompts (`generate-carousel`, `generate-brand-pack`, `generate-visual-style`, `generate-image-prompts`, `critique-carousel`, `improve-hook`, `export-carousel-json`).
+- 3 JSON schemas (`brand-pack`, `carousel-output`, `visual-style`).
+- 8-file Brand Pack template + worked Lumen example.
+- 6 docs (`getting-started`, `how-to-use-with-claude-projects`, `workflow`, `content-principles`, `visual-principles`, `output-contract`).
+
+### Design
+
+- Mode 1 (Claude Project Manual) only.
+- Single-brand or multi-brand Project setup.
+- Markdown output as default.
+
+---
+
+## Unreleased
+
+Track upcoming improvements here. Suggested directions:
+
+- Additional visual modes.
+- More platform-specific carousel sub-frameworks (LinkedIn vs Instagram vs X).
+- A/B test prompt for hook variants.
+- Automated regression corpus for renderable output.
+- Brand Pack diff / merge tooling for refresh cycles.
+- More worked examples per industry / niche.
+- Additional language support beyond EN/PT/ES coverage in voice examples.

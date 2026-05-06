@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/render-result.schema.json",
+  "title": "Render Result",
+  "description": "Result returned by the rendering worker. Mirror of integration/schemas/creative-render-response.schema.json.",
+  "type": "object",
+  "required": ["render_job_id", "status", "rendered_at"],
+  "properties": {
+    "render_job_id": { "type": "string", "format": "uuid" },
+    "status": {
+      "type": "string",
+      "enum": ["complete", "partial_failure", "failed"]
+    },
+    "rendered_at": { "type": "string", "format": "date-time" },
+    "duration_ms": { "type": "integer" },
+    "worker_version": { "type": "string" },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide_number", "status"],
+        "properties": {
+          "slide_number": { "type": "integer", "minimum": 1 },
+          "status": { "type": "string", "enum": ["rendered", "failed"] },
+          "asset_url": { "type": "string", "format": "uri" },
+          "width": { "type": "integer" },
+          "height": { "type": "integer" },
+          "size_bytes": { "type": "integer" },
+          "format": { "type": "string", "enum": ["png", "jpg"] },
+          "checksum": { "type": "string" },
+          "render_target": { "type": "string", "description": "When multi-target was requested (e.g. 'linkedin', 'instagram_square')." },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["code", "message"],
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "TEXT_OVERFLOW",
+                    "FONT_NOT_AVAILABLE",
+                    "ASSET_NOT_FOUND",
+                    "ASSET_FETCH_FAILED",
+                    "UNSAFE_HTML_FEATURE",
+                    "INVALID_SVG",
+                    "INVALID_HTML",
+                    "TEMPLATE_NOT_FOUND",
+                    "SLOT_VIOLATION",
+                    "RENDER_TIMEOUT",
+                    "UPLOAD_FAILED",
+                    "IMAGE_LOAD_FAILED"
+                  ]
+                },
+                "message": { "type": "string" },
+                "details": { "type": "object", "additionalProperties": true }
+              }
+            }
+          },
+          "warnings": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "fonts_substituted": { "type": "integer" },
+        "assets_failed_to_resolve": { "type": "integer" },
+        "sanitizer_actions": { "type": "integer" },
+        "total_size_bytes": { "type": "integer" }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/integration/schemas/job-status.schema.json",
+  "title": "Job Status",
+  "description": "Schema for GET /jobs/{id} response.",
+  "type": "object",
+  "required": ["job_id", "tenant_id", "brand_id", "module", "status", "created_at", "prompt_version"],
+  "properties": {
+    "job_id": { "type": "string", "format": "uuid" },
+    "tenant_id": { "type": "string" },
+    "brand_id": { "type": "string" },
+    "user_id": { "type": "string" },
+    "module": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "created",
+        "queued",
+        "generating",
+        "generated",
+        "quality_gate_running",
+        "quality_gate_passed",
+        "quality_gate_failed",
+        "improving",
+        "improve_failed",
+        "renderable_generating",
+        "renderable_generated",
+        "render_validating",
+        "render_repair_needed",
+        "render_dispatched",
+        "rendering",
+        "render_complete",
+        "render_failed",
+        "approved_for_delivery",
+        "delivered",
+        "cancelled",
+        "failed",
+        "failed_pending_human_review"
+      ]
+    },
+    "prompt_version": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "duration_ms": { "type": "integer" },
+    "cost_usd": { "type": "number" },
+    "iteration_count": { "type": "integer", "default": 0 },
+    "request": { "type": "object" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["json", "markdown", "image", "html"] },
+          "url": { "type": "string", "format": "uri" },
+          "size_bytes": { "type": "integer" },
+          "checksum": { "type": "string" }
+        }
+      }
+    },
+    "rendered_assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slide_number": { "type": "integer" },
+          "asset_url": { "type": "string", "format": "uri" },
+          "width": { "type": "integer" },
+          "height": { "type": "integer" },
+          "size_bytes": { "type": "integer" },
+          "format": { "type": "string" }
+        }
+      }
+    },
+    "quality_review": {
+      "type": "object",
+      "description": "Latest quality review summary (if Quality Gate ran).",
+      "properties": {
+        "verdict": { "type": "string" },
+        "score": { "type": "string" },
+        "iteration": { "type": "integer" }
+      }
+    },
+    "errors": { "type": "array", "items": { "type": "object" } },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "missing_inputs": { "type": "array", "items": { "type": "string" } }
+  }
+}

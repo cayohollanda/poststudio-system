@@ -1,0 +1,4 @@
+{
+  "$ref": "../rendering/examples/renderable-carousel.json",
+  "_note": "This file is a pointer. The full worked example lives at rendering/examples/renderable-carousel.json. Both paths are kept for convenience: top-level examples/ for users who browse the examples folder, and rendering/examples/ for users navigating the rendering layer."
+}

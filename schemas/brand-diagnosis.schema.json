@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/brand-diagnosis.schema.json",
+  "title": "Brand Diagnosis",
+  "description": "Schema for brand diagnosis output from modules/brand-diagnosis-agent.",
+  "type": "object",
+  "required": ["version", "prompt_version", "brand_slug", "generated_at", "categories", "executive_summary"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "prompt_version": { "type": "string" },
+    "brand_slug": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "inputs_reviewed": { "type": "array", "items": { "type": "string" } },
+    "overall_score": { "type": "integer", "minimum": 0, "maximum": 60 },
+    "overall_total": { "type": "integer", "const": 60 },
+    "executive_summary": { "type": "string" },
+    "categories": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["id", "score"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "brand_clarity",
+              "audience_clarity",
+              "positioning",
+              "offer_clarity",
+              "trust_proof",
+              "content_consistency",
+              "visual_consistency",
+              "cta_clarity",
+              "conversion_path",
+              "profile_bio_clarity",
+              "authority_signals",
+              "messaging_gaps"
+            ]
+          },
+          "score": {
+            "oneOf": [
+              { "type": "integer", "minimum": 1, "maximum": 5 },
+              { "type": "string", "const": "unscorable" }
+            ]
+          },
+          "justification": { "type": "string" },
+          "gap": { "type": "string" }
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severity": { "type": "string", "enum": ["critical", "major", "moderate"] },
+          "category_id": { "type": "string" },
+          "description": { "type": "string" },
+          "why_it_matters": { "type": "string" }
+        }
+      }
+    },
+    "recommended_fixes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "for_problem": { "type": "string" },
+          "fix": { "type": "string" },
+          "effort": { "type": "string" },
+          "leverage": { "type": "string", "enum": ["highest", "high", "mid", "low"] }
+        }
+      }
+    },
+    "quick_wins": { "type": "array", "items": { "type": "string" } },
+    "strategic_opportunities": { "type": "array", "items": { "type": "string" } },
+    "missing_inputs": { "type": "array", "items": { "type": "string" } },
+    "proof_needed": { "type": "array", "items": { "type": "string" } },
+    "next_actions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "string" }
+    },
+    "recommended_next_module": {
+      "type": "string",
+      "enum": [
+        "brand-pack-builder",
+        "content-strategy-os",
+        "carousel-machine",
+        "reels-script-machine",
+        "campaign-builder",
+        "none"
+      ]
+    }
+  }
+}

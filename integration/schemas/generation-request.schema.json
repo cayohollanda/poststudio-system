@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/integration/schemas/generation-request.schema.json",
+  "title": "PostStudio Generation Request",
+  "description": "Schema for a request from the consumer app or CRUD platform to generate content via Claude API.",
+  "type": "object",
+  "required": ["request_id", "tenant_id", "brand_id", "module", "prompt_version", "brief"],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": { "type": "string", "format": "uuid" },
+    "tenant_id": { "type": "string" },
+    "brand_id": { "type": "string" },
+    "user_id": { "type": "string" },
+    "module": {
+      "type": "string",
+      "enum": [
+        "brand-diagnosis-agent",
+        "brand-pack-builder",
+        "content-strategy-os",
+        "carousel-machine",
+        "visual-prompt-system",
+        "renderable-creative-system",
+        "reels-script-machine",
+        "campaign-builder",
+        "quality-gate"
+      ]
+    },
+    "prompt_version": { "type": "string", "pattern": "^v\\d+\\.\\d+\\.\\d+$" },
+    "output_format": {
+      "type": "string",
+      "enum": ["json", "markdown"],
+      "default": "json"
+    },
+    "render": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, chain into renderable carousel generation."
+    },
+    "render_mode": {
+      "type": "string",
+      "enum": ["html-css", "svg", "template", "none"],
+      "default": "none"
+    },
+    "canvas": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "integer", "default": 1080 },
+        "height": { "type": "integer", "default": 1350 },
+        "format": { "type": "string", "enum": ["png", "jpg"], "default": "png" }
+      }
+    },
+    "available_fonts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "family": { "type": "string" },
+          "fallback_chain": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "available_assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "asset_id": { "type": "string" },
+          "purpose": { "type": "string" },
+          "url_resolved_at_render_time": { "type": "boolean" }
+        }
+      }
+    },
+    "available_templates": {
+      "type": "array",
+      "description": "Required when render_mode is 'template'.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "template_id": { "type": "string" },
+          "role": { "type": "string" },
+          "slots": { "type": "object" }
+        }
+      }
+    },
+    "brief": {
+      "type": "object",
+      "required": ["topic", "audience", "platform", "language", "goal"],
+      "properties": {
+        "topic": { "type": "string" },
+        "audience": { "type": "string" },
+        "platform": {
+          "type": "string",
+          "enum": ["linkedin", "instagram", "tiktok", "x", "threads", "multi"]
+        },
+        "language": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$" },
+        "goal": {
+          "type": "string",
+          "enum": ["save", "comment", "share", "click", "dm", "follow", "try", "awareness"]
+        },
+        "signal": { "type": "string" },
+        "angle": { "type": "string" },
+        "structure": { "type": "string" },
+        "visual_mode": { "type": "string" },
+        "slide_count": { "type": "integer", "minimum": 6, "maximum": 12 },
+        "tone_override": { "type": "string" },
+        "reference_anchors": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

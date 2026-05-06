@@ -1,0 +1,62 @@
+{
+  "$schema": "../schemas/creative-render-request.schema.json",
+  "render_job_id": "a8d2e771-9b1a-4c4d-9b88-7c2e3f441e91",
+  "tenant_id": "tenant_lumen",
+  "brand_id": "lumen",
+  "job_id": "f3c9b2d1-7e54-4abc-8d1a-2e91b4f3a7c2",
+  "callback_url": "https://crud.example/render-jobs/a8d2e771-9b1a-4c4d-9b88-7c2e3f441e91/callback",
+  "callback_signing_secret_id": "ssm:/poststudio/worker-callback/lumen",
+  "renderable_carousel": {
+    "version": "1.0",
+    "prompt_version": "v2.0.0",
+    "request_id": "f3c9b2d1-7e54-4abc-8d1a-2e91b4f3a7c2",
+    "brand": "lumen",
+    "topic": "I installed 14 AI tools in a quarter",
+    "carousel": {
+      "canvas": { "width": 1080, "height": 1350, "format": "png" },
+      "render_mode": "html-css",
+      "accent_color": "#E2A852",
+      "slide_count": 8,
+      "fonts_required": [
+        { "family": "GT Sectra Display", "fallback_chain": ["Tiempos Headline", "Georgia", "serif"] },
+        { "family": "Söhne", "fallback_chain": ["Inter", "system-ui", "sans-serif"] },
+        { "family": "IBM Plex Mono", "fallback_chain": ["Menlo", "monospace"] }
+      ],
+      "assets_required": [
+        { "asset_id": "fractured-glass-dome-01", "purpose": "slide-1 background", "required": true }
+      ]
+    },
+    "slides": [
+      {
+        "slide_number": 1,
+        "role": "hook",
+        "headline": "Most AI tools quietly destroy your deep work.",
+        "support_text": "And the chat is why.",
+        "payload": {
+          "html": "<!doctype html><html lang=\"en\"><head>...complete HTML document here...</head><body data-slide=\"1\" data-role=\"hook\" data-brand=\"lumen\">...</body></html>",
+          "document_shape": "complete"
+        },
+        "metadata": {
+          "accent_color": "#E2A852",
+          "accent_word": "destroy",
+          "background_asset_id": "fractured-glass-dome-01",
+          "brand_slug": "lumen",
+          "visual_mode": "cinematic-dark"
+        }
+      }
+    ],
+    "renderability_validated": true
+  },
+  "options": {
+    "format": "png",
+    "quality": "high",
+    "concurrency": 4,
+    "background_fallback_color": "#0E0F12"
+  },
+  "asset_resolution": {
+    "fractured-glass-dome-01": {
+      "url": "https://assets.crud.example/lumen/fractured-glass-dome-01.png",
+      "type": "image"
+    }
+  }
+}

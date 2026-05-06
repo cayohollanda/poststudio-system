@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schemas/render-job.schema.json",
+  "render_job_id": "<uuid>",
+  "tenant_id": "<tenant>",
+  "brand_id": "<brand-slug>",
+  "job_id": "<upstream generation job uuid>",
+  "callback_url": "https://crud.example/render-jobs/<id>/callback",
+  "callback_signing_secret_id": "<secret reference>",
+  "submitted_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "renderable_carousel": {
+    "version": "1.0",
+    "prompt_version": "v2.0.0",
+    "request_id": "<...>",
+    "brand": "<brand-slug>",
+    "topic": "<topic>",
+    "carousel": {
+      "canvas": { "width": 1080, "height": 1350, "format": "png" },
+      "render_mode": "html-css",
+      "accent_color": "#______",
+      "slide_count": 8,
+      "fonts_required": [],
+      "assets_required": []
+    },
+    "slides": [],
+    "renderability_validated": true
+  },
+  "options": {
+    "format": "png",
+    "quality": "high",
+    "concurrency": 4,
+    "background_fallback_color": "#______"
+  },
+  "asset_resolution": {}
+}

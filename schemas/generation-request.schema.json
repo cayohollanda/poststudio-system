@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/generation-request.schema.json",
+  "title": "Generation Request",
+  "description": "Schema for a content generation request. Alias for integration/schemas/generation-request.schema.json (same shape; both paths reference the same content for convenience).",
+  "$ref": "../integration/schemas/generation-request.schema.json"
+}

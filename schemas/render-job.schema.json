@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/render-job.schema.json",
+  "title": "Render Job",
+  "description": "Job submitted by the CRUD platform to the rendering worker. Mirror of integration/schemas/creative-render-request.schema.json.",
+  "type": "object",
+  "required": ["render_job_id", "tenant_id", "brand_id", "renderable_carousel"],
+  "properties": {
+    "render_job_id": { "type": "string", "format": "uuid" },
+    "tenant_id": { "type": "string" },
+    "brand_id": { "type": "string" },
+    "job_id": { "type": "string", "description": "Upstream generation job id." },
+    "callback_url": { "type": "string", "format": "uri" },
+    "callback_signing_secret_id": { "type": "string" },
+    "renderable_carousel": {
+      "$ref": "renderable-carousel.schema.json"
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "format": { "type": "string", "enum": ["png", "jpg"], "default": "png" },
+        "quality": { "type": "string", "enum": ["draft", "standard", "high"], "default": "standard" },
+        "concurrency": { "type": "integer", "minimum": 1, "maximum": 16, "default": 4 },
+        "background_fallback_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{3,8}$" },
+        "render_targets": {
+          "type": "array",
+          "description": "Optional multi-target render (e.g. linkedin 4:5 + instagram 1:1).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "platform": { "type": "string" },
+              "canvas": {
+                "type": "object",
+                "properties": {
+                  "width": { "type": "integer" },
+                  "height": { "type": "integer" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "asset_resolution": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "type": { "type": "string", "enum": ["image", "font"] }
+        }
+      }
+    },
+    "submitted_at": { "type": "string", "format": "date-time" }
+  }
+}

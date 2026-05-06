@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/reels-script.schema.json",
+  "title": "Reels Script",
+  "description": "Schema for short-video scripts from modules/reels-script-machine.",
+  "type": "object",
+  "required": ["version", "prompt_version", "brand_slug", "topic", "platform", "language", "goal", "script_type", "duration", "beats", "caption", "cta"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "prompt_version": { "type": "string" },
+    "brand_slug": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "topic": { "type": "string" },
+    "audience": { "type": "string" },
+    "platform": { "type": "string", "enum": ["tiktok", "instagram", "youtube_shorts", "linkedin", "x"] },
+    "language": { "type": "string" },
+    "goal": { "type": "string", "enum": ["save", "comment", "share", "click", "dm", "follow", "try", "awareness"] },
+    "script_type": { "type": "string", "enum": ["talking-head", "faceless", "b-roll-led", "hybrid"] },
+    "duration": { "type": "integer", "enum": [15, 30, 45, 60, 90] },
+    "word_count_target": { "type": "integer" },
+    "voice_owner": { "type": "string" },
+    "strategic_angle": { "type": "string" },
+    "beats": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["beat_number", "role", "start_sec", "end_sec"],
+        "properties": {
+          "beat_number": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "role": { "type": "string", "enum": ["hook", "set-up", "body", "payoff", "cta"] },
+          "start_sec": { "type": "number" },
+          "end_sec": { "type": "number" },
+          "voice_or_onscreen": { "type": "string" },
+          "visual_or_b_roll": { "type": "string" },
+          "audio_note": { "type": "string" }
+        }
+      }
+    },
+    "on_screen_text": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start_sec": { "type": "number" },
+          "end_sec": { "type": "number" },
+          "text": { "type": "string", "maxLength": 60 }
+        }
+      }
+    },
+    "b_roll_list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cut_number": { "type": "integer" },
+          "duration_sec": { "type": "number" },
+          "purpose": { "type": "string" },
+          "visual_specifics": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "caption": { "type": "string" },
+    "cta": { "type": "string" },
+    "visual_style_note": { "type": "string" },
+    "editing_notes": { "type": "array", "items": { "type": "string" } },
+    "quality_checklist": { "type": "object", "additionalProperties": true },
+    "missing_inputs": { "type": "array", "items": { "type": "string" } },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}

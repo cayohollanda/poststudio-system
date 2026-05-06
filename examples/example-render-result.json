@@ -1,0 +1,4 @@
+{
+  "$ref": "../rendering/examples/render-result.json",
+  "_note": "Pointer to the worked example at rendering/examples/render-result.json."
+}

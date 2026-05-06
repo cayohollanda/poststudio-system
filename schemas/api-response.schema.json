@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/api-response.schema.json",
+  "title": "API Response",
+  "description": "Top-level API response envelope. Alias for integration/schemas/generation-response.schema.json.",
+  "$ref": "../integration/schemas/generation-response.schema.json"
+}

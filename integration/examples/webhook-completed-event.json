@@ -1,0 +1,34 @@
+{
+  "$schema": "../schemas/webhook-event.schema.json",
+  "event": "job.render_complete",
+  "delivery_id": "d4f8e9c2-3b71-4a85-b6d7-9e1c8f2a3b4c",
+  "delivered_at": "2026-05-06T13:23:45Z",
+  "tenant_id": "tenant_lumen",
+  "brand_id": "lumen",
+  "job_id": "f3c9b2d1-7e54-4abc-8d1a-2e91b4f3a7c2",
+  "prompt_version": "v2.0.0",
+  "data": {
+    "module": "carousel-machine",
+    "render_mode": "html-css",
+    "slide_count": 8,
+    "duration_ms": 8421,
+    "slides": [
+      { "slide_number": 1, "asset_url": "https://assets.crud.example/.../slide-1.png", "size_bytes": 412988 },
+      { "slide_number": 2, "asset_url": "https://assets.crud.example/.../slide-2.png", "size_bytes": 398124 },
+      { "slide_number": 3, "asset_url": "https://assets.crud.example/.../slide-3.png", "size_bytes": 412004 },
+      { "slide_number": 4, "asset_url": "https://assets.crud.example/.../slide-4.png", "size_bytes": 405612 },
+      { "slide_number": 5, "asset_url": "https://assets.crud.example/.../slide-5.png", "size_bytes": 419872 },
+      { "slide_number": 6, "asset_url": "https://assets.crud.example/.../slide-6.png", "size_bytes": 408250 },
+      { "slide_number": 7, "asset_url": "https://assets.crud.example/.../slide-7.png", "size_bytes": 401130 },
+      { "slide_number": 8, "asset_url": "https://assets.crud.example/.../slide-8.png", "size_bytes": 396540 }
+    ],
+    "caption_url": "https://assets.crud.example/.../caption.md",
+    "first_comment_url": "https://assets.crud.example/.../first-comment.md",
+    "alt_hooks_url": "https://assets.crud.example/.../alt-hooks.md",
+    "quality_review_url": "https://assets.crud.example/.../quality-review.json"
+  },
+  "signature": {
+    "algorithm": "sha256",
+    "timestamp": "2026-05-06T13:23:45Z"
+  }
+}

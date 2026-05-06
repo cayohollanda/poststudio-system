@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/integration/schemas/creative-render-response.schema.json",
+  "title": "Creative Render Response",
+  "description": "Schema for the rendering worker → CRUD platform render-result response.",
+  "type": "object",
+  "required": ["render_job_id", "status", "rendered_at"],
+  "properties": {
+    "render_job_id": { "type": "string", "format": "uuid" },
+    "status": {
+      "type": "string",
+      "enum": ["complete", "partial_failure", "failed"]
+    },
+    "rendered_at": { "type": "string", "format": "date-time" },
+    "duration_ms": { "type": "integer" },
+    "worker_version": { "type": "string" },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide_number", "status"],
+        "properties": {
+          "slide_number": { "type": "integer", "minimum": 1 },
+          "status": { "type": "string", "enum": ["rendered", "failed"] },
+          "asset_url": { "type": "string", "format": "uri" },
+          "width": { "type": "integer" },
+          "height": { "type": "integer" },
+          "size_bytes": { "type": "integer" },
+          "format": { "type": "string", "enum": ["png", "jpg"] },
+          "checksum": { "type": "string" },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["code", "message"],
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "TEXT_OVERFLOW",
+                    "FONT_NOT_AVAILABLE",
+                    "ASSET_NOT_FOUND",
+                    "UNSAFE_HTML_FEATURE",
+                    "INVALID_SVG",
+                    "TEMPLATE_NOT_FOUND",
+                    "SLOT_VIOLATION",
+                    "IMAGE_LOAD_FAILED",
+                    "RENDER_TIMEOUT",
+                    "UPLOAD_FAILED"
+                  ]
+                },
+                "message": { "type": "string" },
+                "details": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    }
+  }
+}

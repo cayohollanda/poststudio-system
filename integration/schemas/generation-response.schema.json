@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/integration/schemas/generation-response.schema.json",
+  "title": "PostStudio Generation Response",
+  "description": "Envelope for any generation response from Claude API to the CRUD platform.",
+  "type": "object",
+  "required": ["version", "prompt_version", "request_id", "generated_at", "module", "data_or_errors"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "prompt_version": { "type": "string" },
+    "request_id": { "type": "string" },
+    "tenant_id": { "type": "string" },
+    "brand_id": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "module": { "type": "string" },
+    "data": {
+      "description": "Module-specific output. Conforms to the module's schema (carousel-output, brand-diagnosis, etc.).",
+      "type": "object"
+    },
+    "missing_inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" },
+          "field": { "type": "string" }
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "MISSING_BRAND_PACK",
+              "MISSING_INPUT",
+              "SCHEMA_VIOLATION",
+              "UNSAFE_CLAIM",
+              "UNSAFE_RENDERABLE",
+              "RENDER_REPAIR_FAILED",
+              "BRAND_PACK_CONFLICT",
+              "MODULE_NOT_SUPPORTED"
+            ]
+          },
+          "message": { "type": "string" },
+          "field": { "type": "string" },
+          "remediation": { "type": "string" }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "tokens_in": { "type": "integer" },
+        "tokens_out": { "type": "integer" },
+        "duration_ms": { "type": "integer" },
+        "cost_usd": { "type": "number" }
+      }
+    }
+  },
+  "definitions": {
+    "data_or_errors": {
+      "description": "Either data is populated (success) or errors[] is populated (structured failure)."
+    }
+  }
+}

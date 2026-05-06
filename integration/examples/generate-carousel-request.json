@@ -1,0 +1,29 @@
+{
+  "$schema": "../schemas/generation-request.schema.json",
+  "request_id": "f3c9b2d1-7e54-4abc-8d1a-2e91b4f3a7c2",
+  "tenant_id": "tenant_lumen",
+  "brand_id": "lumen",
+  "user_id": "user_mira_solano",
+  "module": "carousel-machine",
+  "prompt_version": "v2.0.0",
+  "output_format": "json",
+  "render": false,
+  "render_mode": "none",
+  "brief": {
+    "topic": "I installed 14 AI tools in a quarter and my deep work collapsed",
+    "audience": "senior PMs and engineering leads at 50-500 person SaaS",
+    "platform": "linkedin",
+    "language": "en",
+    "goal": "save",
+    "signal": "founder confession + structural-not-behavioral mechanism",
+    "angle": "mistake + workflow-reveal",
+    "structure": "default",
+    "visual_mode": "cinematic-dark",
+    "slide_count": 8
+  },
+  "metadata": {
+    "source": "consumer-app",
+    "campaign_id": "30day-authority-push-Q2",
+    "scheduled_publish_at": "2026-05-08T13:00:00Z"
+  }
+}

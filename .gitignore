@@ -1,0 +1,49 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Local notes / scratchpads
+scratch/
+notes.local.md
+*.local.md
+TODO.local.md
+
+# Local brand drafts (uncomment if you want brand drafts kept private)
+# brands/*/drafts/
+
+# Generated outputs (carousels, image prompts, exports)
+# Keep outputs/_template/ tracked (it's part of the repo); ignore per-brand outputs.
+out/
+outputs/*
+!outputs/_template/
+!outputs/_template/**
+exports/
+*.generated.md
+*.generated.json
+
+# Claude / LLM session artifacts
+.claude/
+.omc/
+.ralph/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Tooling caches
+.cache/
+.tmp/

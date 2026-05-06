@@ -1,0 +1,69 @@
+{
+  "$schema": "../schemas/generation-response.schema.json",
+  "version": "1.0",
+  "prompt_version": "v2.0.0",
+  "request_id": "f3c9b2d1-7e54-4abc-8d1a-2e91b4f3a7c2",
+  "tenant_id": "tenant_lumen",
+  "brand_id": "lumen",
+  "generated_at": "2026-05-06T13:21:08Z",
+  "module": "carousel-machine",
+  "data": {
+    "version": "1.0",
+    "brand": "lumen",
+    "topic": "I installed 14 AI tools in a quarter and my deep work collapsed",
+    "platform": "linkedin",
+    "language": "en",
+    "goal": "save",
+    "angle": "mistake + workflow-reveal",
+    "structure": "default",
+    "visual_mode": "cinematic-dark",
+    "accent_color": "#E2A852",
+    "strategic_angle": "Mistake + Workflow Reveal. Tension: senior operators have been promised 'more AI = more focus' and quietly experienced the opposite. Resolution: the bottleneck isn't which AI tools, it's the chat-shaped interaction model. Lumen named only in slides 7-8.",
+    "slides": [
+      {
+        "slide_number": 1,
+        "role": "hook",
+        "headline": "I installed 14 AI tools last quarter. My deep work collapsed.",
+        "support_text": "Here's what I removed first.",
+        "visual_concept": "Fractured glass dome over wooden desk in dusk study, warm amber rim light.",
+        "image_prompt": "A fractured glass dome over a wooden desk in a quiet study at dusk... [full prompt]",
+        "layout_instruction": "Headline bottom-third left-aligned, GT Sectra Display Medium, accent on 'collapsed'."
+      }
+    ],
+    "caption": "I installed fourteen 'AI productivity' tools last quarter...",
+    "cta": "Save this for the next time you're about to install another AI tool.",
+    "first_comment": "If you want the three questions I now ask before installing anything new...",
+    "alternative_hooks": [
+      "I installed 14 AI tools last quarter. My deep work collapsed.",
+      "Most 'AI productivity' tools quietly destroy your deep work.",
+      "Senior operators don't have more focus. They have fewer surfaces.",
+      "Stop installing AI tools that interrupt you.",
+      "Three categories of AI tools to remove from your week. In order."
+    ],
+    "quality_checklist": {
+      "critical": {
+        "scroll_stops": "pass",
+        "hook_earns_swipe": "pass",
+        "one_idea_per_slide": "pass",
+        "tension_resolved": "pass",
+        "mechanism_shown": "pass",
+        "voice_matches_brand": "pass",
+        "no_invented_claims": "pass",
+        "words_to_avoid_respected": "pass",
+        "cta_one_action": "pass",
+        "passes_external_review": "pass"
+      },
+      "quality_score": 30,
+      "quality_total": 30
+    }
+  },
+  "missing_inputs": [],
+  "warnings": [],
+  "errors": [],
+  "metadata": {
+    "tokens_in": 14227,
+    "tokens_out": 3082,
+    "duration_ms": 12451,
+    "cost_usd": 0.184
+  }
+}

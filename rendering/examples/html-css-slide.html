@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --bg: #0E0F12;
+      --ink: #F4F1EC;
+      --muted: #A4A8B0;
+      --accent: #E2A852;
+      --pad: 48px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Söhne", "Inter", system-ui, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("{{asset:fractured-glass-dome-01}}");
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+    }
+    .frame {
+      position: relative;
+      z-index: 2;
+      padding: var(--pad);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .headline {
+      font-family: "GT Sectra Display", Georgia, serif;
+      font-weight: 500;
+      font-size: 76px;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+      max-width: 880px;
+      margin: 0;
+    }
+    .accent { color: var(--accent); }
+    .support {
+      font-size: 22px;
+      color: var(--muted);
+      margin: 16px 0 0;
+    }
+    .num {
+      position: absolute;
+      top: var(--pad);
+      right: var(--pad);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 14px;
+      color: var(--muted);
+      z-index: 3;
+    }
+    .brand {
+      position: absolute;
+      bottom: var(--pad);
+      right: var(--pad);
+      font-family: "GT Sectra Display", Georgia, serif;
+      font-size: 14px;
+      color: var(--ink);
+      z-index: 3;
+    }
+  </style>
+</head>
+<body data-slide="1" data-role="hook" data-brand="lumen">
+  <div class="bg"></div>
+  <div class="num">01 / 08</div>
+  <div class="frame">
+    <h1 class="headline">Most AI tools quietly <span class="accent">destroy</span> your deep work.</h1>
+    <p class="support">And the chat is why.</p>
+  </div>
+  <div class="brand">lumen</div>
+</body>
+</html>

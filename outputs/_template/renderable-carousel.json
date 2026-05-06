@@ -1,0 +1,71 @@
+{
+  "$schema": "../../schemas/renderable-carousel.schema.json",
+  "version": "1.0",
+  "prompt_version": "v2.0.0",
+  "request_id": "<echoed from request>",
+  "tenant_id": "<tenant>",
+  "brand_id": "<brand-slug>",
+  "generated_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "mode": "renderable-creative-worker",
+  "brand": "<brand-slug>",
+  "topic": "<one-sentence topic>",
+  "platform": "linkedin",
+  "language": "en",
+  "goal": "save",
+  "angle": "<from system/content-system.md>",
+  "structure": "default",
+  "carousel": {
+    "canvas": { "width": 1080, "height": 1350, "format": "png" },
+    "render_mode": "html-css",
+    "accent_color": "#______",
+    "slide_count": 8,
+    "fonts_required": [
+      { "family": "<family>", "fallback_chain": ["<fallback1>", "<fallback2>", "serif"] }
+    ],
+    "assets_required": [
+      { "asset_id": "<id>", "purpose": "<purpose>", "required": true }
+    ]
+  },
+  "strategic_angle": "<1-3 sentences>",
+  "slides": [
+    {
+      "slide_number": 1,
+      "role": "hook",
+      "headline": "",
+      "support_text": "",
+      "visual_concept": "",
+      "payload": {
+        "html": "<!doctype html>...complete self-contained HTML...</html>",
+        "document_shape": "complete"
+      },
+      "metadata": {
+        "brand_slug": "<brand-slug>",
+        "accent_color": "#______",
+        "accent_word": "",
+        "background_asset_id": "",
+        "visual_mode": "",
+        "data_attributes": { "data-slide": "1", "data-role": "hook" }
+      }
+    }
+  ],
+  "caption": "",
+  "cta": "",
+  "first_comment": "",
+  "alternative_hooks": ["", "", "", "", ""],
+  "renderability_validated": true,
+  "renderability_checks": {
+    "schema_valid": "pass",
+    "canvas_correct": "pass",
+    "no_remote_assets": "pass",
+    "no_javascript": "pass",
+    "no_invented_logos": "pass",
+    "fallback_fonts_present": "pass",
+    "single_accent": "pass",
+    "headline_overflow_estimate": "pass",
+    "no_banned_css_or_svg_features": "pass",
+    "metadata_complete": "pass"
+  },
+  "warnings": [],
+  "missing_inputs": [],
+  "errors": []
+}

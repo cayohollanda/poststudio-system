@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1080" height="1350"
+     viewBox="0 0 1080 1350"
+     preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <style>
+      .bg { fill: #0E0F12; }
+      .headline {
+        font-family: "GT Sectra Display", Georgia, serif;
+        font-size: 76px;
+        font-weight: 500;
+        fill: #F4F1EC;
+        letter-spacing: -0.5px;
+      }
+      .accent { fill: #E2A852; }
+      .support {
+        font-family: "Söhne", Inter, sans-serif;
+        font-size: 22px;
+        fill: #A4A8B0;
+      }
+      .num {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 14px;
+        fill: #A4A8B0;
+      }
+      .brand {
+        font-family: "GT Sectra Display", Georgia, serif;
+        font-size: 14px;
+        fill: #F4F1EC;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" x="0" y="0" width="1080" height="1350"/>
+  <image href="{{asset:fractured-glass-dome-01}}"
+         x="0" y="0" width="1080" height="1350"
+         preserveAspectRatio="xMidYMid slice"
+         opacity="0.85"/>
+
+  <!-- Slide number top-right -->
+  <text class="num" x="1032" y="62" text-anchor="end">01 / 08</text>
+
+  <!-- Headline (manually wrapped) -->
+  <text class="headline" x="48" y="1180">
+    <tspan x="48">Most AI tools quietly</tspan>
+    <tspan x="48" dy="80"><tspan class="accent">destroy</tspan> your deep work.</tspan>
+  </text>
+
+  <!-- Support text -->
+  <text class="support" x="48" y="1265">And the chat is why.</text>
+
+  <!-- Brand mark bottom-right -->
+  <text class="brand" x="1032" y="1296" text-anchor="end">lumen</text>
+</svg>

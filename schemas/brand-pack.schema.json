@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/brand-pack.schema.json",
+  "title": "PostStudio Brand Pack",
+  "description": "Schema for the 8-file Brand Pack consumed by PostStudio System. Each top-level property corresponds to one file under brands/[slug]/.",
+  "type": "object",
+  "required": ["brand", "audience", "offer", "voice", "visual_style", "proof_assets", "constraints", "examples"],
+  "additionalProperties": false,
+  "properties": {
+    "brand": {
+      "type": "object",
+      "description": "Maps to brand.md",
+      "required": ["slug", "name", "one_liner", "category", "stage"],
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "Lowercase, hyphen-separated. Used as the folder name under brands/."
+        },
+        "name": { "type": "string" },
+        "one_liner": { "type": "string", "maxLength": 160 },
+        "category": { "type": "string" },
+        "stage": {
+          "type": "string",
+          "enum": ["pre-launch", "early-traction", "scaling", "established"]
+        },
+        "url": { "type": "string", "format": "uri" },
+        "founders": { "type": "array", "items": { "type": "string" } },
+        "tagline": { "type": "string" },
+        "elevator_pitch": { "type": "string" }
+      }
+    },
+    "audience": {
+      "type": "object",
+      "description": "Maps to audience.md",
+      "required": ["primary_segment"],
+      "properties": {
+        "primary_segment": {
+          "type": "object",
+          "required": ["role", "situation"],
+          "properties": {
+            "role": { "type": "string" },
+            "situation": { "type": "string" },
+            "pains": { "type": "array", "items": { "type": "string" } },
+            "desires": { "type": "array", "items": { "type": "string" } },
+            "language_register": { "type": "string" },
+            "media_diet": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "secondary_segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string" },
+              "situation": { "type": "string" }
+            }
+          }
+        },
+        "non_audience": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Roles or situations explicitly NOT the audience."
+        }
+      }
+    },
+    "offer": {
+      "type": "object",
+      "description": "Maps to offer.md",
+      "properties": {
+        "what_we_sell": { "type": "string" },
+        "problem_solved": { "type": "string" },
+        "unique_mechanism": { "type": "string" },
+        "what_we_dont_do": { "type": "array", "items": { "type": "string" } },
+        "pricing_model": { "type": "string" },
+        "delivery_model": { "type": "string" },
+        "core_use_cases": { "type": "array", "items": { "type": "string" } },
+        "differentiators": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "alternatives": {
+          "type": "array",
+          "description": "What audience considers instead of us; treated as competitors.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "we_win_when": { "type": "string" },
+              "they_win_when": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "description": "Maps to voice.md",
+      "required": ["adjectives", "register"],
+      "properties": {
+        "adjectives": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 3,
+          "maxItems": 7
+        },
+        "register": {
+          "type": "string",
+          "enum": ["formal", "neutral", "casual", "informal-direct", "playful"]
+        },
+        "person": {
+          "type": "string",
+          "enum": ["first-singular", "first-plural", "third"]
+        },
+        "lowercase_friendly": { "type": "boolean" },
+        "words_to_use": { "type": "array", "items": { "type": "string" } },
+        "words_to_avoid": { "type": "array", "items": { "type": "string" } },
+        "phrases_to_use": { "type": "array", "items": { "type": "string" } },
+        "phrases_to_avoid": { "type": "array", "items": { "type": "string" } },
+        "reference_brands": { "type": "array", "items": { "type": "string" } },
+        "voice_examples": {
+          "type": "array",
+          "description": "Short examples of brand-aligned phrasing.",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "visual_style": {
+      "type": "object",
+      "description": "Maps to visual-style.md",
+      "required": ["primary_mode", "color_palette", "typography"],
+      "properties": {
+        "primary_mode": {
+          "type": "string",
+          "enum": [
+            "cinematic-dark",
+            "editorial-minimal",
+            "futuristic-interface",
+            "surreal-product-metaphor",
+            "premium-founder-operator",
+            "technical-blueprint",
+            "exploded-diagram",
+            "meme-but-premium"
+          ]
+        },
+        "secondary_mode": {
+          "type": ["string", "null"],
+          "enum": [
+            null,
+            "cinematic-dark",
+            "editorial-minimal",
+            "futuristic-interface",
+            "surreal-product-metaphor",
+            "premium-founder-operator",
+            "technical-blueprint",
+            "exploded-diagram",
+            "meme-but-premium"
+          ]
+        },
+        "color_palette": {
+          "type": "object",
+          "required": ["primary", "accent"],
+          "properties": {
+            "primary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{3,8}$" },
+            "accent": { "type": "string", "pattern": "^#[0-9A-Fa-f]{3,8}$" },
+            "neutrals": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^#[0-9A-Fa-f]{3,8}$" }
+            }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "required": ["headline"],
+          "properties": {
+            "headline": { "type": "string" },
+            "body": { "type": "string" },
+            "mono": { "type": "string" }
+          }
+        },
+        "logo_placement": {
+          "type": "string",
+          "enum": ["bottom-right", "bottom-left", "top-right", "top-left", "hidden"]
+        },
+        "headline_placement": {
+          "type": "string",
+          "enum": ["bottom-third", "top-left", "right-side", "center"]
+        },
+        "lighting_defaults": { "type": "string" },
+        "texture_defaults": { "type": "string" },
+        "image_prompt_blocks": { "type": "array", "items": { "type": "string" } },
+        "negative_prompt_defaults": { "type": "array", "items": { "type": "string" } },
+        "example_image_prompts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "proof_assets": {
+      "type": "object",
+      "description": "Maps to proof-assets.md",
+      "properties": {
+        "case_studies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "customer": { "type": "string" },
+              "outcome": { "type": "string" },
+              "permission_to_cite_publicly": { "type": "boolean" }
+            }
+          }
+        },
+        "testimonials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "quote": { "type": "string" },
+              "attribution": { "type": "string" },
+              "permission_to_cite_publicly": { "type": "boolean" }
+            }
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": ["string", "number"] },
+              "asof": { "type": "string" },
+              "permission_to_cite_publicly": { "type": "boolean" }
+            }
+          }
+        },
+        "press": { "type": "array", "items": { "type": "string" } },
+        "awards": { "type": "array", "items": { "type": "string" } },
+        "do_not_cite_publicly": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Things you have but cannot use in public posts."
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Maps to constraints.md",
+      "properties": {
+        "claims_allowed": { "type": "array", "items": { "type": "string" } },
+        "claims_forbidden": { "type": "array", "items": { "type": "string" } },
+        "compliance": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["HIPAA", "GDPR", "CCPA", "FDA", "SEC", "FINRA", "MiFID", "PCI-DSS", "SOC2", "ISO27001", "none"]
+          }
+        },
+        "trigger_phrases_for_legal_review": { "type": "array", "items": { "type": "string" } },
+        "competitors_off_limits": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Competitors we may not name in posts."
+        },
+        "image_constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "examples": {
+      "type": "object",
+      "description": "Maps to examples.md",
+      "properties": {
+        "what_worked": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "topic": { "type": "string" },
+              "format": { "type": "string" },
+              "outcome": { "type": "string" }
+            }
+          }
+        },
+        "what_didnt": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "topic": { "type": "string" },
+              "format": { "type": "string" },
+              "why_it_underperformed": { "type": "string" }
+            }
+          }
+        },
+        "rituals": { "type": "array", "items": { "type": "string" } },
+        "banned_patterns": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

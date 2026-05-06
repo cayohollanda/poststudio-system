@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/carousel-output.schema.json",
+  "title": "PostStudio Carousel Output",
+  "description": "Standardized JSON output for a single carousel produced by PostStudio System.",
+  "type": "object",
+  "required": [
+    "version",
+    "brand",
+    "topic",
+    "platform",
+    "language",
+    "goal",
+    "angle",
+    "structure",
+    "visual_mode",
+    "slides",
+    "caption",
+    "cta",
+    "first_comment",
+    "alternative_hooks",
+    "quality_checklist",
+    "missing_inputs"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Schema version. Pin to prevent breaking changes."
+    },
+    "brand": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Brand slug; matches the folder under brands/."
+    },
+    "topic": {
+      "type": "string",
+      "minLength": 3,
+      "description": "One-sentence description of what the carousel is about."
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["linkedin", "instagram", "tiktok", "x", "threads", "multi"]
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "BCP-47-ish language tag (e.g. 'en', 'pt-BR', 'es-ES')."
+    },
+    "goal": {
+      "type": "string",
+      "enum": ["save", "comment", "share", "click", "dm", "follow", "try", "awareness"]
+    },
+    "angle": {
+      "type": "string",
+      "description": "Angle name from system/content-system.md, optionally with '+' to combine angles."
+    },
+    "structure": {
+      "type": "string",
+      "enum": [
+        "default",
+        "launch",
+        "educational",
+        "comparison",
+        "benchmark",
+        "thought-leadership",
+        "product-led",
+        "project-announcement"
+      ]
+    },
+    "visual_mode": {
+      "type": "string",
+      "enum": [
+        "cinematic-dark",
+        "editorial-minimal",
+        "futuristic-interface",
+        "surreal-product-metaphor",
+        "premium-founder-operator",
+        "technical-blueprint",
+        "exploded-diagram",
+        "meme-but-premium"
+      ]
+    },
+    "accent_color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{3,8}$"
+    },
+    "strategic_angle": {
+      "type": "string",
+      "description": "1-3 sentence summary of why this angle for this brand and audience."
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": [
+          "slide_number",
+          "role",
+          "headline",
+          "support_text",
+          "visual_concept",
+          "image_prompt",
+          "layout_instruction"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "slide_number": { "type": "integer", "minimum": 1, "maximum": 12 },
+          "role": {
+            "type": "string",
+            "enum": [
+              "hook",
+              "problem",
+              "mistake",
+              "reframe",
+              "mechanism",
+              "example",
+              "proof",
+              "step",
+              "trade-off",
+              "comparison",
+              "application",
+              "generalization",
+              "bonus",
+              "cta"
+            ]
+          },
+          "headline": { "type": "string", "minLength": 1, "maxLength": 140 },
+          "support_text": { "type": "string", "maxLength": 80 },
+          "visual_concept": { "type": "string", "minLength": 1 },
+          "image_prompt": { "type": "string", "minLength": 1 },
+          "layout_instruction": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "caption": { "type": "string", "minLength": 30 },
+    "cta": { "type": "string", "minLength": 3, "maxLength": 200 },
+    "first_comment": { "type": "string", "minLength": 10 },
+    "alternative_hooks": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "type": "string", "minLength": 3, "maxLength": 200 }
+    },
+    "quality_checklist": {
+      "type": "object",
+      "required": ["critical", "quality", "quality_score", "quality_total"],
+      "additionalProperties": false,
+      "properties": {
+        "critical": {
+          "type": "object",
+          "required": [
+            "scroll_stops",
+            "hook_earns_swipe",
+            "one_idea_per_slide",
+            "tension_resolved",
+            "mechanism_shown",
+            "voice_matches_brand",
+            "no_invented_claims",
+            "words_to_avoid_respected",
+            "cta_one_action",
+            "passes_external_review"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "scroll_stops": { "$ref": "#/$defs/grade" },
+            "hook_earns_swipe": { "$ref": "#/$defs/grade" },
+            "one_idea_per_slide": { "$ref": "#/$defs/grade" },
+            "tension_resolved": { "$ref": "#/$defs/grade" },
+            "mechanism_shown": { "$ref": "#/$defs/grade" },
+            "voice_matches_brand": { "$ref": "#/$defs/grade" },
+            "no_invented_claims": { "$ref": "#/$defs/grade" },
+            "words_to_avoid_respected": { "$ref": "#/$defs/grade" },
+            "cta_one_action": { "$ref": "#/$defs/grade" },
+            "passes_external_review": { "$ref": "#/$defs/grade" }
+          }
+        },
+        "quality": {
+          "type": "object",
+          "required": [
+            "hook_specific",
+            "no_stale_patterns",
+            "audience_named_in_first_14_words",
+            "slide_count_in_range",
+            "structure_fits_count",
+            "pacing_alternates",
+            "each_slide_answers_previous",
+            "visual_metaphor_present",
+            "no_marketing_jargon",
+            "no_filler_intensifiers",
+            "headlines_in_range",
+            "active_voice",
+            "numbers_concrete_or_proof_needed",
+            "one_visual_mode",
+            "one_accent_color",
+            "headline_in_bottom_third",
+            "margins_consistent",
+            "image_prompts_no_text_no_logos",
+            "caption_has_comment_prompt",
+            "first_comment_value_stacked"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "hook_specific": { "$ref": "#/$defs/grade" },
+            "no_stale_patterns": { "$ref": "#/$defs/grade" },
+            "audience_named_in_first_14_words": { "$ref": "#/$defs/grade" },
+            "slide_count_in_range": { "$ref": "#/$defs/grade" },
+            "structure_fits_count": { "$ref": "#/$defs/grade" },
+            "pacing_alternates": { "$ref": "#/$defs/grade" },
+            "each_slide_answers_previous": { "$ref": "#/$defs/grade" },
+            "visual_metaphor_present": { "$ref": "#/$defs/grade" },
+            "no_marketing_jargon": { "$ref": "#/$defs/grade" },
+            "no_filler_intensifiers": { "$ref": "#/$defs/grade" },
+            "headlines_in_range": { "$ref": "#/$defs/grade" },
+            "active_voice": { "$ref": "#/$defs/grade" },
+            "numbers_concrete_or_proof_needed": { "$ref": "#/$defs/grade" },
+            "one_visual_mode": { "$ref": "#/$defs/grade" },
+            "one_accent_color": { "$ref": "#/$defs/grade" },
+            "headline_in_bottom_third": { "$ref": "#/$defs/grade" },
+            "margins_consistent": { "$ref": "#/$defs/grade" },
+            "image_prompts_no_text_no_logos": { "$ref": "#/$defs/grade" },
+            "caption_has_comment_prompt": { "$ref": "#/$defs/grade" },
+            "first_comment_value_stacked": { "$ref": "#/$defs/grade" }
+          }
+        },
+        "quality_score": { "type": "integer", "minimum": 0, "maximum": 30 },
+        "quality_total": { "type": "integer", "const": 30 }
+      }
+    },
+    "missing_inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "grade": {
+      "type": "string",
+      "enum": ["pass", "fail", "risk"]
+    }
+  }
+}

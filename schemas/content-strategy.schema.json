@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/content-strategy.schema.json",
+  "title": "Content Strategy",
+  "description": "Schema for content strategy output from modules/content-strategy-os.",
+  "type": "object",
+  "required": ["version", "prompt_version", "brand_slug", "pillars", "series", "plan_30d"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "prompt_version": { "type": "string" },
+    "brand_slug": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "time_window_days": { "type": "integer", "enum": [30, 90] },
+    "channel_scope": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["linkedin", "instagram", "tiktok", "x", "threads", "multi"] }
+    },
+    "pillars": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["name", "argument", "topic_clusters"],
+        "properties": {
+          "name": { "type": "string" },
+          "argument": { "type": "string" },
+          "audience_pain": { "type": "string" },
+          "belief_being_challenged": { "type": "string" },
+          "topic_clusters": {
+            "type": "array",
+            "minItems": 8,
+            "maxItems": 15,
+            "items": { "type": "string" }
+          },
+          "dominant_content_type": { "type": "string", "enum": ["carousel", "reel", "essay", "case_study"] },
+          "funnel_position": { "type": "string", "enum": ["TOFU", "MOFU", "BOFU", "TOFU+MOFU", "MOFU+BOFU"] },
+          "series_anchored": { "type": "array", "items": { "type": "string" } },
+          "content_to_offer_link": { "type": "string" },
+          "coverage_pct": { "type": "number", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "series": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["name", "cadence", "format"],
+        "properties": {
+          "name": { "type": "string" },
+          "cadence": { "type": "string", "enum": ["weekly", "bi-weekly", "monthly", "quarterly"] },
+          "day": { "type": "string" },
+          "format": { "type": "string", "enum": ["carousel", "reel", "essay", "case_study", "data_drop"] },
+          "anchor_structure": { "type": "string" },
+          "pillar": { "type": "string" },
+          "voice": { "type": "string" },
+          "active": { "type": "boolean" }
+        }
+      }
+    },
+    "plan_30d": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["day", "topic", "format", "pillar"],
+        "properties": {
+          "day": { "type": "integer", "minimum": 1, "maximum": 31 },
+          "date": { "type": "string", "format": "date" },
+          "topic": { "type": "string" },
+          "format": { "type": "string" },
+          "pillar": { "type": "string" },
+          "channel": { "type": "string" },
+          "primary_cta": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "direction_90d": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "campaign_calendar": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "campaign": { "type": "string" },
+              "start_day": { "type": "integer" },
+              "end_day": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "content_to_offer_map": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pillar": { "type": "string" },
+          "path_to_action": { "type": "string" }
+        }
+      }
+    },
+    "distribution_plan": { "type": "object", "additionalProperties": true },
+    "missing_inputs": { "type": "array", "items": { "type": "string" } },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "../schemas/renderable-carousel.schema.json",
+  "version": "1.0",
+  "prompt_version": "v2.0.0",
+  "request_id": "f3c9b2d1-7e54-4abc-8d1a-2e91b4f3a7c2",
+  "tenant_id": "tenant_lumen",
+  "brand_id": "lumen",
+  "generated_at": "2026-05-06T13:21:08Z",
+  "mode": "renderable-creative-worker",
+  "brand": "lumen",
+  "topic": "I installed 14 AI tools in a quarter and my deep work collapsed",
+  "platform": "linkedin",
+  "language": "en",
+  "goal": "save",
+  "angle": "mistake + workflow-reveal",
+  "structure": "default",
+  "carousel": {
+    "canvas": { "width": 1080, "height": 1350, "format": "png" },
+    "render_mode": "html-css",
+    "accent_color": "#E2A852",
+    "slide_count": 8,
+    "fonts_required": [
+      { "family": "GT Sectra Display", "fallback_chain": ["Tiempos Headline", "Georgia", "serif"] },
+      { "family": "Söhne", "fallback_chain": ["Inter", "system-ui", "sans-serif"] },
+      { "family": "IBM Plex Mono", "fallback_chain": ["Menlo", "monospace"] }
+    ],
+    "assets_required": [
+      { "asset_id": "fractured-glass-dome-01", "purpose": "slide-1 background", "required": true }
+    ]
+  },
+  "strategic_angle": "Mistake + Workflow Reveal. Tension: senior operators have been promised 'more AI = more focus' and quietly experienced the opposite. Resolution: the bottleneck isn't which AI tools, it's the chat-shaped interaction model itself. Lumen named only in slides 7-8.",
+  "slides": [
+    {
+      "slide_number": 1,
+      "role": "hook",
+      "headline": "Most AI tools quietly destroy your deep work.",
+      "support_text": "And the chat is why.",
+      "visual_concept": "Fractured glass dome over wooden desk in dusk study.",
+      "payload": {
+        "html": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><style>:root{--bg:#0E0F12;--ink:#F4F1EC;--muted:#A4A8B0;--accent:#E2A852;--pad:48px}*,*::before,*::after{box-sizing:border-box}html,body{margin:0;padding:0}body{width:1080px;height:1350px;background:var(--bg);color:var(--ink);font-family:\"Söhne\",Inter,system-ui,sans-serif;position:relative;overflow:hidden}.bg{position:absolute;inset:0;background-image:url(\"{{asset:fractured-glass-dome-01}}\");background-size:cover;background-position:center;z-index:1}.frame{position:relative;z-index:2;padding:var(--pad);height:100%;display:flex;flex-direction:column;justify-content:flex-end}.headline{font-family:\"GT Sectra Display\",Georgia,serif;font-weight:500;font-size:76px;line-height:1.05;letter-spacing:-0.5px;max-width:880px;margin:0}.accent{color:var(--accent)}.support{font-size:22px;color:var(--muted);margin:16px 0 0}.num{position:absolute;top:var(--pad);right:var(--pad);font-family:\"IBM Plex Mono\",monospace;font-size:14px;color:var(--muted);z-index:3}.brand{position:absolute;bottom:var(--pad);right:var(--pad);font-family:\"GT Sectra Display\",Georgia,serif;font-size:14px;color:var(--ink);z-index:3}</style></head><body data-slide=\"1\" data-role=\"hook\" data-brand=\"lumen\"><div class=\"bg\"></div><div class=\"num\">01 / 08</div><div class=\"frame\"><h1 class=\"headline\">Most AI tools quietly <span class=\"accent\">destroy</span> your deep work.</h1><p class=\"support\">And the chat is why.</p></div><div class=\"brand\">lumen</div></body></html>",
+        "document_shape": "complete"
+      },
+      "metadata": {
+        "brand_slug": "lumen",
+        "accent_color": "#E2A852",
+        "accent_word": "destroy",
+        "background_asset_id": "fractured-glass-dome-01",
+        "visual_mode": "cinematic-dark",
+        "data_attributes": { "data-slide": "1", "data-role": "hook" }
+      }
+    }
+  ],
+  "caption": "I installed fourteen 'AI productivity' tools last quarter. By the end of it, my deep-work time had been cut in half...",
+  "cta": "Save this for the next time you're about to install another AI tool.",
+  "first_comment": "If you want the three questions I now ask before installing anything new...",
+  "alternative_hooks": [
+    "I installed 14 AI tools last quarter. My deep work collapsed.",
+    "Most 'AI productivity' tools quietly destroy your deep work.",
+    "Senior operators don't have more focus. They have fewer surfaces.",
+    "Stop installing AI tools that interrupt you.",
+    "Three categories of AI tools to remove from your week. In order."
+  ],
+  "renderability_validated": true,
+  "renderability_checks": {
+    "schema_valid": "pass",
+    "canvas_correct": "pass",
+    "no_remote_assets": "pass",
+    "no_javascript": "pass",
+    "no_invented_logos": "pass",
+    "fallback_fonts_present": "pass",
+    "single_accent": "pass",
+    "headline_overflow_estimate": "pass",
+    "no_banned_css_or_svg_features": "pass",
+    "metadata_complete": "pass"
+  },
+  "warnings": [],
+  "missing_inputs": [],
+  "errors": []
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/integration/schemas/webhook-event.schema.json",
+  "title": "Webhook Event",
+  "description": "Schema for the webhook payload fired by the CRUD platform.",
+  "type": "object",
+  "required": ["event", "delivery_id", "delivered_at", "tenant_id", "job_id", "data"],
+  "properties": {
+    "event": {
+      "type": "string",
+      "enum": [
+        "job.created",
+        "job.generation_complete",
+        "job.quality_gate_complete",
+        "job.quality_gate_failed",
+        "job.improved",
+        "job.renderable_complete",
+        "job.render_started",
+        "job.render_complete",
+        "job.render_failed",
+        "job.approved",
+        "job.revision_requested",
+        "job.delivered",
+        "job.failed",
+        "job.cancelled"
+      ]
+    },
+    "delivery_id": { "type": "string", "format": "uuid" },
+    "delivered_at": { "type": "string", "format": "date-time" },
+    "tenant_id": { "type": "string" },
+    "brand_id": { "type": "string" },
+    "job_id": { "type": "string", "format": "uuid" },
+    "prompt_version": { "type": "string" },
+    "data": {
+      "type": "object",
+      "description": "Event-specific payload. See integration/webhook-contract.md."
+    },
+    "signature": {
+      "type": "object",
+      "description": "Signing metadata. The actual signature appears in the X-PostStudio-Signature header.",
+      "properties": {
+        "algorithm": { "type": "string", "const": "sha256" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

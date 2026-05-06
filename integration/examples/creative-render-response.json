@@ -1,0 +1,92 @@
+{
+  "$schema": "../schemas/creative-render-response.schema.json",
+  "render_job_id": "a8d2e771-9b1a-4c4d-9b88-7c2e3f441e91",
+  "status": "complete",
+  "rendered_at": "2026-05-06T13:23:42Z",
+  "duration_ms": 8421,
+  "worker_version": "renderer-v1.4.2",
+  "slides": [
+    {
+      "slide_number": 1,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-1.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 412988,
+      "format": "png",
+      "checksum": "sha256:7f3c2a1d..."
+    },
+    {
+      "slide_number": 2,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-2.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 398124,
+      "format": "png",
+      "checksum": "sha256:9a4b8c2e..."
+    },
+    {
+      "slide_number": 3,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-3.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 412004,
+      "format": "png",
+      "checksum": "sha256:1c8e3d4f..."
+    },
+    {
+      "slide_number": 4,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-4.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 405612,
+      "format": "png",
+      "checksum": "sha256:5e7d9a2b..."
+    },
+    {
+      "slide_number": 5,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-5.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 419872,
+      "format": "png",
+      "checksum": "sha256:b3a5c7d8..."
+    },
+    {
+      "slide_number": 6,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-6.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 408250,
+      "format": "png",
+      "checksum": "sha256:c9d4e6f1..."
+    },
+    {
+      "slide_number": 7,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-7.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 401130,
+      "format": "png",
+      "checksum": "sha256:d2e1c4b8..."
+    },
+    {
+      "slide_number": 8,
+      "status": "rendered",
+      "asset_url": "https://assets.crud.example/tenants/tenant_lumen/brands/lumen/jobs/f3c9b2d1/assets/slide-8.png",
+      "width": 1080,
+      "height": 1350,
+      "size_bytes": 396540,
+      "format": "png",
+      "checksum": "sha256:f8a2b3c5..."
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

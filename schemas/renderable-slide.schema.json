@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/renderable-slide.schema.json",
+  "title": "Renderable Slide",
+  "description": "A single slide of a renderable carousel.",
+  "type": "object",
+  "required": ["slide_number", "role", "headline", "payload", "metadata"],
+  "additionalProperties": false,
+  "properties": {
+    "slide_number": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "role": {
+      "type": "string",
+      "enum": [
+        "hook",
+        "problem",
+        "mistake",
+        "reframe",
+        "mechanism",
+        "example",
+        "proof",
+        "step",
+        "trade-off",
+        "comparison",
+        "application",
+        "generalization",
+        "bonus",
+        "cta"
+      ]
+    },
+    "headline": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "support_text": { "type": "string", "maxLength": 200 },
+    "visual_concept": { "type": "string" },
+    "payload": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["html"],
+          "properties": {
+            "html": { "type": "string" },
+            "document_shape": {
+              "type": "string",
+              "enum": ["complete", "fragment"],
+              "default": "complete"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["svg"],
+          "properties": {
+            "svg": { "type": "string" }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["template_id", "slots"],
+          "properties": {
+            "template_id": { "type": "string" },
+            "slots": { "type": "object", "additionalProperties": true }
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["brand_slug"],
+      "properties": {
+        "brand_slug": { "type": "string" },
+        "accent_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{3,8}$" },
+        "accent_word": { "type": "string" },
+        "background_asset_id": { "type": "string" },
+        "visual_mode": { "type": "string" },
+        "data_attributes": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    }
+  }
+}

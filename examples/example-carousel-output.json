@@ -1,0 +1,137 @@
+{
+  "$schema": "../schemas/carousel-output.schema.json",
+  "version": "1.0",
+  "brand": "lumen",
+  "topic": "I installed 14 AI tools in a quarter and my deep work collapsed",
+  "platform": "linkedin",
+  "language": "en",
+  "goal": "save",
+  "angle": "mistake + workflow-reveal",
+  "structure": "default",
+  "visual_mode": "cinematic-dark",
+  "accent_color": "#E2A852",
+  "strategic_angle": "Mistake + Workflow Reveal. The tension: senior operators have been promised that 'more AI' is the path to focus, and have quietly experienced the opposite. The carousel resolves the tension by reframing the problem — the bottleneck isn't which AI tools, it's the chat-shaped interaction model itself. Lumen is named only in slides 7-8, after the audience has already adopted the new frame.",
+  "slides": [
+    {
+      "slide_number": 1,
+      "role": "hook",
+      "headline": "I installed 14 AI tools last quarter. My deep work collapsed.",
+      "support_text": "Here's what I removed first.",
+      "visual_concept": "A wooden desk in a quiet study at dusk, a glass dome floating above it, fractured from the inside as if pressure escaped outward; warm amber rim light from upper left, deep shadows, atmospheric haze.",
+      "image_prompt": "A still-life scene at dusk in a quiet study. Centered above a small wooden desk floats a glass dome, fractured from the inside outward — as if internal pressure cracked the glass. Single warm rim light from the upper-left at ~3200K, cool ambient fill from below, atmospheric haze with light dust motes catching the warm light. Hyperreal materials: glass with light-absorption properties, wood with visible grain. The dome occupies the upper two-thirds of the frame; the bottom-third is intentionally empty for headline placement. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. Composition leaves room at the bottom-left for typography. No text, no logos, no watermark, no real brand names, no flat 2D illustration look, no AI-typical hand anatomy, no plastic skin, no faces, no neon glow, no dashboard mockups.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned, 48px from left margin. Two lines, GT Sectra Display Medium, sentence case, color #F4F1EC, the word 'collapsed' in accent #E2A852. Support text below, Söhne Regular, 22px, color #A4A8B0. Slide number 01/08 top-right in IBM Plex Mono. Brand mark 'lumen' bottom-right at 14px in #F4F1EC."
+    },
+    {
+      "slide_number": 2,
+      "role": "problem",
+      "headline": "At week 6, my mornings stopped surviving past 10am.",
+      "support_text": "I had a plan. Then I had Slack.",
+      "visual_concept": "A wooden desk with a stack of paper calendar pages slowly fragmenting into the air, each page tearing away as if pulled by invisible hands; same dusk lighting as Slide 1.",
+      "image_prompt": "A wooden desk surface in a quiet study at dusk. A stack of paper calendar pages on the desk slowly fragmenting outward, each page tearing away into the air as if pulled by invisible hands; pages drift in slow motion. Single warm rim light from upper-left at ~3200K, cool ambient fill from below, atmospheric haze. Hyperreal paper texture, wood grain visible on the desk. Composition centered horizontally, subject occupying upper two-thirds, bottom-third intentionally empty for headline. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. No text, no logos, no watermark, no real brand names, no flat 2D illustration, no AI-typical hand anatomy, no plastic skin, no faces.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned, 48px from left margin. GT Sectra Display Medium, sentence case, color #F4F1EC. Support text below, Söhne Regular, 22px, color #A4A8B0. Slide number 02/08 top-right."
+    },
+    {
+      "slide_number": 3,
+      "role": "mistake",
+      "headline": "I kept installing tools to fix the symptoms.",
+      "support_text": "14 tabs by quarter end.",
+      "visual_concept": "A row of identical small glass jars on a wooden shelf, each jar containing a different small object; the jars multiply receding into the haze, suggesting an over-collected inventory.",
+      "image_prompt": "A wooden shelf in a quiet study at dusk, holding a row of identical small glass jars; each jar contains a different small object (a brass clock, a brass key, a leaf, a paper plane, a feather, a tiny scroll). The row of jars recedes into atmospheric haze on the right, multiplying. Single warm rim light from upper-left at ~3200K, cool ambient fill from below. Hyperreal glass and material details. Composition occupies upper two-thirds of frame; bottom-third intentionally empty for headline. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. No text, no logos, no watermark, no flat 2D illustration, no AI-typical hand anatomy, no faces.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned. GT Sectra Display Medium, color #F4F1EC. Support text Söhne Regular 22px, color #A4A8B0. Slide number 03/08 top-right."
+    },
+    {
+      "slide_number": 4,
+      "role": "reframe",
+      "headline": "The problem wasn't which AI. It was the chat.",
+      "support_text": "Every chat is an interruption with a friendly face.",
+      "visual_concept": "A single brass speech-bubble shape, hyperreal in 3D, suspended over the desk, slightly tarnished, with a faint warm glow inside; the bubble feels heavy, ornamental, and out of place — beautiful but wrong.",
+      "image_prompt": "A hyperreal brass speech-bubble shape, slightly tarnished with a patina, suspended above a wooden desk in a quiet study at dusk. The bubble has a faint warm internal glow. Single warm rim light from upper-left at ~3200K, cool ambient fill from below, atmospheric haze. The brass is detailed (brushed finish, subtle reflections); the bubble feels ornamental and slightly out of place — beautiful but wrong for the workspace. Composition: bubble in the upper-center, occupying upper two-thirds; bottom-third intentionally empty for headline. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. No text inside the bubble, no logos, no watermark, no flat 2D illustration, no AI-typical hand anatomy, no faces.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned. GT Sectra Display Medium, color #F4F1EC. The word 'chat' in accent #E2A852. Slide number 04/08 top-right."
+    },
+    {
+      "slide_number": 5,
+      "role": "mechanism",
+      "headline": "Senior operators don't have more focus. They have fewer surfaces.",
+      "support_text": "Structural, not behavioral.",
+      "visual_concept": "An exploded-diagram-style still life of a small wooden desk with attention-surfaces (notification dots, message icons, calendar fragments) literally floating outward, separating from the desk in 3D space, suggesting removal.",
+      "image_prompt": "An exploded diagram still-life of a small wooden desk in a quiet study at dusk. Attention surfaces (notification dots, small message icons, calendar fragments) float outward and away from the desk in 3D space, separating from the surface in slow motion. Single warm rim light from upper-left at ~3200K, atmospheric haze. Hyperreal material details on the wood and floating elements. Composition: desk centered in lower-third of upper portion, floating elements occupying the upper-half receding into haze; bottom-third intentionally empty for headline. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. No text on icons, no readable labels, no logos, no watermark, no flat 2D illustration, no AI-typical hand anatomy, no faces.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned, two lines. GT Sectra Display Medium, color #F4F1EC. The phrase 'fewer surfaces' in accent #E2A852. Support text Söhne Regular 22px, color #A4A8B0. Slide number 05/08 top-right."
+    },
+    {
+      "slide_number": 6,
+      "role": "application",
+      "headline": "What I removed first.",
+      "support_text": "Three categories. One question each.",
+      "visual_concept": "A top-down view of a wooden desk surface, three small brass keys laid out in a row, each key on a small folded piece of paper; the composition implies a checklist or a triage table.",
+      "image_prompt": "A top-down view of a wooden desk surface in a quiet study at dusk. Three small brass keys laid in a horizontal row, each key resting on a small folded piece of cream paper. Single warm rim light from upper-left at ~3200K, cool ambient fill from below, atmospheric haze. Hyperreal brass and paper textures. The keys and papers occupy the upper two-thirds of the frame; the bottom-third is intentionally empty for headline. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. No text on the paper, no logos, no watermark, no real brand names, no flat 2D illustration, no AI-typical hand anatomy, no faces.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned. GT Sectra Display Medium, color #F4F1EC. Support text Söhne Regular 22px, color #A4A8B0. Slide number 06/08 top-right."
+    },
+    {
+      "slide_number": 7,
+      "role": "example",
+      "headline": "The replacement: one read at 8am. One read at 5pm.",
+      "support_text": "No chat in between.",
+      "visual_concept": "A single sealed envelope on a wooden desk, illuminated by a warm rim light from upper left; the envelope feels deliberate and complete — the day's plan in one object.",
+      "image_prompt": "A single sealed cream envelope resting on a wooden desk surface in a quiet study at dusk. The envelope is illuminated by a warm rim light from the upper left at ~3200K. Cool ambient fill from below, atmospheric haze with light dust motes. Hyperreal paper texture, wood grain visible. The envelope occupies the upper-center of the frame; the bottom-third is intentionally empty for headline. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. No text on the envelope, no stamps, no real logos, no flat 2D illustration, no AI-typical hand anatomy, no faces.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned. GT Sectra Display Medium, color #F4F1EC. The word 'one' both times in accent #E2A852. Slide number 07/08 top-right."
+    },
+    {
+      "slide_number": 8,
+      "role": "cta",
+      "headline": "Save this for the next time you're about to install another AI tool.",
+      "support_text": "—",
+      "visual_concept": "A single brass key resting on a dark wooden desk, lit by a warm rim light from the upper left, deep shadows wrapping the key into the surface — the same restraint as Slide 7 but quieter, suggesting the move you save for later.",
+      "image_prompt": "A single brass key resting on a dark wooden desk surface in a quiet study at dusk. Single warm rim light from upper-left at ~3200K, cool ambient fill from below, atmospheric haze. Hyperreal brass material with subtle patina, wood grain visible. The key occupies the upper-center; the bottom-third is intentionally empty for the CTA headline. Cinematic 35mm photograph, shallow depth of field, deep blacks held to #0E0F12. No text, no logos, no watermark, no flat 2D illustration, no AI-typical hand anatomy, no faces.",
+      "layout_instruction": "Headline in the bottom-third, left-aligned. GT Sectra Display Medium, color #F4F1EC. Slide number 08/08 top-right. Brand mark 'lumen' bottom-right at 14px in accent #E2A852."
+    }
+  ],
+  "caption": "I installed fourteen 'AI productivity' tools last quarter. By the end of it, my deep-work time had been cut in half.\n\nThe tools weren't the problem. The interaction model was.\n\nEvery chat box is an interruption with a friendly face. You go in to do one thing, you come out three tabs deeper, and your morning has dissolved.\n\nSenior operators aren't more disciplined. They have fewer surfaces where they can be interrupted. The advantage is structural, not behavioral.\n\nWhat I removed first, in order:\n\n1. Anything that lived in a chat sidebar of an existing tool.\n2. Anything that pinged me before I'd finished my first read of the day.\n3. Anything that asked me to 'configure' rather than just running with sensible defaults.\n\nWhat replaced them is a system that gives me one read at 8am, one read at 5pm, and nothing in between.\n\nIf your AI stack has gotten louder than your work, it's probably not the model. It's the interface.\n\nTell me — what's the one tool you'd kill in your stack tomorrow if you could?\n\n— Mira",
+  "cta": "Save this for the next time you're about to install another AI tool.",
+  "first_comment": "If you want the three questions I now ask before installing anything new — short version: Does it interrupt me? Does it require configuration? Does it want my morning? — they're a single page on lumen.example/three-questions. Genuinely no signup; we made the page after this many DMs asked for it.",
+  "alternative_hooks": [
+    "I installed 14 AI tools last quarter. My deep work collapsed.",
+    "Most 'AI productivity' tools quietly destroy your deep work.",
+    "Senior operators don't have more focus. They have fewer surfaces.",
+    "Stop installing AI tools that interrupt you.",
+    "Three categories of AI tools to remove from your week. In order."
+  ],
+  "quality_checklist": {
+    "critical": {
+      "scroll_stops": "pass",
+      "hook_earns_swipe": "pass",
+      "one_idea_per_slide": "pass",
+      "tension_resolved": "pass",
+      "mechanism_shown": "pass",
+      "voice_matches_brand": "pass",
+      "no_invented_claims": "pass",
+      "words_to_avoid_respected": "pass",
+      "cta_one_action": "pass",
+      "passes_external_review": "pass"
+    },
+    "quality": {
+      "hook_specific": "pass",
+      "no_stale_patterns": "pass",
+      "audience_named_in_first_14_words": "pass",
+      "slide_count_in_range": "pass",
+      "structure_fits_count": "pass",
+      "pacing_alternates": "pass",
+      "each_slide_answers_previous": "pass",
+      "visual_metaphor_present": "pass",
+      "no_marketing_jargon": "pass",
+      "no_filler_intensifiers": "pass",
+      "headlines_in_range": "pass",
+      "active_voice": "pass",
+      "numbers_concrete_or_proof_needed": "pass",
+      "one_visual_mode": "pass",
+      "one_accent_color": "pass",
+      "headline_in_bottom_third": "pass",
+      "margins_consistent": "pass",
+      "image_prompts_no_text_no_logos": "pass",
+      "caption_has_comment_prompt": "pass",
+      "first_comment_value_stacked": "pass"
+    },
+    "quality_score": 30,
+    "quality_total": 30
+  },
+  "missing_inputs": []
+}

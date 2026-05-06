@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://poststudio-system.dev/schemas/campaign.schema.json",
+  "title": "Campaign",
+  "description": "Schema for multi-post campaigns from modules/campaign-builder.",
+  "type": "object",
+  "required": ["version", "prompt_version", "brand_slug", "campaign_type", "duration_days", "objective", "primary_cta", "post_sequence"],
+  "properties": {
+    "version": { "type": "string", "const": "1.0" },
+    "prompt_version": { "type": "string" },
+    "brand_slug": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "campaign_type": {
+      "type": "string",
+      "enum": [
+        "product-launch",
+        "feature-launch",
+        "brand-announcement",
+        "authority-building",
+        "proof-case-study",
+        "comparison",
+        "education-series",
+        "waitlist",
+        "offer-validation",
+        "open-source-announcement",
+        "event-webinar-workshop",
+        "founder-story",
+        "problem-awareness",
+        "objection-handling",
+        "re-engagement"
+      ]
+    },
+    "duration_days": { "type": "integer", "enum": [7, 14, 30] },
+    "objective": { "type": "string" },
+    "audience": { "type": "string" },
+    "core_message": { "type": "string" },
+    "primary_cta": {
+      "type": "string",
+      "enum": ["save", "comment", "share", "click", "dm", "follow", "try", "awareness"]
+    },
+    "secondary_ctas": { "type": "array", "items": { "type": "string" } },
+    "audience_journey": {
+      "type": "object",
+      "properties": {
+        "day_0_state": { "type": "string" },
+        "day_n_state": { "type": "string" },
+        "friction": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "post_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["day", "format", "angle", "hook"],
+        "properties": {
+          "day": { "type": "integer", "minimum": 1, "maximum": 30 },
+          "date": { "type": "string", "format": "date" },
+          "act": { "type": "string", "enum": ["setup", "pressure", "reframe", "proof", "ask"] },
+          "format": { "type": "string", "enum": ["carousel", "reel", "essay", "case_study", "single_image", "thread"] },
+          "angle": { "type": "string" },
+          "hook": { "type": "string" },
+          "body_summary": { "type": "string" },
+          "cta": { "type": "string" },
+          "platform_priority": { "type": "string" },
+          "proof_needed": { "type": "array", "items": { "type": "string" } },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "campaign_assets_needed": { "type": "array", "items": { "type": "string" } },
+    "distribution_plan": { "type": "object", "additionalProperties": true },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "quality_checklist": { "type": "object", "additionalProperties": true },
+    "missing_inputs": { "type": "array", "items": { "type": "string" } }
+  }
+}
