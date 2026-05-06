@@ -22,6 +22,14 @@ TODO.local.md
 .references/
 .layout-references/
 
+# Brand instances NEVER live in this framework repo.
+# Brands are runtime data supplied per session (URL + handle + voice samples + uploaded logos)
+# OR loaded from a local brand pack folder uploaded directly into the Claude Project.
+# Only `brands/_template/` (the scaffold) is tracked in this repo.
+brands/*
+!brands/_template/
+!brands/_template/**
+
 # Local brand drafts (uncomment if you want brand drafts kept private)
 # brands/*/drafts/
 

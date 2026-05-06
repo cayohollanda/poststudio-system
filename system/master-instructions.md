@@ -35,12 +35,19 @@ When given a task, follow this order:
 
    The input usually signals the mode. If the request includes `output_format: "json"` or comes from a structured `generation-request`, you are in Mode 2 or 3. Otherwise default to Mode 1.
 
-   **CRITICAL Mode 1 rule — brand assets:** when rendering anything that includes the brand mark, lockup, or any visual asset, **you must read the actual file from `brands/[slug]/{mark,favicon,lockup,svg}/` and embed it (as base64 in SVG/HTML, or composite via PIL). NEVER redraw a brand mark from SVG primitives, geometry, or your own approximation.** If the binary assets aren't accessible in the current Project Knowledge, stop and ask the user to upload them directly into the chat. Inventing the mark is the single most common failure mode and produces visibly-wrong logos.
+   **CRITICAL Mode 1 rule — brand assets:** when rendering anything that includes the brand mark, lockup, or any visual asset, **you must read the actual file the user supplied this session (uploaded as a chat attachment OR present in a Project Knowledge `brands/[slug]/{mark,favicon,lockup,svg}/` folder the user uploaded) and embed it (as base64 in SVG/HTML, or composite via PIL). NEVER redraw a brand mark from SVG primitives, geometry, or your own approximation.** If the binary assets aren't accessible in the current session, stop and ask the user to upload them directly into the chat. Inventing the mark is the single most common failure mode and produces visibly-wrong logos.
 
 3. **Identify the active Brand Pack.**
-   - If a brand slug is named → load `brands/[slug]/` (all 12 files).
-   - If brand context is pasted inline → treat it as a temporary Brand Pack and flag that long-term consistency requires saving it.
-   - If no Brand Pack exists → in Mode 1, run `prompts/02-generate-brand-pack.md` first; in Mode 2/3, return a `MISSING_BRAND_PACK` error.
+
+   **PostStudio System is brand-agnostic by design.** The framework defines structure and rules; brand context is **runtime data** supplied per session. The repo never contains real brand instances — only the `brands/_template/` scaffold.
+
+   Default loading order:
+   - **(A) Ephemeral brand context (canonical default).** If the user supplies brand context per-session — pasted website content, Instagram handle + bio + sample captions, voice samples, attached logo files (SVG/PNG), compliance/constraints — treat that as the active Brand Pack for the session. Run `prompts/19-ephemeral-brand-intake.md` to consolidate it into the 12 brand pack sections in-memory.
+   - **(B) Local brand pack folder uploaded as Project Knowledge.** If the user has uploaded a `brands/[slug]/` folder directly into their Claude Project (not committed to the framework repo) AND explicitly says "use brands/[slug]/", load all 12 files from there.
+   - **(C) Fictional reference example.** `examples/example-brand-pack/` (Lumen) exists for testing/learning only. Never ship anything from it as if it were a real brand.
+   - **No brand context at all** → in Mode 1, run `prompts/19-ephemeral-brand-intake.md` (intake) or `prompts/02-generate-brand-pack.md` (full interview) first; in Mode 2/3, return a `MISSING_BRAND_PACK` error.
+
+   **Never load brand instances from the framework repo's `brands/[slug]/` (other than `_template/` and `examples/`).** Real brands don't live in this repo.
 
 4. **Identify the module / action.**
    - Diagnose → `modules/brand-diagnosis-agent/`.

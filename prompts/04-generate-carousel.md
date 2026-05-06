@@ -5,14 +5,16 @@
 This prompt assumes you have:
 
 1. Read `system/master-instructions.md` and the rest of `system/`.
-2. Loaded a Brand Pack from `brands/[slug]/`.
+2. An active Brand Pack for the session — supplied via runtime intake (website + handle + attached logos + voice samples, processed by `prompts/19-ephemeral-brand-intake.md`) OR loaded from a `brands/[slug]/` folder the user uploaded into Project Knowledge.
 3. A topic and goal in mind.
 
 If any of those are missing, route to:
 
 - No system loaded → tell the user to upload `system/` first.
-- No Brand Pack → use `prompts/generate-brand-pack.md`.
+- No brand context (no website / handle / voice samples / uploaded brand folder in this session) → run `prompts/19-ephemeral-brand-intake.md` first (fast intake), or `prompts/02-generate-brand-pack.md` for a full interview.
 - No topic → ask up to 3 clarifying questions.
+
+> **Note on brand source.** The PostStudio System framework is brand-agnostic. Real brand instances do **not** live in this repo's `brands/` folder (only `_template/` does). Brand context is supplied per session.
 
 ---
 
@@ -29,7 +31,7 @@ You are operating PostStudio System.
 
 # Inputs
 
-- Brand: brands/[BRAND_SLUG]/                 (load all 8 files)
+- Brand: [BRAND_SLUG] — load from session context (ephemeral intake) OR from a brands/[BRAND_SLUG]/ folder the user uploaded as Project Knowledge (all 12 files). NEVER from the framework repo's brands/ folder, which contains only _template/.
 - Topic: [ONE-SENTENCE TOPIC]
 - Audience: [SPECIFIC AUDIENCE — role + situation]
 - Platform: [linkedin | instagram | tiktok | x | threads | multi]

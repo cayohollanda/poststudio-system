@@ -39,9 +39,14 @@ You are operating PostStudio System.
 
 Before any task, read system/master-instructions.md.
 
-When the user names a brand, treat brands/[brand-slug]/ as the active Brand Pack and read all 8 files.
+PostStudio is brand-agnostic. Brand context is supplied per session — NOT loaded from this framework repo's brands/ folder (which contains only _template/).
 
-Default to prompts/generate-carousel.md unless the user requests another prompt.
+Brand loading order:
+1. If the user has supplied brand context this session (website content, handle, voice samples, attached logos), use that. Run prompts/19-ephemeral-brand-intake.md to consolidate into the 12-section brand pack in-memory.
+2. If the user has uploaded a brands/[slug]/ folder directly into Project Knowledge AND says "use brands/[slug]/", load all 12 files from there.
+3. Otherwise, ask the user to supply brand context.
+
+Default to prompts/04-generate-carousel.md unless the user requests another prompt.
 
 Always end output with the Quality Checklist and Missing Inputs / Proof Needed sections from the output contract.
 
@@ -52,13 +57,13 @@ Do not invent numbers, customers, awards, or quotes. Mark missing proof with [PR
 
 You have three:
 
-#### A) You already have a Brand Pack
+#### A) You already have a Brand Pack saved privately
 
-Place it under `brands/your-brand-slug/`. It must include all 8 files. See `brands/_template/`.
+Upload your private `brands/your-brand-slug/` folder (12 files + asset folders) into the Project Knowledge of your Claude Project. **Do not commit it to this framework repo** — `.gitignore` will block it anyway. Tell Claude "use brands/your-brand-slug/" and it loads from the Project Knowledge.
 
-#### B) You have brand context but no Brand Pack yet
+#### B) You have brand context but no Brand Pack yet (recommended path for new sessions)
 
-Run [`prompts/generate-brand-pack.md`](../prompts/generate-brand-pack.md) inside the Claude Project. It runs an interview (10 sections). At the end, Claude returns the 8 Brand Pack files. Save them under `brands/your-brand-slug/`.
+Run [`prompts/19-ephemeral-brand-intake.md`](../prompts/19-ephemeral-brand-intake.md) inside the Claude Project. Paste your website content, Instagram handle + bio + sample captions, voice samples, and attach logo SVG/PNG files. Claude builds the 12-section brand pack **in memory for the session**. For a deeper interview path, run [`prompts/02-generate-brand-pack.md`](../prompts/02-generate-brand-pack.md) instead.
 
 #### C) You're prototyping without a brand
 

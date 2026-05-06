@@ -104,16 +104,20 @@ After all 10 sections are complete, generate the 8 Brand Pack files in full and 
 
 # Output
 
-After the interview, return all 8 Brand Pack files inline, one after another, in this order:
+After the interview, return all 12 Brand Pack files inline, one after another, in this order:
 
 1. brand.md
 2. audience.md
 3. offer.md
-4. voice.md
-5. visual-style.md
-6. proof-assets.md
-7. constraints.md
-8. examples.md
+4. positioning.md
+5. voice.md
+6. visual-style.md
+7. proof-assets.md
+8. constraints.md
+9. content-pillars.md
+10. competitors.md
+11. examples.md
+12. rejected-examples.md
 
 Each file should follow the templates in brands/_template/ exactly.
 Each file should be filled in fully — no "[fill in later]" placeholders unless the user explicitly couldn't answer.
@@ -150,13 +154,13 @@ You answer; Claude confirms what it heard; moves to Section 2.
 
 ## What to do with the output
 
-Once Claude returns all 8 files:
+Once Claude returns all 12 files:
 
 1. Pick a `brand-slug`. Lowercase, hyphenated, no spaces. Examples: `lumen`, `acme-co`, `brand-x`.
-2. Create the folder `brands/[your-brand-slug]/`.
+2. Create the folder `brands/[your-brand-slug]/` **outside this framework repo** (e.g. in `~/Documents/Brands/[your-brand-slug]/`, your own private repo, or your team's Notion/Drive). The framework's `.gitignore` blocks committing real brand instances here.
 3. Save each file Claude returned with its exact filename (`brand.md`, `audience.md`, etc.).
-4. Re-upload the folder to your Claude Project.
-5. From now on, prompts can refer to `brands/[your-brand-slug]/` and the system will load it.
+4. Upload that private folder directly into your Claude Project as Project Knowledge.
+5. From now on, prompts can refer to `brands/[your-brand-slug]/` and Claude will load it from your Project Knowledge (not from this framework repo).
 
 ---
 

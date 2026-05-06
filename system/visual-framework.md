@@ -1,11 +1,11 @@
-# Visual Framework — 8 Visual Modes
+# Visual Framework — 9 Visual Modes
 
 > Carousels live and die on slide 1. Slide 1 is 90% visual. The visual framework is therefore the highest-leverage part of this system.
 
 This file defines:
 
 1. **Universal visual rules** — what every PostStudio carousel does.
-2. **Eight visual modes** — pick one per carousel. Don't mix.
+2. **Nine visual modes** — pick one per carousel. Don't mix.
 3. **Composition guidelines** — what goes where on the canvas.
 4. **Typography rules** — when to use what, and why.
 5. **Image prompt grammar** — how to write prompts that don't produce AI slop.
@@ -29,7 +29,7 @@ These apply across every mode. Break them only with intent.
 
 ---
 
-## The 8 visual modes
+## The 9 visual modes
 
 You pick one mode per carousel. Carry it through all slides for consistency.
 
@@ -43,6 +43,7 @@ You pick one mode per carousel. Carry it through all slides for consistency.
 | 6 | Technical Blueprint | Architecture posts, technical breakdowns |
 | 7 | Exploded Diagram | "How X works under the hood," teardowns |
 | 8 | Meme-but-Premium | Cultural moment, contrarian, viral attempts |
+| 9 | Decoded Editorial | Long-form (10-14 slide) tactical breakdowns, signature-density posts (adapted from `@brandsdecoded__`) |
 
 ---
 
@@ -239,29 +240,94 @@ You pick one mode per carousel. Carry it through all slides for consistency.
 
 ---
 
+### Mode 9 — Decoded Editorial
+
+**When to use:** long-form (10-14 slide) tactical breakdowns where you want signature-density. Reference: the visual language of `@brandsdecoded__`. Best for "techniques," "commands," "tactics," "playbooks." Not for short carousels (≤8 slides) — use Mode 2 instead.
+
+This is a **system-level template** that any brand can adopt. The brand's `visual-style.md` declares it via `primary_visual_mode: decoded-editorial` and supplies the placeholder values. The Brand Pack provides the colors, fonts, mark file, header labels, and CTA pattern; this Mode provides the canonical layout.
+
+**Composition (canvas 1080×1350; margins 64px top/bottom, 80px left/right):**
+
+Universal chrome on every slide:
+- 4px `[BRAND_ACCENT]` line on top edge.
+- Header band: 11px `[BODY_FONT]` Regular UPPERCASE — `[BRAND_HEADER_LABEL_LEFT]` left + `[BRAND_HEADER_LABEL_RIGHT]` right. Opacity 50/60% on dark, 45/55% on light.
+- Footer: 2px `[BRAND_ACCENT]` progress bar (proportional fill across the carousel) + 11px slide number "N/M" bottom-right.
+- Background alternates between `[BRAND_DARK_BG]` and `[BRAND_LIGHT_BG]` per slide rhythm. Never two adjacent dark or light slides without a reason.
+
+Slide types:
+
+1. **Hero (slide 1):** full-bleed object photography (no faces) + dark gradient overlay on bottom 60%. Profile chip pill ~600px from top, 80px from left: dark rounded pill with `[BRAND_MARK_FILE]` + `[@BRAND_HANDLE]` + tiny `[BRAND_ACCENT]` verified dot. Headline (lower 40%): 76-92px `[HEADLINE_FONT]` SemiBold/Bold, `[BRAND_INK_ON_DARK]`, with one word/phrase in `[BRAND_ACCENT]`. Tease arrow below headline: 14px `[BODY_FONT]` Regular UPPERCASE.
+
+2. **Body Light:** `[BRAND_LIGHT_BG]` solid background. Empty top 30-40% (intentional negative space). Section eyebrow ~480px from top: 11px `[BODY_FONT]` Regular UPPERCASE letter-spaced 0.08em, `[BRAND_INK_ON_LIGHT]` 50%. Headline ~60% from top: 80-110px `[HEADLINE_FONT]` SemiBold/Bold, sentence-case or ALL CAPS, with one word in `[BRAND_ACCENT]`. Body text below: 22-26px `[BODY_FONT]` Regular `[BRAND_INK_ON_LIGHT]` 65%, with selective bold inline. 2-4 short paragraphs, 80-200 words. Optional mockup card (radius 16px, soft shadow, 70% width centered).
+
+3. **Body Dark:** same as Body Light but inverted colors. Background `[BRAND_DARK_BG]`. Eyebrow `[BRAND_INK_ON_DARK]` 40%, headline `[BRAND_INK_ON_DARK]` (with `[BRAND_ACCENT]` word), body `[BRAND_INK_ON_DARK]` 75%. Optional ghost number watermark: 480-580px `[HEADLINE_FONT]` Bold `[BRAND_INK_ON_DARK]` 4% (very subtle), anchored bottom-right behind the text.
+
+4. **CTA (final slide):** `[BRAND_LIGHT_BG]`. Two-line headline pattern: `[CTA_HEADLINE_LINE_1]` (`[BRAND_INK_ON_LIGHT]`) / `[CTA_HEADLINE_LINE_2]` (`[BRAND_ACCENT]`), 80-110px `[HEADLINE_FONT]` Bold ALL CAPS. `[BRAND_ACCENT]` pill action bar (full content-width, 64px tall, radius 12px). CTA card: white card + soft shadow, label + HUGE TRIGGER WORD (76-92px `[HEADLINE_FONT]` Bold). Footer attribution: tiny `[BRAND_MARK_FILE]` + `[@BRAND_HANDLE] · [CTA_FOOTER_TEXT]`.
+
+**Slide rhythm template:**
+
+| Slide # | Type | Background |
+|---|---|---|
+| 1 | Hero | full-bleed photo + dark overlay |
+| 2 | Body | LIGHT or DARK (the "what they say" beat) |
+| 3 | Body Dark | the problem named with ALL CAPS |
+| 4 — N-2 | Alternating Body Light / Body Dark | one technique per slide |
+| N-1 | Body Light | summary list ("THE N TACTICS." pattern) |
+| N | CTA | LIGHT |
+
+**Required Brand Pack placeholders (adopt this Mode by setting these in your `visual-style.md`):**
+
+| Placeholder | Example value | Purpose |
+|---|---|---|
+| `[BRAND_ACCENT]` | `#CCFF00` | The single accent color |
+| `[BRAND_DARK_BG]` | `#0B0B0A` | Dark slide background |
+| `[BRAND_LIGHT_BG]` | `#FAF8F3` | Light slide background |
+| `[BRAND_INK_ON_DARK]` | `#F2EFE8` (cream) | Text color on dark slides |
+| `[BRAND_INK_ON_LIGHT]` | `#0B0B0A` (deep ink) | Text color on light slides |
+| `[HEADLINE_FONT]` | `"Manrope"` | Headline font family |
+| `[BODY_FONT]` | `"Manrope"` | Body font family (often same) |
+| `[BRAND_MARK_FILE]` | uploaded `mark-primary.svg` | The actual brand mark asset (NEVER redrawn) |
+| `[@BRAND_HANDLE]` | `"@your_handle"` | Social handle for profile chip + footer |
+| `[BRAND_HEADER_LABEL_LEFT]` | `"POWERED BY POSTSTUDIO"` | Top-left header label |
+| `[BRAND_HEADER_LABEL_RIGHT]` | `"@poststudio.ai · MAY 2026 ®"` | Top-right header label (handle + month/year + ®) |
+| `[CTA_HEADLINE_LINE_1]` | `"FEITO NO"` / `"BUILT WITH"` | First line of CTA headline (ink color) |
+| `[CTA_HEADLINE_LINE_2]` | `"YOURBRAND."` | Second line of CTA headline (accent color) |
+| `[CTA_FOOTER_TEXT]` | `"Auto-reply via DM"` | Subtle CTA footer attribution |
+
+**Asset rule:** the brand mark must be the actual SVG/PNG file the user supplied this session — embedded as base64 in `<image href="data:...">` for SVG, or via `<img>` for HTML. Never redraw the mark via SVG primitives.
+
+**Risks to avoid:**
+- Using this Mode for short (<10 slides) carousels — the rhythm needs slides to breathe. Use Mode 2 instead.
+- Forgetting placeholders. If a brand adopts this Mode without filling all 13 placeholders, output will be inconsistent.
+- Two adjacent dark slides or two adjacent light slides — breaks the rhythm.
+- Drawing the brand mark from scratch instead of reading the supplied file.
+
+---
+
 ## How to choose a mode
 
 A 3-question filter:
 
 1. **What is the carousel's emotional center?**
    - Inspiring → Mode 1, 5
-   - Rigorous → Mode 2, 6, 7
+   - Rigorous → Mode 2, 6, 7, 9
    - Energetic → Mode 3, 4
    - Playful → Mode 8
+   - Tactical / signature density → Mode 9
 
 2. **Who is the audience?**
    - Investors, executives, strategists → Mode 1, 2, 5
-   - Engineers, technical operators → Mode 3, 6, 7
-   - Founders, builders → Mode 1, 4, 5
+   - Engineers, technical operators → Mode 3, 6, 7, 9
+   - Founders, builders → Mode 1, 4, 5, 9
    - Mixed / cultural → Mode 8
 
-3. **What is the platform?**
-   - LinkedIn → Mode 1, 2, 5, 6 perform best
-   - Instagram → Mode 1, 4, 7 perform best
+3. **What is the platform / slide count?**
+   - LinkedIn → Mode 1, 2, 5, 6, 9 perform best
+   - Instagram (≥10 slides) → Mode 9 performs best for tactical density; Mode 1, 4, 7 for shorter
    - X — minimal carousel platform; lean Mode 2 or 6 if used
    - TikTok carousels → Mode 4, 8 perform best
 
-If unsure, default to **Mode 2 (Editorial Minimal)**. It almost never looks bad.
+If unsure for a short carousel, default to **Mode 2 (Editorial Minimal)**. For a long carousel (≥10 slides) where the brand has adopted it, default to **Mode 9 (Decoded Editorial)**.
 
 ---
 
