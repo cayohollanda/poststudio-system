@@ -17,6 +17,11 @@ notes.local.md
 *.local.md
 TODO.local.md
 
+# Local reference assets (third-party screenshots used for layout extraction; never commit)
+.brandsdecoded-ref/
+.references/
+.layout-references/
+
 # Local brand drafts (uncomment if you want brand drafts kept private)
 # brands/*/drafts/
 

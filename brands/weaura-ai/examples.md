@@ -8,12 +8,34 @@
 
 > Templates from creators we want to **borrow layout patterns from** — never visual identity.
 
-### Anchor 1 — `@brandsdecoded__` (Instagram)
-- **Why:** the user requested WeAura's carousels follow this layout pattern. brandsdecoded is a Brazilian AI Content Agency (287K followers) with a recognizable carousel template.
-- **What to borrow:** composition, slide rhythm, hook formula, headline placement, slide-number style, frame treatment, density-per-slide.
-- **What NOT to borrow:** colors, fonts, logo, accent. WeAura keeps its own VOLT/CREAM/DARK + Manrope + Aperture mark.
-- **Status:** ⚠️ pending screenshot capture. Once 5+ posts are pasted into the chat, the template patterns get extracted into `visual-style.md`'s "Layout reference template" section and a new visual mode gets added.
-- **Action needed from user:** drop 5-8 screenshots of recent brandsdecoded__ carousels (slide-1 + a middle slide + the CTA slide of each) into the chat with the prompt: "extract the brandsdecoded layout pattern and update brands/weaura-ai/visual-style.md."
+### Anchor 1 — `@brandsdecoded__` (Instagram) → adopted as `decoded-editorial` mode
+
+- **Source:** `@brandsdecoded__` (Brazilian AI Content Agency, 287K followers, "Decodificando o futuro do marketing com AI").
+- **Status:** ✅ Template extracted from 3 reference carousels (16 screenshots reviewed on 2026-05-06). Documented in [`visual-style.md`](visual-style.md) as the new primary visual mode `decoded-editorial`.
+- **What we borrowed:**
+  - Header chrome: thin top accent line + label-left + handle-right
+  - Empty space at top of body slides (intentional editorial breathing)
+  - Lower-half headline placement (NOT bottom-third)
+  - Section eyebrow above headline (uppercase letter-spaced)
+  - Body text BELOW headline (NOT above)
+  - Slide rhythm alternating light/dark backgrounds
+  - Ghost number watermark on dark slides
+  - Bottom progress bar + N/total slide indicator
+  - Embedded mockups with engagement-pill chips
+  - Hero (slide 1) with full-bleed cinematic image + bottom-half bold headline + tease arrow
+  - CTA pattern: pill bar + "Comenta a palavra abaixo: [TRIGGER]" card
+  - Higher density per slide (80-200 words on body slides)
+- **What we did NOT borrow (kept WeAura identity):**
+  - Orange accent → VOLT `#CCFF00`
+  - "POWERED BY CONTENT MACHINE" footer → "WEAURA" or omitted
+  - Druk-style heavy condensed display sans → Manrope Bold (closest brand-locked approximation)
+  - Photographic Hero with faces/people → object/blueprint compositions per `constraints.md`
+  - "@brandsdecoded__" handle → "@weaura_ai"
+  - Brandsdecoded's star/aperture mark → WeAura Aperture mark (real asset, base64-embedded)
+- **Trade-offs noted:**
+  - Manrope is less compressed than Druk Wide. The headline impact will be slightly softer. If the user wants the exact brandsdecoded heaviness, the next Brand Pack refresh should evaluate adding a real condensed display sans (Druk, Compacta, Knockout) as a secondary headline face. For now, Manrope SemiBold at tight tracking is the closest brand-aligned choice.
+  - WeAura's no-faces rule means Hero slides use object photography instead of cinematic portraits. The composition stays similar (full-bleed + dark overlay + bottom-half headline) but the subject differs.
+- **Reference assets:** 3 reference carousels are stored locally at `/tmp/brandsdecoded-ref/` for layout consultation. These are **NOT committed** to the repo (copyright). The patterns live in `visual-style.md`'s `decoded-editorial` spec.
 
 ---
 

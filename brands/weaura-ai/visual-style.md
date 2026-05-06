@@ -26,36 +26,271 @@ The most common failure mode in past sessions: Claude generated an SVG with `<ci
 
 ---
 
-## Layout reference template — `brandsdecoded__` style
+## Visual mode `decoded-editorial` — the WeAura primary template
 
-> ⚠️ Pending screenshot capture. The user has indicated WeAura's carousels should follow the layout pattern of `@brandsdecoded__` on Instagram (Brazilian AI Content Agency, 287K followers, "Decodificando o futuro do marketing com AI"). Until 5+ post screenshots are pasted into the brand-pack-update flow, this section captures only the ask, not the executed template.
+> Layout pattern extracted from `@brandsdecoded__` (Brazilian AI Content Agency, 287K seguidores). We borrow **layout** — composition, density, slide rhythm, hook formula, header chrome, progress bar — and adapt to WeAura's identity (VOLT accent, CREAM/DARK palette, Manrope typography, Aperture mark, no faces). We do NOT clone brandsdecoded's visual identity (orange accent, "POWERED BY CONTENT MACHINE" footer, condensed Druk-style display sans, photographic Hero).
 
-**What to capture from screenshots when available:**
-- Slide background pattern (solid dark / cream / split / framed?).
-- Headline placement (top / center / bottom; alignment).
-- Headline weight + case (heavy / medium / light; UPPERCASE / sentence / Title).
-- Slide-number indicator style (top / corner / footer / hidden).
-- Frame / border treatment (full-bleed / inset card with rounded corners / hard frame).
-- Use of accent on the slide number, headline highlight word, or a single graphic.
-- Hook formula on slide 1 (length, number prefix, italic emphasis).
-- Slide-2 transition style (does the layout shift, or is each slide visually identical with only text changing?).
-- Brand mark placement (every slide / first+last only / hidden).
-- Photography vs object-still-life vs pure typography.
-- Density of text per slide (one big sentence vs short paragraphs).
+**This is the default mode for all WeAura long-form carousels (10-14 slides).** Use `editorial-minimal` only for short-form (5-8 slides) where a bottom-third headline is sufficient. Use `technical-blueprint` only for engineering essays with architecture diagrams.
 
-**Adapt rule (do not clone):**
-We adopt **layout pattern** (composition, density, slide rhythm) from brandsdecoded — we do **not** adopt their visual identity (colors, fonts, logo). WeAura keeps its own VOLT/CREAM/DARK palette, Manrope typography, and Aperture mark. Cloning brandsdecoded's exact identity would be brand confusion and a trademark concern.
+---
 
-When the screenshots arrive, this section gets replaced with the extracted template + a new visual mode entry (e.g. `agency-decoded` or `editorial-frame`) added to the modes table above.
+### Canvas + grid
+
+- **Canvas:** 1080×1350 (4:5).
+- **Outer margins:** 64px top, 64px bottom, 80px left, 80px right.
+- **Header zone:** top 0-100px (header bar lives here).
+- **Content zone:** 100-1280px (eyebrow + headline + body + mockups).
+- **Footer zone:** bottom 1280-1350px (progress bar + slide number).
+
+### Header chrome (every slide except none)
+
+```
+[ 4px VOLT line, full width, top edge ]
+[ 64px gap ]
+POWERED BY POSTSTUDIO                @poststudio.ai · MAY 2026 ®
+^ left, 11px Manrope Regular UPPERCASE, letter-spacing 0.08em, opacity 50%
+                                       ^ right, 11px Manrope Regular UPPERCASE, letter-spacing 0.08em, opacity 60%
+```
+
+- On dark slides: text is CREAM at 50%/60% opacity.
+- On light slides: text is DARK at 45%/55% opacity.
+- The 4px VOLT top-edge line stays VOLT regardless of background.
+- Date (`MAY 2026`) auto-derived from publish date. Use English month-name in caps.
+- The `®` is decorative — not a registered-trademark assertion.
+
+### Slide types (the rhythm)
+
+A typical WeAura `decoded-editorial` carousel has 10-14 slides alternating between **light** (CREAM/LIGHT) and **dark** (DARK) bodies, with a dedicated Hero (slide 1) and CTA (slide N).
+
+| Slide # | Type | Background | Purpose |
+|---|---|---|---|
+| 1 | Hero | object/blueprint composition with dark overlay | scroll-stop hook |
+| 2 | Body Light or Dark | sets the conventional belief / what they say | "you've heard this before…" |
+| 3 | Body Dark (typically) | names the problem with ALL-CAPS headline | "CONTEXT ROT." moment |
+| 4-N-2 | Alternating Body Light / Body Dark | one technique / argument per slide | the body of the argument |
+| N-1 | Body Light | summary list ("AS 8 TÁTICAS." pattern) | the recap |
+| N | CTA | LIGHT background | "FEITO NO WEAURA." pattern |
+
+**Alternation rule:** never two adjacent dark slides; never two adjacent light slides without a reason. Rhythm matters more than economics.
+
+---
+
+### Type A — Hero (slide 1)
+
+- **Background:** full-bleed object photography (no faces — per `constraints.md`). Examples: a single brass camera aperture in deep dusk light; a server rack with one VOLT-lit detail; a glass dome over a wooden desk; a labeled engineering blueprint floating in dark space.
+- **Overlay:** dark gradient from 50% to 90% opacity covering bottom 60% of canvas, so headline reads.
+- **Header chrome:** as defined above (CREAM tones at 50/60% opacity on the photo).
+- **Profile chip** (centered horizontally, ~600px from top, left-aligned to text margin):
+  - Dark rounded pill (~280×56px, radius ~28px), background `rgba(0,0,0,0.55)` with subtle border.
+  - Inside: Aperture mark icon (40px, `mark-primary` from `brands/weaura-ai/svg/`) + "@weaura_ai" in 18px Manrope SemiBold CREAM + a small VOLT verified-style dot.
+- **Headline** (lower 40% of canvas, left-aligned, 80px from left):
+  - 76-92px Manrope SemiBold or Bold (the boldest weight available).
+  - Sentence case OR ALL CAPS — pick per topic (ALL CAPS for declarative claims; sentence case for narrative hooks).
+  - 2-4 lines max.
+  - **One word/phrase in VOLT** — picked for emphasis (the noun that carries the tension).
+  - Color (non-VOLT): CREAM `#F2EFE8`.
+  - Letter-spacing tight (-0.5% to -1%).
+  - Line-height 0.95-1.05 (tight, almost touching).
+- **Tease arrow** (below headline, ~32px gap):
+  - "→ AND HOW TO APPLY THIS IN PRACTICE" or PT equivalent.
+  - 14px Manrope Regular UPPERCASE, letter-spacing 0.06em, CREAM at 65% opacity.
+- **Slide number** (bottom-right, 64px from right, 80px from bottom):
+  - "1/10" in 11px Manrope Regular CREAM at 50% opacity.
+- **Bottom progress bar:** thin 2px VOLT line filling the proportional left portion, CREAM at 15% opacity for the rest.
+
+### Type B — Body Light
+
+- **Background:** solid CREAM `#F2EFE8` (preferred) or LIGHT `#FAF8F3`.
+- **Header chrome:** as defined (DARK tones).
+- **Empty zone** (top 30-40% of content area): intentional negative space. Do NOT fill it. This is the most distinctive feature of this template — slides BREATHE at the top.
+- **Section eyebrow** (just above headline, ~480px from top):
+  - "O PROBLEMA" / "TÉCNICA 5" / "COMANDO 2" / "O RESUMO" / "EM PRÁTICA" — uppercase narrative beat.
+  - 11px Manrope Regular UPPERCASE, letter-spacing 0.08em, color DARK at 50% opacity.
+- **Headline** (centered vertically around 60% from top, left-aligned, 80px from left):
+  - 80-110px Manrope SemiBold or Bold.
+  - Sentence case for narrative ("E foi assim que **construímos**:") or ALL CAPS for emphatic ("CONTEXT ROT.", "PLAN MODE.", "/BTW").
+  - 1-3 lines max.
+  - **One word/phrase in VOLT** — and at most one word inline-bold.
+  - Color (non-VOLT): DARK `#0B0B0A`.
+  - Letter-spacing tight (-0.5% to -2% for ALL CAPS).
+  - Line-height 0.95-1.05.
+- **Body text** (below headline, ~32px gap, full content width minus margins):
+  - 22-26px Manrope Regular.
+  - Color: DARK at 65% opacity (medium gray feel).
+  - Selective bold inline (~1-3 phrases per body block) in Manrope SemiBold DARK at 100%.
+  - Optional: ONE phrase highlighted in VOLT (use sparingly — body bold is preferred).
+  - 2-4 short paragraphs, 80-200 words total.
+  - Line-height 1.4-1.5 (open, readable).
+- **Optional embedded mockup** (below body):
+  - Rounded card (radius 16px), soft shadow.
+  - 70% width, centered horizontally.
+  - Used for: profile screenshots, engagement-metric pills floating over a post.
+- **Bullet lists** (when used):
+  - Use ✓ green-on-light-tint chip and ✗ red-on-light-tint chip for confirm/deny lists, OR
+  - Use `→` arrow with VOLT color as bullet for action lists.
+- **Slide number + progress bar:** as defined.
+
+### Type C — Body Dark
+
+Same as Type B but inverted:
+
+- **Background:** solid DARK `#0B0B0A`.
+- **Section eyebrow:** CREAM at 40% opacity.
+- **Headline:** CREAM (non-VOLT portion). VOLT word stays VOLT.
+- **Body text:** CREAM at 75% opacity.
+- **Bold inline:** Manrope SemiBold CREAM at 100%.
+- **Optional ghost number watermark** (a distinctive Type C feature):
+  - Place a HUGE numeral (the technique number, e.g. "10") behind the headline + body, anchored bottom-right of the content area.
+  - Font: 480-580px Manrope Bold.
+  - Color: CREAM at 4% opacity (very subtle).
+  - The text content reads OVER it.
+- **Progress bar:** VOLT filled + CREAM at 15% unfilled.
+- **Slide number:** CREAM at 50%.
+
+### Type D — CTA (final slide)
+
+- **Background:** solid LIGHT `#FAF8F3` (preferred) or CREAM `#F2EFE8`.
+- **Header chrome:** as defined.
+- **Two-line headline** (lower 50%, large):
+  - First word(s) DARK + last word in VOLT.
+  - Example: "FEITO NO" (DARK) / "WEAURA." (VOLT) — note: the brand name in the headline is acceptable HERE on the CTA slide (and only here).
+  - 80-110px Manrope Bold, ALL CAPS, very tight letter-spacing.
+- **Body explanation** (below headline, ~32px gap):
+  - 22-26px Manrope Regular DARK at 65%.
+  - 2-3 short sentences explaining what the carousel was made with / what to do next.
+  - Bold inline: 1-2 phrases.
+- **VOLT pill action bar** (full content-width):
+  - VOLT background, DARK text (high contrast).
+  - 22px Manrope SemiBold.
+  - Single line, ~64px tall, radius 12px.
+  - Example: "Demo gratuita por tempo limitado." OR "30 min com nossa equipe."
+- **CTA card** (below pill, full content-width):
+  - White/CREAM background, soft shadow, radius 16px.
+  - Top-left label: "Comenta a palavra abaixo:" — 14px Manrope Regular DARK at 50%.
+  - Center: HUGE TRIGGER WORD (e.g. "DEMO" or "WEAURA") in 76-92px Manrope Bold DARK or VOLT, letter-spacing tight.
+  - Below trigger: subtitle in 16-18px Manrope Regular DARK at 60% (the value swap — "and I'll send you [the resource]").
+- **Footer attribution row** (below card):
+  - Tiny Aperture mark icon (~24px) + "@weaura_ai · Envio automático via DM" — 14px Manrope Regular DARK at 50%.
+- **Slide number + progress bar:** N/N (full bar).
+
+---
+
+### Slide-1 Hero composition options for WeAura (no faces)
+
+Per `constraints.md`, we don't use faces. Hero compositions for `decoded-editorial`:
+
+1. **Brass aperture closing** — a camera aperture mechanism in macro, lit by a single VOLT highlight at the center. Cinematic dusk lighting.
+2. **Single labeled artifact** — a notarial-sealed document with a brass seal, lit by warm rim light.
+3. **Engineering blueprint** — an unfolded technical diagram on cream paper, with dramatic single-source lighting.
+4. **Server-rack still life** — a single rack panel in deep blue-black light, with one detail lit in VOLT.
+5. **Glass dome over wooden desk** — the existing `editorial-minimal` Hero pattern, adapted full-bleed with dark gradient overlay.
+
+Always: deep cinematic depth, single dramatic light source, hyperreal materials, no people, no glowing brains, no AI clichés.
+
+---
+
+### Hook formula (slide 1)
+
+Brandsdecoded uses claim-based hooks that build tension. WeAura adapts:
+
+- **Pattern 1 — The Death/Disappearance claim:** "A MORTE DOS [THING]: por que [audience] [should X]?" → adapted to WeAura: "A MORTE DA IA GENÉRICA EM OPS: por que cada SRE deveria parar de adivinhar?"
+- **Pattern 2 — The Question Hook:** "[NUMBER] [TÉCNICAS / TÁTICAS / VERDADES] PARA [OUTCOME]"
+- **Pattern 3 — The Italicized Contrast (WeAura signature):** "A IA QUE _CONHECE_ SUA INFRAESTRUTURA — e por que tudo o resto está chutando."
+- **Pattern 4 — The Threshold:** "Se você ainda [BEHAVIOR] em 2026, [STATEMENT]."
+
+Always pair the hook with a tease arrow line below: "→ AND HOW [WeAura] DOES IT IN PRACTICE" or PT.
+
+---
+
+### Section eyebrow taxonomy (above headline on body slides)
+
+Pick one per slide. These mirror brandsdecoded's narrative beats but use WeAura vocabulary:
+
+- `O PROBLEMA` — for problem-naming slides (often paired with ALL CAPS headline).
+- `O ERRO COMUM` — for the conventional-wisdom slide.
+- `O REFRAME` — for the new-mental-model slide.
+- `MECANISMO N` — for mechanism / technique slides (numbered).
+- `COMANDO N` — for tool/command-introduction slides.
+- `EVIDÊNCIA` / `PROVA` — for proof slides.
+- `O RESUMO` — for the summary slide.
+- `EM PRÁTICA` — for the application slide.
+
+---
+
+### Density rules (different from `editorial-minimal`)
+
+`decoded-editorial` is text-richer than `editorial-minimal`:
+
+- Body slides: 80-200 words.
+- 2-4 short paragraphs.
+- Headline + body always coexist (headline alone is rare).
+- Empty space at the TOP of each body slide is intentional (creates editorial breathing).
+- Small components (mockups, pills, eyebrows) are allowed in addition to headline + body.
+
+---
+
+### Embedded mockups (when used)
+
+When a slide needs social proof or product mockup:
+
+- **Profile screenshot card:** rounded 16px corners, soft shadow, ~70% width centered. Use a real WeAura profile screenshot or a styled placeholder. Keep it 1.5x scaled-down so the slide reads first, the screenshot supports.
+- **Post mockup with engagement pill:** a smaller carousel-thumbnail card with a floating white pill chip "10,2 mil curtidas / há 3 dias" overlaid on top-right. The pill is white/CREAM with DARK text at 70%, soft shadow.
+- **Code/terminal mockup:** dark rounded card with monospace text. Use IBM Plex Mono. CREAM text on `#1A1A1A` background.
+
+Always reference real screenshots stored under `brands/weaura-ai/mockups/` if they exist; never generate fake screenshots from scratch.
+
+---
+
+### Comparison: `decoded-editorial` vs `editorial-minimal`
+
+| Dimension | `decoded-editorial` (NEW default) | `editorial-minimal` (alternate) |
+|---|---|---|
+| Headline placement | lower-half (50-70% from top) | bottom-third |
+| Empty space | intentional at TOP | intentional at TOP |
+| Top header | thin VOLT line + label-left + handle-right | none |
+| Body text | 80-200 words below headline | 0-25 words on slide |
+| Section eyebrow | required above headline on body slides | not used |
+| Slide number | bottom-right with progress bar | top-right |
+| Slide count | 10-14 (long-form) | 7-10 (short-form) |
+| Mockups | embedded inline frequently | rare |
+| Best for | full-funnel essays, agency-style content | thought-leadership, founder essays |
+
+---
+
+### When to use `decoded-editorial`
+
+- Long-form carousels (10-14 slides).
+- Topics with multiple techniques / arguments / steps.
+- "How we [DID X]" or "[N] táticas para [Y]" framings.
+- Anything where the audience would benefit from text-rich body content per slide.
+- The default for WeAura content carousels going forward, unless the brief explicitly requests another mode.
+
+### When NOT to use it
+
+- Short-form (≤8 slides) where the rhythm doesn't have room to breathe.
+- Pure thought-leadership essays where one big sentence per slide is the better choice (use `editorial-minimal`).
+- Engineering deep-dives with diagrams (use `technical-blueprint`).
+
+---
+
+### Reference (do not commit; for internal use)
+
+The visual reference comes from 3 brandsdecoded__ carousels on `/tmp/brandsdecoded-ref/`:
+- "A MORTE DOS REELS..." (10 slides, hero photo + body alternation)
+- "A maioria das pessoas não entende como o Claude usa tokens..." (14 slides, all-typographic, technique-numbered)
+- "Essa conta nasceu em janeiro de 2025 com zero seguidores..." (10 slides, growth narrative)
+
+These screenshots are stored locally for layout reference. They are **NOT committed** to the repo (copyright, brandsdecoded's IP). The patterns are adapted into this template; the source images are not reproduced in WeAura output.
 
 ---
 
 ## Visual mode
 
-- **Primary mode:** `editorial-minimal` (cream-on-dark or cream-on-light backgrounds, restrained typography in the bottom-third).
-- **Secondary mode:** `technical-blueprint` (deep dark backgrounds, thin volt linework for engineering-essay diagrams).
-- **Tertiary (hero only):** `surreal-product-metaphor` (a single luminous object — aperture-like, lit with a single volt highlight — for slide-1 heroes that demand drama).
-- **Why these modes fit:** the audience is senior engineers who distrust over-styled tech marketing. Editorial-minimal communicates restraint; technical-blueprint gives engineering essays the right register; the volt accent gives the brand a recognizable signature without the cyberpunk-RGB trap.
+- **Primary mode (long-form, 10-14 slides):** `decoded-editorial` — see the dedicated section below. Default for WeAura content carousels.
+- **Alternate mode (short-form, 7-10 slides):** `editorial-minimal` — cream-on-dark or cream-on-light backgrounds, restrained typography in the bottom-third. Use when the topic is tight enough for one big sentence per slide.
+- **Specialty mode (engineering diagrams):** `technical-blueprint` — deep dark backgrounds, thin volt linework for architecture / system-flow content.
+- **Tertiary (Hero only):** `surreal-product-metaphor` — a single luminous object lit with a single volt highlight, for slide-1 heroes that demand drama. Often combined with `decoded-editorial` body slides.
+- **Why these modes fit:** the audience is senior engineers who distrust over-styled tech marketing. `decoded-editorial` brings the magazine/agency feel that the user has explicitly anchored to (`@brandsdecoded__` template) while keeping WeAura's identity (VOLT/CREAM/DARK + Manrope + Aperture). `editorial-minimal` and `technical-blueprint` remain available for content types that don't fit the long-form rhythm.
 
 ---
 

@@ -167,18 +167,71 @@ This is a starting skeleton. Adapt to the brand's specific layout per `visual-st
 
 ## Layout rules to honor (from the brand pack)
 
-For `weaura-ai` specifically:
+For `weaura-ai` specifically — the **default mode is `decoded-editorial`** (long-form 10-14 slide template adapted from `@brandsdecoded__`). See full spec in [`brands/weaura-ai/visual-style.md`](../brands/weaura-ai/visual-style.md). Quick-reference summary:
 
+### Canvas + universal chrome
 - Canvas: 1080×1350.
-- Backgrounds alternate per the carousel plan (DARK `#0B0B0A` or LIGHT `#FAF8F3`).
-- Headline: Manrope SemiBold (600), 60-80px, sentence case, letter-spacing tight.
-- Support: Manrope Regular (400), 22-28px, neutral gray.
-- Accent VOLT `#CCFF00`: one element per slide max (one word in headline, the mark's central dot, or one graphic detail).
-- Brand mark: `mark-primary` on dark bg, `mark-dark` on light bg. Always embedded from `brands/weaura-ai/svg/`.
-- Lockup on slide 1 + final CTA slide; mark-only on intermediate slides if used.
-- Margins: 48px on all sides.
+- Outer margins: 64px top, 64px bottom, 80px left, 80px right.
+- **Header bar (every slide):** 4px VOLT line on top edge + 11px Manrope Regular UPPERCASE labels: "POWERED BY POSTSTUDIO" left + "@poststudio.ai · MAY 2026 ®" right (CREAM 50/60% on dark, DARK 45/55% on light).
+- **Footer:** 2px VOLT progress bar (proportional fill) + 11px slide number "N/M" bottom-right.
+- Backgrounds alternate per the carousel plan: DARK `#0B0B0A` and LIGHT `#FAF8F3` / CREAM `#F2EFE8`.
 
-Refer to `brands/weaura-ai/visual-style.md` and the asset pack at `brands/weaura-ai/svg/` for the canonical values.
+### Per slide-type composition
+
+**Hero (slide 1):**
+- Full-bleed object photography (no faces — see `constraints.md` for compositions).
+- Dark gradient overlay on bottom 60%.
+- Profile chip pill (~600px from top, 80px from left): dark rounded pill with Aperture mark + "@weaura_ai" + tiny VOLT verified dot.
+- Headline (lower 40%): 76-92px Manrope SemiBold/Bold, CREAM, with one word/phrase in VOLT.
+- Tease arrow below headline: "→ E COMO ..." in 14px Manrope Regular UPPERCASE CREAM 65%.
+
+**Body Light (Type B):**
+- Solid CREAM/LIGHT background.
+- Empty top 30-40% (intentional negative space).
+- Section eyebrow (~480px from top): "O PROBLEMA" / "TÉCNICA N" / "COMANDO N" / "O RESUMO" — 11px Manrope Regular UPPERCASE letter-spaced 0.08em, DARK 50%.
+- Headline (~60% from top): 80-110px Manrope SemiBold/Bold, sentence-case OR ALL CAPS, DARK with one word in VOLT.
+- Body text below: 22-26px Manrope Regular DARK 65%, with selective bold inline (Manrope SemiBold DARK 100%) and at most one phrase in VOLT.
+- 2-4 short paragraphs, 80-200 words.
+- Optional embedded mockup card (radius 16px, soft shadow, 70% width centered).
+
+**Body Dark (Type C):**
+- Same as Type B but inverted colors.
+- Background DARK `#0B0B0A`.
+- Section eyebrow CREAM 40%, headline CREAM (with VOLT word), body CREAM 75%.
+- **Optional ghost number watermark:** 480-580px Manrope Bold CREAM 4% (very subtle), anchored bottom-right of content area, BEHIND the text.
+
+**CTA (final slide):**
+- LIGHT/CREAM background.
+- Two-line headline: "FEITO NO" (DARK) / "WEAURA." (VOLT) pattern, 80-110px Manrope Bold ALL CAPS.
+- Body explanation: 22-26px Manrope Regular DARK 65%.
+- VOLT pill action bar (full content-width, 64px tall, radius 12px, DARK text on VOLT bg).
+- CTA card: white card + soft shadow, "Comenta a palavra abaixo:" label + HUGE TRIGGER WORD (76-92px Manrope Bold) + subtitle.
+- Footer attribution: tiny Aperture icon + "@weaura_ai · Envio automático via DM" in 14px DARK 50%.
+
+### Brand mark + asset rules
+
+- Aperture mark: `mark-primary` on dark backgrounds, `mark-dark` on light backgrounds, `mark-dark-on-volt` on VOLT pill bars. Always read the actual SVG file from `brands/weaura-ai/svg/` and base64-embed it.
+- Lockup (Aperture + "WeAura AI" wordmark): Hero (slide 1) profile chip + final CTA footer. Mark-only on intermediate slides if a mark is shown at all.
+- **Never redraw the Aperture via SVG primitives.** This rule is now in 4 places in the system; honor it.
+
+### Slide rhythm
+
+| Slide # | Type | Background |
+|---|---|---|
+| 1 | Hero | full-bleed photo + dark overlay |
+| 2 | Body | LIGHT or DARK (the "what they say" beat) |
+| 3 | Body Dark | the problem named with ALL CAPS |
+| 4 — N-2 | Alternating Body Light / Body Dark | one technique per slide |
+| N-1 | Body Light | summary list ("AS N TÁTICAS." pattern) |
+| N | CTA | LIGHT |
+
+**Never two adjacent dark slides; never two adjacent light slides without a reason.** Rhythm matters.
+
+### When `editorial-minimal` is the right choice instead
+
+If the carousel is short (≤8 slides) and the rhythm of `decoded-editorial` doesn't have room to breathe, use `editorial-minimal` (bottom-third headline, minimal body text). The user / brief should specify explicitly. Default to `decoded-editorial` for any carousel ≥10 slides.
+
+Refer to `brands/weaura-ai/visual-style.md` for the canonical, full spec, and the asset pack at `brands/weaura-ai/svg/` for the brand-mark variants.
 
 ---
 
