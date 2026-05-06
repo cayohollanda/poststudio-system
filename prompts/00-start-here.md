@@ -47,6 +47,7 @@ Then, depending on what the user wants:
 - Render job export → prompts/17-export-render-job.md
 - PNG zip delivery (Mode 1, Claude Project) → prompts/18-deliver-carousel-as-png-zip.md
 - Ephemeral brand intake (fast, runtime brand context) → prompts/19-ephemeral-brand-intake.md
+- PostStudio Machine — guided full flow (briefing → headlines → spine → text → images → HTML preview → PNG export) → prompts/20-poststudio-machine.md (loads system/machine/* — opinionated end-to-end carousel machine)
 
 Brand context is supplied per session, not loaded from this repo:
 
