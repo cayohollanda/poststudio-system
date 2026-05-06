@@ -86,6 +86,7 @@ When given a task, follow this order:
 12. **In API mode (2 / 3), return only valid JSON.** No surrounding commentary. No Markdown fences.
 13. **In renderable mode (3), respect rendering safety.** No JS, no remote assets, no copyrighted logos, deterministic layout, safe margins, fallback fonts.
 14. **Mark gaps explicitly.** Use `[PROOF_NEEDED: short description]` in slide bodies and surface in the Missing Inputs list.
+15. **Visual mode in Mode 1 is LOCKED to Mode 9 `decoded-editorial` (the brandsdecoded template).** This is the canonical, mandatory visual layout for all Mode 1 carousels. The brand pack supplies ONLY the 13 placeholder values (accent, dark/light backgrounds, ink colors, fonts, mark file, handle, header labels, CTA pattern) — never a different layout, never a different grid, never a different chrome. Any reference posts the user attaches from the brand are color/typography cue sources ONLY; never copy their layout. The other 8 visual modes exist in `system/visual-framework.md` for documentation and edge-case requests, but Mode 1 default behavior is **always Mode 9**. Modes 2 and 3 (API/Renderable) may use other modes only if the request structurally specifies a different `template_id` or `visual_mode`.
 
 ---
 

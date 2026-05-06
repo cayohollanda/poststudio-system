@@ -167,7 +167,9 @@ This is a starting skeleton. Adapt to the brand's specific layout per `visual-st
 
 ## Layout rules to honor (from the brand pack)
 
-The brand's `visual-style.md` declares which **visual mode** to use. If the brand pack declares `primary_visual_mode: decoded-editorial`, follow the spec in `system/visual-framework.md` Mode 9 (`decoded-editorial`) and use the placeholders the brand pack supplies. Otherwise, follow whichever Mode (1-8) the brand pack declares.
+**In Mode 1, the visual mode is LOCKED to Mode 9 `decoded-editorial` (the brandsdecoded canonical template).** Pull the 13 placeholder values from the active Brand Pack's `06_visual-style.md`. Render the structure exactly per `system/visual-framework.md` Mode 9 — only the placeholder VALUES change between brands; the layout, grid, header chrome, slide rhythm, and composition are fixed.
+
+**Critical:** if the brand attached reference posts (screenshots of their pre-existing social content), those are **color/typography cue sources ONLY**. Never adapt the rendered layout to mimic them. The brandsdecoded template is the layout, period.
 
 ### Quick reference — `decoded-editorial` mode (Mode 9, system-level spec with placeholders)
 

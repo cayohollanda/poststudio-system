@@ -6,6 +6,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ---
 
+## [2.1.1] — 2026-05-06
+
+### Mode 9 lock — `decoded-editorial` is the mandatory Mode 1 visual layout
+
+Field test of v2.1.0 surfaced a real failure: `prompts/19-ephemeral-brand-intake.md` was instructing Claude to **infer** a visual mode by inspecting the brand's reference posts. When a user attached the brand's pre-existing editorial posts as visual references, Claude correctly read them as cues — but then adopted that pre-existing layout as the Mode 1 template, instead of applying the brandsdecoded canonical layout (Mode 9). The result: every brand got its own visual identity reflected back, defeating the whole point of having a system-level signature template.
+
+This release locks `decoded-editorial` (Mode 9) as the canonical, mandatory visual layout for every Mode 1 carousel. Brands customize only the 13 placeholder values; reference posts are color/typography cues only.
+
+### Changed
+
+- **`system/master-instructions.md`** — added operating principle #15: "Visual mode in Mode 1 is LOCKED to Mode 9 `decoded-editorial`." Brand pack supplies only the 13 placeholders, never an alternative layout. Modes 1-8 documented for Mode 2/3 explicit overrides only.
+- **`system/visual-framework.md` Mode 9** — re-headlined as "CANONICAL DEFAULT FOR MODE 1." Removed "use this for long-form ≥10 slides" qualifier; the layout scales to short carousels too. Added explicit risk: "copying layout from the brand's existing reference posts." Updated mode-selection filter: Mode 1 has no choice; Modes 2/3 honor the structured request.
+- **`prompts/19-ephemeral-brand-intake.md`** — Visual mode is no longer a user input. Section 06_visual-style.md output MUST declare `primary_visual_mode: decoded-editorial` and fill the 13 placeholders. Reference posts framed as color/typography cue sources only — explicit hard rule: "Do NOT extract layout, grid, header chrome, or slide composition from the brand's own existing posts. The brandsdecoded template defines the layout. Period."
+- **`prompts/04-generate-carousel.md`** — Visual mode input replaced with the lock notice. Process step 4 rewritten: "Visual mode is LOCKED to Mode 9 in Mode 1. Pull the 13 placeholder values from the brand pack."
+- **`prompts/18-deliver-carousel-as-png-zip.md`** — Layout rules section now opens with the Mode 9 lock declaration and the warning to never adapt rendered layout to mimic brand reference posts.
+
+### Migration notes from v2.1.0
+
+If you ran intake under v2.1.0 and got a different visual mode (e.g. `editorial-minimal`), re-run the intake under v2.1.1. The brand pack will now correctly declare `primary_visual_mode: decoded-editorial` with the 13 placeholders filled from the same source material. Output will follow the brandsdecoded canonical layout regardless of what the brand's pre-existing posts looked like.
+
+---
+
 ## [2.1.0] — 2026-05-06
 
 ### Brand-agnostic refactor — framework defines structure; brand instances are runtime data

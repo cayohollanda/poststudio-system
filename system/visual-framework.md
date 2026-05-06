@@ -242,9 +242,11 @@ You pick one mode per carousel. Carry it through all slides for consistency.
 
 ### Mode 9 — Decoded Editorial
 
-**When to use:** long-form (10-14 slide) tactical breakdowns where you want signature-density. Reference: the visual language of `@brandsdecoded__`. Best for "techniques," "commands," "tactics," "playbooks." Not for short carousels (≤8 slides) — use Mode 2 instead.
+> **CANONICAL DEFAULT FOR MODE 1.** This is the mandatory visual layout for every Mode 1 (Claude Project Manual) carousel produced by PostStudio System. Brands customize **only** the 13 placeholder values (accent, backgrounds, ink colors, fonts, mark, handle, header labels, CTA pattern). The structure, grid, header chrome, slide rhythm, and composition are fixed. **Do NOT infer a different mode by looking at the brand's existing posts** — those serve only as color/typography cues, never as templates to copy. Modes 1-8 below remain documented for Mode 2/3 (API/Renderable) requests that explicitly specify a different visual mode.
 
-This is a **system-level template** that any brand can adopt. The brand's `visual-style.md` declares it via `primary_visual_mode: decoded-editorial` and supplies the placeholder values. The Brand Pack provides the colors, fonts, mark file, header labels, and CTA pattern; this Mode provides the canonical layout.
+**When to use:** ALL Mode 1 carousels. Adapted from the visual language of `@brandsdecoded__` and generalized into a brand-agnostic system template. Works equally for short (7-8 slide) and long (10-14 slide) carousels — the slide-rhythm table below scales naturally.
+
+This is a **system-level template** that every brand adopts. The brand's `visual-style.md` declares it via `primary_visual_mode: decoded-editorial` and supplies the 13 placeholder values. The Brand Pack provides the colors, fonts, mark file, header labels, and CTA pattern; this Mode provides the canonical layout.
 
 **Composition (canvas 1080×1350; margins 64px top/bottom, 80px left/right):**
 
@@ -297,16 +299,23 @@ Slide types:
 **Asset rule:** the brand mark must be the actual SVG/PNG file the user supplied this session — embedded as base64 in `<image href="data:...">` for SVG, or via `<img>` for HTML. Never redraw the mark via SVG primitives.
 
 **Risks to avoid:**
-- Using this Mode for short (<10 slides) carousels — the rhythm needs slides to breathe. Use Mode 2 instead.
 - Forgetting placeholders. If a brand adopts this Mode without filling all 13 placeholders, output will be inconsistent.
 - Two adjacent dark slides or two adjacent light slides — breaks the rhythm.
 - Drawing the brand mark from scratch instead of reading the supplied file.
+- **Copying layout from the brand's existing reference posts.** Those posts may exist in a different visual language (the brand's pre-PostStudio identity). PostStudio Mode 1 always uses THIS layout — extract only colors and fonts from the references, then apply them as placeholders into this template.
+- Inferring a different visual mode because the brand's site/posts "look more like Mode 2." Mode 1 is locked to this Mode 9 template by design — it's the system's signature layout.
 
 ---
 
 ## How to choose a mode
 
-A 3-question filter:
+**Mode 1 (Claude Project Manual) — there is no choice.** Always Mode 9 (`decoded-editorial`). The brand customizes only the 13 placeholder values. This is by design: PostStudio's Mode-1 signature is the brandsdecoded layout. Don't override.
+
+**Mode 2 / Mode 3 (API / Renderable Worker) — the request specifies the mode.** The structured `generation-request` or `creative-render-request` schema names a `visual_mode` or `template_id` directly. If the request omits it, default to Mode 9. If the request explicitly asks for one of Modes 1-8, honor that.
+
+Modes 1-8 below remain documented for: (a) Mode 2/3 explicit overrides, (b) brand exploration / debate, (c) reference for visual variations a brand could request as one-off campaigns. They are not the Mode-1 default path.
+
+For documentation purposes, here is the historical filter for picking a non-default mode in Mode 2/3 (Mode 1 ignores this — always Mode 9):
 
 1. **What is the carousel's emotional center?**
    - Inspiring → Mode 1, 5
@@ -326,8 +335,6 @@ A 3-question filter:
    - Instagram (≥10 slides) → Mode 9 performs best for tactical density; Mode 1, 4, 7 for shorter
    - X — minimal carousel platform; lean Mode 2 or 6 if used
    - TikTok carousels → Mode 4, 8 perform best
-
-If unsure for a short carousel, default to **Mode 2 (Editorial Minimal)**. For a long carousel (≥10 slides) where the brand has adopted it, default to **Mode 9 (Decoded Editorial)**.
 
 ---
 
