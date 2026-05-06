@@ -199,7 +199,7 @@ porque · só que · por isso · enquanto · quando · e · mas · aí · então
 
 ---
 
-### Parâmetro 4 — Fatos Verificados
+### Parâmetro 4 — Fatos Verificados (Fact-Check Ativo)
 
 **Regra absoluta:** Nenhum número, estatística, data, valor monetário ou citação pode ser entregue sem verificação.
 
@@ -214,7 +214,33 @@ O que sempre verificar:
 
 **Inconsistência frequente em tabelas:** Misturar percentuais precisos ("28,6%") com formatos vagos ("Alta"). Padronizar sempre.
 
-**Regra de penalidade:** Dado importante não verificado → nota máxima 6/10. Se Claude não tem ferramenta de pesquisa disponível, marcar `[PROOF_NEEDED: descrição curta]` no slide e elevar pra Missing Inputs.
+#### Quando há ferramenta de web search disponível (canonical default)
+
+ANTES de gerar a Espinha Dorsal:
+
+1. Listar TODAS as entidades nomeadas no insumo (marcas, pessoas, lugares, números, datas, eventos, citações).
+2. Rodar web search de cada uma. Confirmar grafia exata, ano correto, número exato, atribuição correta.
+3. Confrontar com o que o usuário disse. Apresentar:
+   - ✅ Confirmados — usar verbatim no carrossel
+   - ⚠️ Inconsistentes — usuário disse X, fonte oficial diz Y; pedir decisão
+   - 🔎 Adicionais relevantes — encontrei dado novo que não estava no insumo; útil?
+   - ❌ Não confirmados — sem fonte; pedir fonte ao usuário ou marcar `[PROOF_NEEDED]`
+4. **Não avançar pra Espinha sem o usuário confirmar a lista de evidências.**
+
+Esta etapa é a **Etapa 4 da entrevista** (ver `system/machine/07-interview-protocol.md`). É obrigatória no modo entrevista; opcional no modo manual (prompt 04) mas recomendada.
+
+#### Quando NÃO há ferramenta de web search
+
+Marcar `[PROOF_NEEDED: descrição curta]` em todo dado não verificável pelo conhecimento próprio. Surfacear na Aprovação de Texto (Etapa 3.7) pro usuário confirmar antes de aprovar.
+
+#### Princípios
+
+- **Nunca inventar dados.** Mesmo que pareça óbvio. Mesmo que provavelmente esteja certo. Sem fonte = `[PROOF_NEEDED]`.
+- **Nunca arredondar sem dizer.** "70% das empresas" quando o real é "67,3%" é mentira sutil. Use o exato ou diga "cerca de 70%".
+- **Datas obrigatórias.** "Estudo recente" sem ano = inadmissível. Sempre ano + fonte.
+- **Citações verbatim.** Se atribuir frase a alguém, é a frase exata da fonte. Sem paráfrase silenciosa.
+
+**Regra de penalidade:** Dado importante não verificado → nota máxima 6/10. Dado conhecidamente errado (encontrado em web search) → reprova o bloco inteiro até o usuário decidir.
 
 ---
 

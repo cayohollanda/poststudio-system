@@ -29,17 +29,19 @@ A PostStudio Machine é esse modo. Esses 6 arquivos são o cérebro dela.
 | `04-design-principles.md` | Princípios de design visual: hierarquia de 3 níveis, ritmo dark/light, espaçamento (terço inferior), tipografia (escala fixa), componentes (quando usar card/tabela/stat/img-box), geração de paleta a partir da cor primária |
 | `05-template-alternado.md` | Especificação visual completa do template canônico (Alternado Claro/Escuro): variáveis CSS, accent bar, brand bar, progress bar, slide capa, slides dark/light/gradient/CTA, image box, instagram preview frame |
 | `06-references.md` | Exemplos de carrosséis completos (triagem → headline → espinha → copy slides) usados como gabarito de qualidade. Padrões extraídos pra auto-validação |
+| `07-interview-protocol.md` | **Protocolo Socrático da entrevista.** Define como Claude conduz a entrevista turn-by-turn, regras de detecção de vagueza, 5 etapas (Insumo → Brand → Ângulo → Evidências → Confirmação), web search ativo, anti-patterns de entrevista, cadência ideal |
 
 ---
 
 ## Como Claude usa
 
-Quando `prompts/20-poststudio-machine.md` é executado, Claude lê os 6 arquivos antes de qualquer interação com o usuário. Em cada etapa do fluxo:
+Quando `prompts/20-poststudio-machine.md` é executado, Claude lê os 7 arquivos antes de qualquer interação com o usuário. Em cada etapa do fluxo:
 
-- **Etapa 2 (Headlines)** consulta `01-headline-engine.md` pra gerar e validar as 10 opções.
-- **Etapa 3.5 (Validação Editorial — invisível)** consulta `02-editorial-quality.md` + `03-anti-slop-filter.md` pra reprovar/reescrever blocos.
-- **Etapa 5 (Render HTML)** consulta `04-design-principles.md` + `05-template-alternado.md` pra construir o HTML.
-- **Etapa 3 (Espinha Dorsal)** consulta `06-references.md` como gabarito de qualidade.
+- **Entrevista Socrática (Etapas 1-5 da conversa com o usuário)** consulta `07-interview-protocol.md` pra conduzir as perguntas turn-by-turn, detectar vagueza e fazer fact-check.
+- **Pipeline Headlines (após confirmação da entrevista)** consulta `01-headline-engine.md` pra gerar e validar as 10 opções.
+- **Validação Editorial (invisível, antes de exibir texto final)** consulta `02-editorial-quality.md` + `03-anti-slop-filter.md` pra reprovar/reescrever blocos abaixo de 8/10.
+- **Render HTML (após aprovação de texto + recebimento de imagens)** consulta `04-design-principles.md` + `05-template-alternado.md` pra construir o HTML.
+- **Toda a entrevista** consulta `06-references.md` como gabarito de qualidade — cada output deve estar no nível dos exemplos.
 
 ---
 

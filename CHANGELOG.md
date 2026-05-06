@@ -28,6 +28,52 @@ If you ran intake under v2.1.0 and got a different visual mode (e.g. `editorial-
 
 ---
 
+## [2.3.0] — 2026-05-06
+
+### PostStudio Machine — modo entrevista Socrática + fact-check ativo
+
+This release replaces the briefing-em-rajada da PostStudio Machine pelo **modo entrevista Socrática**: uma pergunta por turno, confirmação de paráfrase obrigatória, detecção de vagueza com reformulação automática, e web search ativo na Etapa de Evidências. O fluxo total agora leva ~30-40 minutos (~25-35 mensagens) e produz output significativamente mais denso e brand-fluent.
+
+### Added
+
+- **`system/machine/07-interview-protocol.md`** — protocolo Socrático completo. Define princípios (uma pergunta por turno, confirmar paráfrase, não aceitar vagueza, adaptar próxima pergunta, reformular quando o usuário foge), heurísticas de detecção de vagueza (teste da substituição, buzzword check, audience check, insumo check), 5 etapas com perguntas-âncora + perguntas-de-aprofundamento (Insumo & Tensão, Brand & Voz, Ângulo Editorial, Evidências com Web Search Ativo, Confirmação Final), anti-patterns de entrevista, cadência ideal (~18-26 turnos só na entrevista, +8-12 no pipeline).
+
+### Changed
+
+- **`prompts/20-poststudio-machine.md`** — refatorado por completo. Substitui o Briefing Criativo (rajada de 7 perguntas) pelo modo entrevista Socrática. Boot agora carrega 11 arquivos em vez de 10 (inclui `07-interview-protocol.md`). Ponto de entrada vai direto pra Pergunta 1 da Etapa 1 (Insumo). Bloco 3 redefinido como "Modo Entrevista Socrática (regras obrigatórias)" com 6 mandamentos. Cada etapa tem perguntas-âncora explícitas, perguntas-de-aprofundamento adaptativas, e confirmação de paráfrase obrigatória.
+
+- **`system/machine/02-editorial-quality.md`** — Parâmetro 4 (Fatos Verificados) elevado pra **Fact-Check Ativo**. Quando há web search disponível: rodar antes da Espinha Dorsal, confirmar todas as entidades, apresentar lista ✅/⚠️/🔎/❌ pro usuário decidir. Quando não: marcar `[PROOF_NEEDED]`. Princípios reforçados: nunca inventar, nunca arredondar sem dizer, datas obrigatórias, citações verbatim.
+
+- **`system/machine/README.md`** — atualizado pra incluir `07-interview-protocol.md` (anatomia agora tem 7 arquivos). Seção "Como Claude usa" reescrita pra refletir o fluxo bimodal entrevista → pipeline.
+
+- **`CHANGELOG.md`** — entrada v2.3.0.
+
+### Why
+
+A versão anterior (v2.2.0) usava briefing em rajada — Claude pedia 7 perguntas de uma vez, igual ao Content Machine v4 do brandsdecoded. Funciona pra usuário experiente que sabe o briefing de cor, mas:
+
+- Pra brand nova / cliente novo / brand sem clareza: usuário responde vago e o output reflete a vagueza.
+- Sem fact-check ativo: dados inventados ou imprecisos passavam silenciosos, Claude marcava `[PROOF_NEEDED]` ao invés de validar quando podia.
+- Sem confirmação de paráfrase: divergência de entendimento entre Claude e usuário só aparecia no Texto Final (tarde demais).
+
+O modo entrevista resolve os três problemas. Trade-off: leva ~2x mais tempo. Quem está com pressa usa `prompts/04-generate-carousel.md` em vez disso.
+
+### Architecture
+
+- **Substituição, não adição.** Não criamos prompt 21 — o prompt 20 agora é puramente Socrático. Pra fluxo rápido sem entrevista, o usuário muda pra prompt 04.
+- **Compatibilidade preservada.** Quem rodou `prompts/19-ephemeral-brand-intake.md` antes do prompt 20 na mesma sessão tem a Etapa 2 (Brand & Voz) automaticamente reduzida a uma confirmação dos 10 campos do brand pack.
+- **Web search é runtime.** Mode 1 (Claude.ai) tem ferramenta disponível por default. Mode 2/3 herda do client. Sem ferramenta = degrada graciosamente pra `[PROOF_NEEDED]`.
+
+### Migration notes from v2.2.0
+
+- Quem usava prompt 20 anterior pra fluxo rápido: agora abre 2 caminhos:
+  1. Manter prompt 20 e usar o modo entrevista (recomendado pra qualidade)
+  2. Mudar pra `prompts/04-generate-carousel.md` (briefing em rajada Markdown) + `prompts/18-deliver-carousel-as-png-zip.md` (export PNG)
+- Brand pack ephemeral via prompt 19 continua funcionando — pula Etapa 2 da entrevista.
+- Quality gate (`02-editorial-quality.md`) Parâmetro 4 ficou mais estrito — copy com dado errado encontrado via web search agora reprova o bloco inteiro até o usuário decidir.
+
+---
+
 ## [2.2.0] — 2026-05-06
 
 ### PostStudio Machine — guided end-to-end carousel pipeline
