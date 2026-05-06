@@ -1,11 +1,11 @@
-# Visual Framework — 9 Visual Modes
+# Visual Framework — 10 Visual Modes
 
 > Carousels live and die on slide 1. Slide 1 is 90% visual. The visual framework is therefore the highest-leverage part of this system.
 
 This file defines:
 
 1. **Universal visual rules** — what every PostStudio carousel does.
-2. **Nine visual modes** — pick one per carousel. Don't mix.
+2. **Ten visual modes** — pick one per carousel. Don't mix.
 3. **Composition guidelines** — what goes where on the canvas.
 4. **Typography rules** — when to use what, and why.
 5. **Image prompt grammar** — how to write prompts that don't produce AI slop.
@@ -29,7 +29,7 @@ These apply across every mode. Break them only with intent.
 
 ---
 
-## The 9 visual modes
+## The 10 visual modes
 
 You pick one mode per carousel. Carry it through all slides for consistency.
 
@@ -44,6 +44,7 @@ You pick one mode per carousel. Carry it through all slides for consistency.
 | 7 | Exploded Diagram | "How X works under the hood," teardowns |
 | 8 | Meme-but-Premium | Cultural moment, contrarian, viral attempts |
 | 9 | Decoded Editorial | Long-form (10-14 slide) tactical breakdowns, signature-density posts (adapted from `@brandsdecoded__`) |
+| 10 | Alternado Claro/Escuro | **Canonical PostStudio Machine template** — guided 5/7/9/12-slide carousels with dark/light alternation, headline engine, anti-AI-slop validation, HTML+PNG export pipeline (used by `prompts/20-poststudio-machine.md`) |
 
 ---
 
@@ -307,32 +308,107 @@ Slide types:
 
 ---
 
+### Mode 10 — Alternado Claro/Escuro (PostStudio Machine canonical)
+
+**When to use:** when the user runs the **PostStudio Machine guided flow** ([`prompts/20-poststudio-machine.md`](../prompts/20-poststudio-machine.md)). This is the canonical template of the Machine — calibrated for 5/7/9/12-slide carousels with strict editorial validation, headline engine, and HTML+PNG export pipeline.
+
+This Mode is fully specified in [`system/machine/05-template-alternado.md`](./machine/05-template-alternado.md). Brand variables (primary color, fonts, light/dark BGs, gradient) are filled from the Briefing Criativo or from a brand pack the user uploaded into Project Knowledge. Mode 10 differs from Mode 9 in that it is **conversation-driven** — the Machine collects briefing inputs in chat — and rendered via **Playwright headless** to PNG inside the same session.
+
+**Composition:**
+
+- **Cover slide:** full-bleed photography + heavy bottom gradient + handle badge (left-aligned) + headline (88-108px, condensed font, uppercase)
+- **Dark internal slides:** deep ink BG, body text in 38px Plus Jakarta Sans (or brand body font) at 55% opacity, `<strong>` at 100% white, accent in primary-light. Optional: ghost number watermark (380px, 4% opacity, behind text).
+- **Light internal slides:** off-white BG, body text in 38px at 60% ink opacity, `<strong>` at 100% ink, accent in primary. Optional: cards (border-left 7px primary), tables (header in primary), pattern cards (numbered, italic example with primary border-left).
+- **Gradient slide (penultimate):** `linear-gradient(165deg, primary-dark 0%, primary 50%, primary-light 100%)`, body in 38px white at 65%, optional `→` arrow rows.
+- **CTA slide (final):** light BG, mandatory bridge sentence connecting last insight to CTA, big condensed headline (72px), keyword box (white card with primary border, 80px keyword in primary), footer with handle.
+
+**Universal chrome (every slide):**
+
+- 7px accent bar at top (gradient on light/dark, white 18% on grad)
+- Brand bar: `POWERED BY POSTSTUDIO` left + `@[handle] · [MES YEAR] ®` right, font 13px, uppercase, opacity 45-50%
+- Progress bar at bottom: 3px track, fill proportional to slide N/total, slide number "N/M" right-aligned
+
+**Slide rhythm (9 slides default):**
+
+```
+1: Cover | 2: Hook (Dark) | 3: Mechanism pt.1 (Light) | 4: Mechanism pt.2 (Dark) |
+5: Proof (Light) | 6: Expansion (Dark) | 7: Application (Light) | 8: Direction (Grad) | 9: CTA (Light)
+```
+
+5/7/12 variants documented in [`05-template-alternado.md`](./machine/05-template-alternado.md). **Never two adjacent dark or light slides without reason.**
+
+**Required Brand Pack placeholders (from Briefing Criativo or brand pack):**
+
+| Placeholder | Example | Purpose |
+|---|---|---|
+| `[BRAND_PRIMARY]` | `#E8421A` | Single accent color |
+| `[BRAND_LIGHT]` | `#FF6B47` | Primary clareado ~20% |
+| `[BRAND_DARK]` | `#B82F0F` | Primary escurecido ~30% |
+| `[LIGHT_BG]` | `#F7F4F1` | Off-white with brand temperature |
+| `[DARK_BG]` | `#0F0D0C` | Near-black with tint |
+| `[LIGHT_BORDER]` | `#EDE8E3` | LIGHT_BG escurecido ~5% |
+| `[FONTE_HEADLINE]` | `Barlow Condensed` | Headline font (uppercase, weight 900, condensed) |
+| `[FONTE_BODY]` | `Plus Jakarta Sans` | Body font (sentence case, weight 400) |
+| `[BRAND_HANDLE]` | `@weaura.tech` | Instagram handle for brand bar + footer |
+| `[BRAND_INITIAL]` | `W` | Single letter for badge dot |
+| `[CTA_KEYWORD]` | `MANUAL` | Trigger word for keyword box |
+| `[CTA_BENEFIT]` | `e recebe o guia direto na DM` | What user gets after commenting |
+| `[CTA_FOOTER_TEXT]` | `Envio automático via DM` | Footer attribution under handle |
+
+**Image rule:** brand mark must be the actual file the user supplied this session. Embed as base64 in `<img>` or `<image href="data:...">`. **NEVER redraw via SVG primitives.**
+
+**Risks to avoid:**
+
+- Using this Mode outside the PostStudio Machine guided flow — it's calibrated for the full briefing → validation → render pipeline, not for ad-hoc generation.
+- Skipping the editorial validation (Etapa 3.5) — Mode 10 demands the 7-parameter quality gate before render.
+- Using Google Fonts via `<link>` — Playwright headless will not render consistently. Always embed fonts as base64 via `@font-face`.
+- Forgetting the bridge sentence on the CTA — it's mandatory.
+- Centralizing slide content (`justify-content: center`) — Mode 10 always uses `flex-end` for content alignment.
+
+**Mode 9 vs Mode 10 — quick disambiguation:**
+
+| Aspect | Mode 9 (Decoded Editorial) | Mode 10 (Alternado Claro/Escuro) |
+|---|---|---|
+| Rhythm | Header chrome + ghost numbers + hero photo + body slides + CTA | Alternated dark/light/gradient strict + accent bar + brand bar |
+| Slide count | 10-14 (long-form) | 5/7/9/12 (variable, briefing-driven) |
+| Trigger | Inferred from brand pack `primary_visual_mode: decoded-editorial` | User invokes `prompts/20-poststudio-machine.md` |
+| Render | Manual via prompt 18 (cairosvg / Playwright) | Integrated Playwright export inside the Machine flow |
+| Validation | Quality checklist generic | 7-parameter editorial QA gate (system/machine/02) |
+
+A brand can adopt either. They coexist. Mode 9 is for the long-form signature look; Mode 10 is for the conversation-driven Machine pipeline.
+
+---
+
 ## How to choose a mode
 
-**Mode 1 (Claude Project Manual) — there is no choice.** Always Mode 9 (`decoded-editorial`). The brand customizes only the 13 placeholder values. This is by design: PostStudio's Mode-1 signature is the brandsdecoded layout. Don't override.
+**Mode 1 (Claude Project Manual) — there are TWO defaults depending on flow:**
+- Running the **PostStudio Machine** (`prompts/20-poststudio-machine.md`) → **Mode 10 (Alternado Claro/Escuro)** is the canonical template. Briefing-driven, editorial-validated, integrated PNG export. Brand variables come from the Machine's Briefing Criativo.
+- Running the manual carousel flow (`prompts/04-generate-carousel.md` + `prompts/18-deliver-carousel-as-png-zip.md`) → **Mode 9 (Decoded Editorial)** is the signature long-form layout. Brand pack declares `primary_visual_mode: decoded-editorial`.
 
 **Mode 2 / Mode 3 (API / Renderable Worker) — the request specifies the mode.** The structured `generation-request` or `creative-render-request` schema names a `visual_mode` or `template_id` directly. If the request omits it, default to Mode 9. If the request explicitly asks for one of Modes 1-8, honor that.
 
 Modes 1-8 below remain documented for: (a) Mode 2/3 explicit overrides, (b) brand exploration / debate, (c) reference for visual variations a brand could request as one-off campaigns. They are not the Mode-1 default path.
 
-For documentation purposes, here is the historical filter for picking a non-default mode in Mode 2/3 (Mode 1 ignores this — always Mode 9):
+For documentation purposes, here is the historical filter for picking a non-default mode in Mode 2/3:
 
 1. **What is the carousel's emotional center?**
    - Inspiring → Mode 1, 5
-   - Rigorous → Mode 2, 6, 7, 9
+   - Rigorous → Mode 2, 6, 7, 9, 10
    - Energetic → Mode 3, 4
    - Playful → Mode 8
-   - Tactical / signature density → Mode 9
+   - Tactical / signature density → Mode 9, 10
+   - Guided full-flow with editorial QA → Mode 10
 
 2. **Who is the audience?**
-   - Investors, executives, strategists → Mode 1, 2, 5
-   - Engineers, technical operators → Mode 3, 6, 7, 9
-   - Founders, builders → Mode 1, 4, 5, 9
-   - Mixed / cultural → Mode 8
+   - Investors, executives, strategists → Mode 1, 2, 5, 10
+   - Engineers, technical operators → Mode 3, 6, 7, 9, 10
+   - Founders, builders → Mode 1, 4, 5, 9, 10
+   - Mixed / cultural → Mode 8, 10
 
 3. **What is the platform / slide count?**
-   - LinkedIn → Mode 1, 2, 5, 6, 9 perform best
-   - Instagram (≥10 slides) → Mode 9 performs best for tactical density; Mode 1, 4, 7 for shorter
+   - LinkedIn → Mode 1, 2, 5, 6, 9, 10 perform best
+   - Instagram (≥10 slides) → Mode 9 or Mode 10 (Machine flow) for tactical density
+   - Instagram (5-9 slides) → Mode 10 is the canonical Machine template; Mode 1, 4, 7 for shorter ad-hoc
    - X — minimal carousel platform; lean Mode 2 or 6 if used
    - TikTok carousels → Mode 4, 8 perform best
 

@@ -28,6 +28,50 @@ If you ran intake under v2.1.0 and got a different visual mode (e.g. `editorial-
 
 ---
 
+## [2.2.0] — 2026-05-06
+
+### PostStudio Machine — guided end-to-end carousel pipeline
+
+This release adds the **PostStudio Machine** — an opinionated, guided flow for producing carousels from raw insumo to PNG zip in a single conversation. The Machine wraps and orchestrates briefing → headline engine → editorial spine → 7-parameter quality validation → text approval → image collection → HTML preview → Playwright PNG export.
+
+The Machine is brand-agnostic by design: brand context is supplied per session via Briefing Criativo (or inherited from `prompts/19-ephemeral-brand-intake.md`). The framework defines structure, rules, and editorial quality bars; brand variables (color, fonts, handle, CTA pattern) are runtime data.
+
+### Added
+
+- **`prompts/20-poststudio-machine.md`** — system prompt for the PostStudio Machine. The full guided flow in a single prompt, mapping every etapa (Ponto de Entrada → Briefing Criativo → Triagem → 10 Headlines → Espinha Dorsal → Validação Editorial Invisível → Aprovação de Texto → Sugestão de Imagens → HTML Preview → PNG Export → Legenda). Includes nicho-based palette suggestions (12 nichos), font pairing by visual style (Clássico / Moderno / Minimalista / Bold), narrative arc adaptation by carousel type (Tendência / Tese / Case / Previsão), and slide rhythm adaptation (5/7/9/12 slides).
+- **`system/machine/`** — núcleo editorial+visual da Machine, 6 arquivos:
+  - `README.md` — orientação do subsistema
+  - `01-headline-engine.md` — engine de geração e validação de headlines: padrões de lift (Brasil +155%, Fim/Morte +119%, Geracional +119%, Novidade +99%), 13 gatilhos emocionais, 4 estruturas de hook (Investigação Cultural, Narrativa Magnética, Dois-Pontos, Pergunta Geracional), 3 dimensões de avaliação obrigatória, banco de hooks de referência por padrão
+  - `02-editorial-quality.md` — manual editorial com 7 parâmetros (Gramática, Fluidez, AI Slop, Fatos, Estrutura, Densidade, Tom Editorial). Nota mínima 8/10 em cada. Bloco abaixo de 8 reprova. 5 testes finais (Folha, Substituição, Promessa, Artigo, Binário). Estrutura obrigatória 18 blocos / 9 slides com adaptações pra 5/7/12.
+  - `03-anti-slop-filter.md` — filtro anti-AI-slop completo: ~70 construções proibidas (paralelismos, headlines genéricas, vocabulário corporativo, anglicismos numéricos, aberturas/fechamentos preguiçosos), teste do tom de IA, regras gramaticais, checklist rápido.
+  - `04-design-principles.md` — princípios de design: hierarquia de 3 níveis, ritmo dark/light/gradient, regra do terço inferior, escala tipográfica fixa, componentes (card / tabela / big stat / image-box / arrow rows / pattern card), geração algorítmica de paleta a partir de cor primária, anti-patterns visuais.
+  - `05-template-alternado.md` — especificação visual completa do template canônico (Alternado Claro/Escuro): variáveis CSS, accent bar, brand bar (`POWERED BY POSTSTUDIO`), progress bar, slide capa (gradient pesado + badge handle), slides dark/light/gradient, image box, slide CTA com frase-ponte + keyword box, instagram preview frame, sequências de 5/7/9/12 slides, regras de embed de fontes via base64 `@font-face`, script Playwright de export.
+  - `06-references.md` — 3 carrosséis completos como gabarito de qualidade (Tese Contraintuitiva sobre temas virais, Tendência Interpretada sobre cultura de corrida, Case/Benchmark sobre auditoria de cloud) com triagem → headline → espinha dorsal → copy de cada slide. Padrões de qualidade extraídos pra auto-validação.
+
+- **Visual Framework Mode 10 — Alternado Claro/Escuro** adicionado a `system/visual-framework.md`. Esta é a modalidade canônica da PostStudio Machine. 13 placeholders documentados, regras de chrome universal, sequências adaptadas, integração com Mode 9 e demais modes.
+
+### Changed
+
+- **`prompts/00-start-here.md`** — adicionado prompt 20 (PostStudio Machine) à tabela de roteamento de tasks
+- **`system/visual-framework.md`** — atualizado de 9 para 10 modes; tabela e árvore de decisão expandidas pra incluir Mode 10
+- **`CHANGELOG.md`** — entrada v2.2.0
+
+### Architecture
+
+- A Machine é Mode 1 (Claude Project Manual) por design. Em Mode 2/3, a equivalente é a sequência `prompts/13-generate-renderable-carousel.md` + `prompts/17-export-render-job.md`.
+- Os 6 arquivos de `system/machine/` são carregados apenas quando o usuário invoca o prompt 20 — não inflam contexto em sessões normais.
+- A metodologia editorial (lift de headlines, 7 parâmetros, anti-AI-slop) foi adaptada de um system prompt de carrosséis virais com performance comprovada (referência creditada em `system/machine/README.md`).
+
+### Migration notes from v2.1.0
+
+- Existing prompts (00-19) e modos (1/2/3) continuam funcionando inalterados. O prompt 20 é aditivo — escolha quando usar:
+  - Quer só copy em Markdown → `prompts/04-generate-carousel.md`
+  - Quer só PNG zip de copy aprovada → `prompts/18-deliver-carousel-as-png-zip.md`
+  - Quer pipeline completo guiado com QA editorial → `prompts/20-poststudio-machine.md` (NOVO)
+- Brand pack ephemeral (`prompts/19-ephemeral-brand-intake.md`) continua sendo o caminho default pra brand context. Se rodado antes do prompt 20 na mesma sessão, o Briefing Criativo da Machine é pulado.
+
+---
+
 ## [2.1.0] — 2026-05-06
 
 ### Brand-agnostic refactor — framework defines structure; brand instances are runtime data
