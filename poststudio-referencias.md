@@ -6,7 +6,7 @@ Use estes exemplos como âncora de qualidade editorial. São carrosséis reais d
 
 ## EXEMPLO 1
 
-**Insumo:** Análise de 1.168 posts — dado de que marketing/branding tem 7.1% de hit rate, enquanto gerações tem 1 a cada 3
+**Insumo:** Análise de 4800 posts — dado de que marketing/branding tem 7.1% de hit rate, enquanto gerações tem 1 a cada 3
 
 **Eixo (interno):** Mercado
 **Funil (interno):** Topo — alcançar gente nova
@@ -40,7 +40,7 @@ Por que o tema que você mais domina
 | Headline | Por que o tema que você mais domina / é o que menos viraliza no Instagram. |
 | Hook | Você estudou anos o seu assunto. Tem case, tem resultado, tem autoridade. E mesmo assim: 13 likes, 2 comentários, zero alcance. O problema não é o conteúdo — é o tema. |
 | Mecanismo | O Instagram não distribui conteúdo por qualidade técnica. Distribui por velocidade de engajamento nas primeiras horas. E engajamento vem de identificação emocional — não de expertise. Quem se identifica com "Gen Z parou de ir à festa"? Metade do Brasil. Quem se identifica com "4 estratégias de CAC para SaaS B2B"? Duzentas pessoas. |
-| Prova | A) Em 1.168 posts analisados, marketing e branding tiveram 7.1% de hit rate — o pior de todos os temas. B) Posts sobre gerações viralizaram 1 a cada 3 — sem nenhum expertise técnico necessário. C) Nostalgia e comportamento: ~28% de hit rate, acessíveis a qualquer nicho. |
+| Prova | A) Em 4800 posts analisados, marketing e branding tiveram 7.1% de hit rate — o pior de todos os temas. B) Posts sobre gerações viralizaram 1 a cada 3 — sem nenhum expertise técnico necessário. C) Nostalgia e comportamento: ~28% de hit rate, acessíveis a qualquer nicho. |
 | Aplicação | Isso não significa abandonar o seu nicho. Significa usá-lo como destino, não como ponto de partida. A capa surfa o tema em alta. O miolo entrega a sua especialidade. O nutricionista que faz carrossel sobre "por que todo mundo está correndo" e termina com nutrição para corredores tem alcance e autoridade ao mesmo tempo. |
 | Direção | O próximo carrossel que você criar: comece pelo tema, não pelo conteúdo. Escolha um assunto em alta no Brasil — geracional, cultural, comportamental — e encontre o ângulo que conecta com o que você faz. A ponte entre o tema e o seu nicho é o post. |
 
@@ -70,7 +70,7 @@ Bloco 2: E mesmo assim: 13 likes. 4 comentários. Zero alcance. O problema não 
 **Slide 3 — Contexto (Light)**
 Tag: O QUE OS DADOS MOSTRAM
 
-Bloco 1: Analisamos 1.168 carrosséis reais e encontramos um padrão que contradiz tudo que o senso comum diz sobre criação de conteúdo.
+Bloco 1: Analisamos 4800 carrosséis reais e encontramos um padrão que contradiz tudo que o senso comum diz sobre criação de conteúdo.
 
 Bloco 2: O tema que você mais evita performa *4 vezes melhor* do que o que você mais escolhe.
 
@@ -82,7 +82,7 @@ Bloco 1: O Instagram não distribui conteúdo por qualidade técnica. Distribui 
 Bloco 2: E engajamento vem de identificação emocional — não de expertise. Quem se identifica com "Gen Z parou de ir à festa"? Metade do Brasil. Quem se identifica com "4 estratégias de CAC para SaaS B2B"? Duzentas pessoas.
 
 **Slide 5 — Prova (Light)**
-Tag: OS NÚMEROS REAIS — 1.168 POSTS
+Tag: OS NÚMEROS REAIS — 4800 POSTS
 
 Tabela:
 | Tema | Hit Rate |
@@ -162,7 +162,7 @@ a droga favorita dos adultos ansiosos.
 | Headline | Investigando por que a corrida se tornou / a droga favorita dos adultos ansiosos. |
 | Hook | Em 2020, academias fecharam e todo mundo foi correr. Só que as academias abriram — e as pessoas não pararam. Hoje, 34% mais brasileiros correm do que há dois anos. Não é tendência fitness. É um fenômeno cultural que precisa de explicação. |
 | Mecanismo | A corrida entrega em um produto três coisas que a modernidade tirou: solidão produtiva (tempo sem notificação), comunidade sem obrigação (clube de corrida — aparece se quiser) e resultado visível e mensurável (você literalmente vê onde chegou). Num mundo de métricas abstratas e trabalho invisível, a corrida é uma das poucas atividades onde o esforço e o resultado são proporcionais e imediatos. |
-| Prova | A) Mercado de tênis de corrida no Brasil: crescimento de 34% em 2024. B) Clubes de corrida em São Paulo: de ~40 para mais de 200 nos últimos 3 anos. C) Posts sobre corrida têm hit rate 3x maior que posts sobre fitness genérico — nossa própria análise de 1.168 posts. |
+| Prova | A) Mercado de tênis de corrida no Brasil: crescimento de 34% em 2024. B) Clubes de corrida em São Paulo: de ~40 para mais de 200 nos últimos 3 anos. C) Posts sobre corrida têm hit rate 3x maior que posts sobre fitness genérico — nossa própria análise de 4800 posts. |
 | Aplicação | Toda tribo que cresce rápido precisa de conteúdo que a nomeie e explique. O criador que nomeia o fenômeno — antes de virar mainstream — captura a atenção da tribo inteira. É o mesmo mecanismo do Tiny Desk, do jiu-jítsu das celebridades, dos clubes de leitura. Aparece cedo, nomeie, explique. |
 | Direção | A pergunta não é se você vai falar sobre corrida. É qual ângulo conecta corrida com o que você faz. Nutrição para corredor. Advocacia trabalhista para quem quer trabalhar menos e correr mais. Branding de clubes. O tema está disponível — o ângulo é seu. |
 

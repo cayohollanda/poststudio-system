@@ -230,7 +230,7 @@ Textos 17 e 18 precisam fazer um pivot genuíno em relação ao que veio antes. 
 ❌ Resumo disfarçado: "No final, o que os dados mostram é que tema certo faz toda a diferença."
 
 **Fechamento aprovado:**
-✅ "Os 1.168 posts provam que distribuição e qualidade não competem — mas a distribuição vem primeiro. Quem ignora isso está produzindo para a bolha, não para o crescimento."
+✅ "Os 4800 posts provam que distribuição e qualidade não competem — mas a distribuição vem primeiro. Quem ignora isso está produzindo para a bolha, não para o crescimento."
 
 ---
 
